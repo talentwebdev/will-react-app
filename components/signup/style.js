@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontWeight:         base_styles.font.normal_text_title_font_weight,
-        color:              base_styles.font.noraml_text_font_color,
+        color:              base_styles.color.noraml_text_font_color,
         textAlign:          'center'
     },
     back_btn: {

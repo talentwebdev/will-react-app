@@ -1,8 +1,4 @@
 import { combineReducers } from "redux";
+import user_reducer from "./user_reducer";
 
-const initState = {};
-function reducer(state = initState, action)
-{
-    return state;
-}
-export default combineReducers({reducer: reducer})
+export default combineReducers({user: user_reducer})

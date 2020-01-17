@@ -2,6 +2,7 @@ import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator } from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
 import { Dimensions } from 'react-native';
+import { fromRight } from 'react-navigation-transitions';
 
 import OpenScreen from "./../openscreen/OpenScreen";
 import SignUp from "./../signup/SignUp";
@@ -42,6 +43,7 @@ const MainNavigator = createDrawerNavigator({
         contentOptions:{
           activeTintColor:'orange'
         },
+        transitionConfig: () => fromRight(1500),
         contentComponent: ContentComponent,
     }
 );
