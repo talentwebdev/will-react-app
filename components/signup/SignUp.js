@@ -13,8 +13,11 @@ import {
         TouchableWithoutFeedback 
     } from "react-native";
 import Icon  from "react-native-vector-icons/AntDesign";
+import {connect} from "react-redux";
+import {bindActionCreators} from 'redux';
 // import style
 import styles from "./style";
+import {setUserData} from "./action";
 
 // import images
 import background from "./../../assets/images/background.png";
@@ -39,11 +42,11 @@ class SignUp extends ValidationComponent{
                 back_btn_keyboard: styles.back_btn_keyboard
             },
             name: "123",
-            surname: "",
-            id_number: "",
-            email: "",
-            password: "",
-            confirmpassword: "",
+            surname: "zhuping",
+            id_number: "1234",
+            email: "zhuping@gmail.com",
+            password: "password",
+            confirmpassword: "password",
         }
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
@@ -108,16 +111,23 @@ class SignUp extends ValidationComponent{
         this.validate({
             name: {minlength:1, required: true},
             surname: {minlength:1, required: true},
-            email: {email: true},
-            number: {numbers: true},
+            email: {email: true, required: true},
+            id_number: {numbers: true, required: true},
             password: {minlength: 5, required: true},
             confirmpassword: {minlength: 5, required: true},
         });
 
-        console.log('hello');
-
         if(this.isFormValid() && this.state.password === this.state.confirmpassword)
         {
+            this.props.actions({
+                name: this.name,
+                surname:  this.surname,
+                email: this.email,
+                id_number: this.id_number,
+                password: this.password,
+                confirmpassword: this.confirmpassword
+            });
+            this.props.navigation.navigate("IdentifyScreen");
             
         }
         else{
@@ -195,6 +205,7 @@ class SignUp extends ValidationComponent{
                             ref="password"
                             value={this.state.password}
                             onChangeText={(password) => {this.setState({password})}}
+                            secureTextEntry={true}
                             />
                         <TextInput 
                             style={this.state.keyboardshow ? 
@@ -205,6 +216,7 @@ class SignUp extends ValidationComponent{
                             ref="confirmpassword"
                             value={this.state.confirmpassword}
                             onChangeText={(confirmpassword) => {this.setState({confirmpassword})}}
+                            secureTextEntry={true}
                             />
                     </View>
                     <View style={this.state.keyboardshow ? 
@@ -240,6 +252,12 @@ class SignUp extends ValidationComponent{
     }
 }
 
+const mapStateToProps = state => ({
+    ...state
+});
 
+const mapDispatchToProps = dispatch => ({
+    actions: bindActionCreators(setUserData, dispatch),
+});
 
-export default SignUp;
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -55,6 +55,8 @@
     ".serverless/": "explorerExcludedFiles",
     ".fusebox/": "explorerExcludedFiles",
     ".dynamodb/": "explorerExcludedFiles",
-    ".tern-port": "explorerExcludedFiles"
+    ".tern-port": "explorerExcludedFiles",
+    ".expo/web/cache/development/babel-loader/0c66f0962a6ac705973aa152b642d705.json.gz": "explorerExcludedFiles",
+    ".expo/": "explorerExcludedFiles"
   }
 }

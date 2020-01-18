@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ImageBackground, View, Text, TouchableOpacity, Image } from "react-native";
 
 import styles from "./style";
+import {connect} from "react-redux";
 
 import background from "./../../assets/images/background_1.png";
 import female_img from "./../../assets/images/female.png";
@@ -11,8 +12,24 @@ import  Icon  from "react-native-vector-icons/FontAwesome";
 
 class Identify extends Component 
 {
-    state = {
-        selected: "",
+    
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            selected: "",
+            user: this.props.user,
+        }
+
+        this.onNext = this.onNext.bind(this);
+    }
+
+    onNext()
+    {
+        if(this.state.user.gender !== undefined)
+        {
+            
+        }
     }
 
     render()
@@ -27,7 +44,7 @@ class Identify extends Component
                 <View style={styles.identifyContainer} >                
                     <TouchableOpacity 
                         style={this.state.selected == "male" ? styles.selectOption_selected: styles.selectOption} 
-                        onPress={() => { this.setState((state) => ({selected: "male"})) }}
+                        onPress={() => { this.setState((state) => ({selected: "male", user: {...state.user, gender: "male"}})) }}
                         >
                         { this.state.selected == "male" && <Icon name="check" style={styles.checkIcon} size={20} color="#FFF" />}                        
                         <Image source={male_img} style={styles.maleImage} />
@@ -35,7 +52,7 @@ class Identify extends Component
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={this.state.selected == "female" ? styles.selectOption_selected: styles.selectOption} 
-                        onPress={() => { this.setState((state) => ({selected: "female"})) }}
+                        onPress={() => { this.setState((state) => ({selected: "female", user: {...state.user, gender: "female"}})) }}
                     >
                         { this.state.selected == "female" && <Icon name="check" style={styles.checkIcon} size={20} color="#FFF" />}                        
                         <Image source={female_img} style={styles.femaleImage} />
@@ -43,7 +60,7 @@ class Identify extends Component
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={this.state.selected == "nonbinary" ? styles.selectOption_selected: styles.selectOption} 
-                        onPress={() => { this.setState((state) => ({selected: "nonbinary"})) }}
+                        onPress={() => { this.setState((state) => ({selected: "nonbinary", user: {...state.user, gender: "nonbinary"}})) }}
                     >
                         { this.state.selected == "nonbinary" && <Icon name="check" style={styles.checkIcon} size={20} color="#FFF" />}                        
                         <Image source={nonbinary_img} style={styles.nonbinaryImage} />
@@ -51,7 +68,7 @@ class Identify extends Component
                     </TouchableOpacity>
                 </View>
                 <View style={styles.footerContainer}>
-                    <TouchableOpacity style={styles.nextButton}>
+                    <TouchableOpacity style={styles.nextButton} onPress={this.onNext()}>
                         <Text style={styles.text}>Next</Text>
                     </TouchableOpacity>
                 </View> 
@@ -60,4 +77,8 @@ class Identify extends Component
     }
 }
 
-export default Identify;
+const mapStatesToPros = (state, ownProps) => {
+    return {...ownProps, user: state.user};
+}
+
+export default connect(mapStatesToPros)(Identify);
