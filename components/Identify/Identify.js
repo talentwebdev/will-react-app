@@ -9,6 +9,7 @@ import female_img from "./../../assets/images/female.png";
 import male_img from "./../../assets/images/male.png";
 import nonbinary_img from "./../../assets/images/nonbinary.png";
 import  Icon  from "react-native-vector-icons/FontAwesome";
+import { API_URL } from 'react-native-dotenv';
 
 class Identify extends Component 
 {
@@ -22,14 +23,31 @@ class Identify extends Component
         }
 
         this.onNext = this.onNext.bind(this);
+        console.log(API_URL);
     }
 
     onNext()
     {
+        console.log("hello");
+        /*
         if(this.state.user.gender !== undefined)
         {
-            
+            console.log(this.state.user);
+            fetch(API_URL+"/user/signup", {
+                method: "POST", 
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.state.user)
+            })
+            .then((response) => {
+                console.log("success", response);
+            })
+            .catch((error) => {
+                console.log("error", error);
+            });
         }
+        */
     }
 
     render()
@@ -68,7 +86,7 @@ class Identify extends Component
                     </TouchableOpacity>
                 </View>
                 <View style={styles.footerContainer}>
-                    <TouchableOpacity style={styles.nextButton} onPress={this.onNext()}>
+                    <TouchableOpacity style={styles.nextButton} onPress={this.onNext}>
                         <Text style={styles.text}>Next</Text>
                     </TouchableOpacity>
                 </View> 
