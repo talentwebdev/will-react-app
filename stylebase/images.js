@@ -27,6 +27,16 @@ const base_images = {
         }
     },
 
+    makewilllogo : {
+        normal_image: {
+            source: require("./../assets/images/makewilllogos/logo_1x.png"),
+            style: {
+                width: 105,
+                height: 106,
+            }
+        }
+    },
+
     people: {
         normal_image: {
             nephew: {

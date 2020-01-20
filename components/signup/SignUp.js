@@ -120,12 +120,12 @@ class SignUp extends ValidationComponent{
         if(this.isFormValid() && this.state.password === this.state.confirmpassword)
         {
             this.props.actions({
-                name: this.name,
-                surname:  this.surname,
-                email: this.email,
-                id_number: this.id_number,
-                password: this.password,
-                confirmpassword: this.confirmpassword
+                name: this.state.name,
+                surname:  this.state.surname,
+                email: this.state.email,
+                id_number: this.state.id_number,
+                password: this.state.password,
+                confirmpassword: this.state.confirmpassword
             });
             this.props.navigation.navigate("IdentifyScreen");
             

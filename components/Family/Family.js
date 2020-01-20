@@ -3,6 +3,7 @@ import { ImageBackground, TouchableOpacity, View, Text, Image, ScrollView } from
 import styles from "./style";
 import  Icon  from "react-native-vector-icons/FontAwesome";
 import images from "./../../stylebase/images";
+import { LinearGradient } from 'expo-linear-gradient';
 
 class Family extends Component 
 {
@@ -137,38 +138,42 @@ class Family extends Component
     {
         const familyMembers = this.state.peoples.map((item, index) => {
             return (
-                <View key={index + "k" + 0} style={styles.famliyButtonGroupContainer}>                
-                    <View style={styles.famliyButtonContainer}>
-                        <TouchableOpacity  style={item[0].selected ? styles.familyButton_selected : styles.familyButton}
-                            onPress={() => {                    
-                                this.selectFamily(index, 0);
-                            }}>
+                <View key={index + "k" + 0} style={styles.famliyButtonGroupContainer}>       
+                    <TouchableOpacity style={styles.familyButton} 
+                        onPress={() => {                    
+                            this.selectFamily(index, 0);
+                        }}>
+                        <LinearGradient start={[0, 0]} end={[1, 0]} colors={item[0].selected ? ['#03597C', '#3F581E'] : ['#07A3E2', '#8BBD31']}                                
+                            style={styles.familyButton_gradient}
+                            >
                             <Text style={styles.text}>{item[0].title}</Text>
                             {
                                 item[0].selected && 
                                 <Icon name="check" style={styles.checkIcon} size={15} color="#FFF" />
                             }
                             
-                        </TouchableOpacity>
+                        </LinearGradient>
                         <View style={item[0].selected ? styles.peopleImageContainer_selected : styles.peopleImageContainer}>
                             <Image source={item[0].content.source} style={item[0].content.style}></Image>
                         </View>
-                    </View>
-                    <View key={index + "k" + 1} style={styles.famliyButtonContainer}>
-                        <TouchableOpacity  style={item[1].selected ? styles.familyButton_selected : styles.familyButton}
-                            onPress={() => {                    
-                                this.selectFamily(index, 1);
-                            }}>
+                    </TouchableOpacity>    
+
+                    <TouchableOpacity style={styles.familyButton} 
+                        onPress={() => {                    
+                            this.selectFamily(index, 1);
+                        }}>
+                        <LinearGradient start={[0, 0]} end={[1, 0]} colors={item[1].selected ? ['#03597C', '#3F581E'] : ['#07A3E2', '#8BBD31']}
+                            style={styles.familyButton_gradient}>
                             <Text style={styles.text}>{item[1].title}</Text>
                             {
                                 item[1].selected && 
                                 <Icon name="check" style={styles.checkIcon} size={15} color="#FFF" />
                             }
-                        </TouchableOpacity>
+                        </LinearGradient>
                         <View style={item[1].selected ? styles.peopleImageContainer_selected : styles.peopleImageContainer}>
                             <Image source={item[1].content.source} style={item[1].content.style}></Image>
                         </View>
-                    </View>
+                    </TouchableOpacity>    
                 </View>
             );
         });
@@ -181,13 +186,12 @@ class Family extends Component
                     </Text>
                 </View>
                 <View style={styles.meContainer}>                    
-                    <View style={styles.meSelect}>
+                    <LinearGradient colors={['#03597C', '#3F581E']} style={styles.meSelect}>
                         <Text style={styles.text}>
-                            Me
-                            <Icon name="check" style={styles.checkIcon} size={30} color="#FFF" />
-                        </Text>
-                        
-                    </View>
+                            Me                            
+                        </Text>                        
+                        <Icon name="check" style={styles.checkIcon} size={30} color="#FFF" />
+                    </LinearGradient>
                 </View>
                 <ScrollView style={styles.familyContainer}>
                     {

@@ -16,6 +16,11 @@ import EmailWill from "./../MyWill/EmailWill/EmailWill";
 import EmailSent from "./../MyWill/EmailSent/EmailSent";
 import EmailFailed from "./../MyWill/EmailFailed/EmailFailed";
 import Family from "./../Family/Family";
+import Question from "./../WillComponents/question/question";
+import MakeWill from "./../WillComponents/makewill/MakeWill";
+import CountrySelect from "./../WillComponents/countryselect/CountrySelect";
+import ChildrenList from "./../WillComponents/ChildrenList/ChildrenList";
+import Norminate from "./../WillComponents/Norminate/Norminate";
 import ContentComponent from "./ContentComponent";
 
 const MainNavigator = createDrawerNavigator({
@@ -31,9 +36,14 @@ const MainNavigator = createDrawerNavigator({
         EmailSentScreen: {screen: EmailSent, navigationOptions: {header: null}},
         EmailFailedScreen: {screen: EmailFailed, navigationOptions: {header: null}},
         FamilyScreen: {screen: Family, navigationOptions: {header: null}},
+        QuestionScreen: {screen: Question, navigationOptions: {header: null}},
+        MakeWillScreen: {screen: MakeWill, navigationOptions: {header: null}},
+        CountrySelectScreen: {screen: CountrySelect, navigationOptions: {header: null}},
+        ChildrenListScreen: {screen: ChildrenList, navigationOptions: {header: null}},
+        NorminateScreen: {screen: Norminate, navigationOptions: {header: null}},
     },
     {
-        initialRouteName: "OpenScreen",
+        initialRouteName: "MakeWillScreen",
         drawerPosition:'left',
         drawerType: "back",
         drawerWidth: function(){

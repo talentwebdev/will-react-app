@@ -17,6 +17,7 @@ const base_styles = {
     size: {
         big_button_height: 45,
         normal_button_height: 35,
+        small_button_height: 25,
         normal_button_border_radius: 25,
         normal_text_input_height: 35,        
         small_text_input_height: 25,
@@ -70,6 +71,7 @@ const base_styles = {
         normal_border_color: "#FFF",
         noraml_light_green_color: "#91BD28",
         noraml_dark_green_color: "#3E581F",
+        normal_black_color: "#1D1D1D",
     },
 
     gradient: {

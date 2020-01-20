@@ -34,7 +34,7 @@ class OpenScreen extends Component{
                                     Sign Up
                                 </Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.login_btn}>
+                            <TouchableOpacity style={styles.login_btn} onPress={() => {this.props.navigation.navigate("LoginScreen")}}>
                                 <Text style={styles.text}>
                                     Login
                                 </Text>

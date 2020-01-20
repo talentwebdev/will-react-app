@@ -23,31 +23,33 @@ class Identify extends Component
         }
 
         this.onNext = this.onNext.bind(this);
-        console.log(API_URL);
+        console.log(this.props);
     }
 
     onNext()
     {
-        console.log("hello");
-        /*
+        
         if(this.state.user.gender !== undefined)
         {
             console.log(this.state.user);
             fetch(API_URL+"/user/signup", {
                 method: "POST", 
                 header: {
-                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(this.state.user)
             })
-            .then((response) => {
-                console.log("success", response);
+            .then((response) => response.json())
+            .then((responseJson) => {
+                if(responseJson.status === true)
+                {
+                    this.props.navigation.navigate("LoginScreen");
+                }
             })
             .catch((error) => {
                 console.log("error", error);
             });
         }
-        */
+        
     }
 
     render()
