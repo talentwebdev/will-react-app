@@ -21,7 +21,9 @@ function will_reducer(state = initState, action)
             let datas = [...state.datas];
     
             pages.push(action.payload.page);
-            datas.push(action.payload.data);
+            if(datas.length != 0)
+                datas[datas.length - 1] = action.payload.data;
+            datas.push("");
     
             return {
                 ...state,

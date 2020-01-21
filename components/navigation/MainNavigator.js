@@ -19,28 +19,28 @@ import Family from "./../Family/Family";
 import Question from "./../WillComponents/question/question";
 import MakeWill from "./../WillComponents/makewill/MakeWill";
 import CountrySelect from "./../WillComponents/countryselect/CountrySelect";
-import ChildrenList from "./../WillComponents/ChildrenList/ChildrenList";
+import PeopleList from "./../WillComponents/PeopleList/PeopleList";
 import Norminate from "./../WillComponents/Norminate/Norminate";
 import ContentComponent from "./ContentComponent";
 
-const MainNavigator = createDrawerNavigator({
-        OpenScreen: {screen: OpenScreen, navigationOptions: {header:null} },
-        SignupScreen: {screen: SignUp, navigationOptions: {header:null} },
-        LoginScreen: {screen: Login, navigationOptions: {heard:null}},
-        IdentifyScreen: {screen: Identify, navigationOptions: {header: null}},
-        HomeScreen: {screen: HomeScreen, navigationOptions: {header: null}},
-        NotificationsScreen: {screen: Notifications, navigationOptions: {header: null}},
-        NotificationDetailScreen: {screen: NotificationDetail, navigationOptions: {header:null}},
-        MyWillScreen: {screen: MyWill, navigationOptions: {header:null}},
-        EmailWillScreen: {screen: EmailWill, navigationOptions: {header: null}},
-        EmailSentScreen: {screen: EmailSent, navigationOptions: {header: null}},
-        EmailFailedScreen: {screen: EmailFailed, navigationOptions: {header: null}},
-        FamilyScreen: {screen: Family, navigationOptions: {header: null}},
-        QuestionScreen: {screen: Question, navigationOptions: {header: null}},
-        MakeWillScreen: {screen: MakeWill, navigationOptions: {header: null}},
-        CountrySelectScreen: {screen: CountrySelect, navigationOptions: {header: null}},
-        ChildrenListScreen: {screen: ChildrenList, navigationOptions: {header: null}},
-        NorminateScreen: {screen: Norminate, navigationOptions: {header: null}},
+const MainNavigator = createStackNavigator({
+        OpenScreen: {screen: OpenScreen, navigationOptions: {headerShown:false} },
+        SignupScreen: {screen: SignUp, navigationOptions: {headerShown:false} },
+        LoginScreen: {screen: Login, navigationOptions: {headerShown:false}},
+        IdentifyScreen: {screen: Identify, navigationOptions: {headerShown: false}},
+        HomeScreen: {screen: HomeScreen, navigationOptions: {headerShown: false}},
+        NotificationsScreen: {screen: Notifications, navigationOptions: {headerShown: false}},
+        NotificationDetailScreen: {screen: NotificationDetail, navigationOptions: {headerShown:false}},
+        MyWillScreen: {screen: MyWill, navigationOptions: {headerShown:false}},
+        EmailWillScreen: {screen: EmailWill, navigationOptions: {headerShown: false}},
+        EmailSentScreen: {screen: EmailSent, navigationOptions: {headerShown: false}},
+        EmailFailedScreen: {screen: EmailFailed, navigationOptions: {headerShown: false}},
+        FamilyScreen: {screen: Family, navigationOptions: {headerShown: false}},
+        QuestionScreen: {screen: Question, navigationOptions: {headerShown: false}},
+        MakeWillScreen: {screen: MakeWill, navigationOptions: {headerShown: false}},
+        CountrySelectScreen: {screen: CountrySelect, navigationOptions: {headerShown: false}},
+        PeopleListScreen: {screen: PeopleList, navigationOptions: {headerShown: false}},
+        NorminateScreen: {screen: Norminate, navigationOptions: {headerShown: false}},
     },
     {
         initialRouteName: "MakeWillScreen",
@@ -53,7 +53,6 @@ const MainNavigator = createDrawerNavigator({
         contentOptions:{
           activeTintColor:'orange'
         },
-        transitionConfig: () => fromRight(1500),
         contentComponent: ContentComponent,
     }
 );

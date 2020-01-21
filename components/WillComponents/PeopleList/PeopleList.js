@@ -4,8 +4,11 @@ import background from "./../../../assets/images/background_1.png";
 import { ImageBackground, TouchableOpacity, Text, View } from "react-native";
 import styles from "./style";
 import { TextInput, ScrollView } from "react-native-gesture-handler";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {sendNextWillStep, sendPrevWillStep} from "./action";
 
-class ChildrenList extends Component
+class PeopleList extends Component
 {
     
 
@@ -14,14 +17,19 @@ class ChildrenList extends Component
         super(props);
 
         this.state = {
-            text: "Name of child/Children",
-            children: [
+            text: this.props.will.pages[this.props.will.pages.length-1].title,
+            children: Array.isArray(this.props.will.datas[this.props.will.datas.length-1]) && this.props.will.datas[this.props.will.datas.length-1].length > 0 ?  this.props.will.datas[this.props.will.datas.length-1] : [
                 {name: "", id_number: ""},
-            ]
+            ],
+            pagedata: this.props.will.pages[this.props.will.pages.length-1],
         };
+
+        console.log(this.props.will.datas[this.props.will.datas.length-1]);
 
         this.updateChildrenList = this.updateChildrenList.bind(this);
         this.addNewChild = this.addNewChild.bind(this);
+        this.onNext = this.onNext.bind(this);
+        this.onPrev = this.onPrev.bind(this);
     }
 
     updateChildrenList(value, index, item)
@@ -43,6 +51,27 @@ class ChildrenList extends Component
         this.setState({
             children: children
         });
+
+        
+    }
+
+    componentDidUpdate()
+    {
+        this.refs.childrenList.scrollToEnd({animated: true});
+    }
+
+    onNext()
+    {
+        const items = this.state.children.filter(item => item.name !== "" && item.id_number !== "");
+        console.log(items);
+        this.props.sendNextWillStep(items, this.state.pagedata);
+        this.props.navigation.navigate(this.state.pagedata.next.component);
+    }
+
+    onPrev()
+    {
+        this.props.sendPrevWillStep();
+        this.props.navigation.navigation(this.props.will.pages[this.props.will.pages.length - 2].component);
     }
 
     render()
@@ -59,7 +88,7 @@ class ChildrenList extends Component
                     <TextInput style={styles.textInput} 
                         placeholder="ID Number" 
                         placeholderTextColor="#FFF"
-                        value={this.name}
+                        value={item.id_number}
                         onChangeText={(id_number) => {this.updateChildrenList(id_number, index, 1)}}>
                     </TextInput>
                 </View>
@@ -71,7 +100,7 @@ class ChildrenList extends Component
                 <View style={styles.listContainer}>
                     <View style={styles.listPanel}>
                         <Text style={styles.listTitleText}>{this.state.text}</Text>
-                        <ScrollView style={styles.listScrollView}>
+                        <ScrollView ref='childrenList' style={styles.listScrollView}>
                             {
                                 childrenItems
                             }
@@ -82,10 +111,12 @@ class ChildrenList extends Component
                         </TouchableOpacity>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.backButton}>
+                        <TouchableOpacity style={styles.backButton}
+                            onPress={this.onPrev}>
                             <Text style={styles.text}>Back</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.nextButton}>
+                        <TouchableOpacity style={styles.nextButton}
+                            onPress={this.onNext}>
                             <Text style={styles.text}>Next</Text>
                         </TouchableOpacity>
                     </View>
@@ -96,4 +127,17 @@ class ChildrenList extends Component
     }
 }
 
-export default ChildrenList;
+const mapStatesToProps = (state, ownProps) => {
+    return {
+        ...ownProps, will: state.will
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        sendNextWillStep: bindActionCreators(sendNextWillStep, dispatch),
+        sendPrevWillStep: bindActionCreators(sendPrevWillStep, dispatch),
+    };
+};
+
+export default connect(mapStatesToProps, mapDispatchToProps)(PeopleList);

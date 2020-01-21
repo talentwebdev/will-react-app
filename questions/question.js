@@ -1,28 +1,30 @@
 
 const question = {
+    component: "CountrySelectScreen", 
+    title: "Would you like to leave your entire estate to your spouse upon your death?",
     south_africa: {
-        component: "married",
+        component: "QuestionScreen",
         title: "Are you married?",
         yes: {
-            component: "do you have child",
+            component: "QuestionScreen",
             title: "Do you have children?",
             yes: {
-                component: "are you children more than 18 years old",
+                component: "QuestionScreen",
                 title: "Are your children over the age of majority(18 years of age)?",
                 yes: {
-                    component: "name of children",
+                    component: "PeopleListScreen",
                     title: "Name of Child/Children",
                     next: {
-                        component: "would you like to leave your",
+                        component: "QuestionScreen",
                         title: "Would you like to leave your entire estate to your spouse upon your death?",
                         yes: {
                             
                         },
                         no: {
-                            component: "would you like a joint will with your spaouse",
+                            component: "QuestionScreen",
                             title: "Would you like a joint will with yoru sapouse?",
                             yes: {
-                                component: "list of benefit",
+                                component: "PeopleListScreen",
                                 title: "List Befeficiaries",
                                 next: {
                                     component: "will option 10"
@@ -119,3 +121,5 @@ const question = {
         }
     }
 }
+
+export default question;

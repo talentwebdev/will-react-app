@@ -33,7 +33,7 @@ class MakeWill extends Component
     {
         return(
             <ImageBackground source={background} style={styles.background}>
-                <View style={styles.mainContainer}>
+                <View style={[styles.mainContainer, {paddingTop: images.makewilllogo.normal_image.style.width / 2}]}>
                     <View style={styles.logoContainer}>
                         <View style={[{ width: images.makewilllogo.normal_image.style.width * 1.2, height: images.makewilllogo.normal_image.style.height * 1.2}, 
                                         styles.logo, 

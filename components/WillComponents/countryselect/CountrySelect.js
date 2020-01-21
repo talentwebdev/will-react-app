@@ -6,7 +6,9 @@ import  Icon  from "react-native-vector-icons/Ionicons";
 import styles, {pickerStyle} from "./style";
 import RNPickerSelect from "react-native-picker-select";
 import {connect} from "react-redux";
-import { sendNextWillStep } from "./action";
+import { sendNextWillStep, sendPrevWillStep } from "./action";
+import { bindActionCreators } from "redux";
+import { StackActions, NavigationActions } from 'react-navigation';
 
 const countries = [
     {
@@ -27,21 +29,46 @@ class CountrySelect extends Component
         super(props);
 
         this.state = {
-            text: "Would you like to leave your entire estate to your spouse upon your death?",
-            selected: "",
-            location: "",
+            text: this.props.will.pages[this.props.will.pages.length - 1].title,
+            location: this.props.will.datas[this.props.will.datas.length - 1],
+            pagedata: this.props.will.pages[this.props.will.pages.length - 1],
         };
 
         this.onNext = this.onNext.bind(this);
-        this.onPrev = this.onPrev.bind(this);
+        this.onPrev = this.onPrev.bind(this);        
     }
 
     onNext()
     {   
+        if(this.state.location !== "" && this.state.location !== null)
+        {
+            let routeName;
+
+            this.props.sendNextWillStep(this.state.location, this.state.pagedata);
+            switch(this.state.location)
+            {
+            case "South Africa": 
+                {                    
+                    routeName = this.state.pagedata.south_africa.component;
+                    break;
+                }
+            case "UAE": 
+                {
+                    routeName = this.state.pagedata.uae.component;
+                    break;
+                }
+            }
+
+            this.props.navigation.navigate(routeName);
+        }
+    }
+
+    onPrev()
+    {
         if(this.state.location !== "")
         {
-            this.props.sendNextWillStep(this.state.location);
-            this.props.navigation.navigate(this.state.will.pages.next.Component)
+            this.props.sendPrevWillStep();
+            this.props.navigation.navigate("MakeWillScreen");
         }
     }
 
@@ -50,8 +77,7 @@ class CountrySelect extends Component
         const placeholder = {
             label: 'Select a Location...',
             value: null,
-            color: '#9EA0A4',
-            
+            color: '#9EA0A4',            
           };
 
         return(
@@ -90,10 +116,12 @@ class CountrySelect extends Component
                         </View>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.backButton}>
+                        <TouchableOpacity style={styles.backButton}
+                            onPress={this.onPrev}>
                             <Text style={styles.text}>Back</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.nextButton}>
+                        <TouchableOpacity style={styles.nextButton}
+                            onPress={this.onNext}>
                             <Text style={styles.text}>Next</Text>
                         </TouchableOpacity>
                     </View>
@@ -110,6 +138,7 @@ const mapStatesToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     sendNextWillStep: bindActionCreators(sendNextWillStep, dispatch),
+    sendPrevWillStep: bindActionCreators(sendPrevWillStep, dispatch),
 });
 export default connect(mapStatesToProps, mapDispatchToProps)( CountrySelect);
 

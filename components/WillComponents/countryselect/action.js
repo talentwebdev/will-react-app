@@ -1,14 +1,18 @@
-import { NEXT_WILL_DATA } from "./../../../reducer/types";
-import question from "./../../../questions/question";
+import { NEXT_WILL_DATA, PREV_WILL_DATA } from "./../../../reducer/types";
 
-export function sendNextWillStep(location)
+export function sendNextWillStep(location, pagedata)
 {
     if(location === "South Africa")
     {
-        return { type: NEXT_WILL_DATA,  payload: {page: question.south_africa, data: location}};
+        return { type: NEXT_WILL_DATA,  payload: {page: pagedata.south_africa, data: location}};
     }
     else if(location === "UAE")
     {
-        return { type: NEXT_WILL_DATA, payload: { page: question.uae, data: location}};
+        return { type: NEXT_WILL_DATA, payload: { page: pagedata.uae, data: location}};
     }
+}
+
+export function sendPrevWillStep()
+{
+    return {type: PREV_WILL_DATA, payload: {}};
 }
