@@ -112,6 +112,7 @@ class Login extends Component{
     onLogin()
     {
         this.setState({loading: true});
+        console.log(API_URL);
         fetch(API_URL+"/user/signin", {
             method: "POST",
             body: JSON.stringify({

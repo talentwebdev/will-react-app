@@ -13,6 +13,9 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {UPDATE_USERDATA, INIT_WILL_DATA} from "./../../reducer/types";
+import { Notifications } from 'expo';
+import {NavigateScreen} from "./../NavigationService";
+
 
 function setUserData(data)
 {
@@ -31,10 +34,26 @@ class OpenScreen extends Component{
         this.state = {
             loading: false,
         }     
+
+        console.log("OpenScreen");
     }
 
     componentDidMount() {
         this.login();
+
+        this._notificationSubscription = Notifications.addListener(this._handleNotification);
+        this._handleNotification = this._handleNotification.bind(this);
+    }
+
+    componentWillUnmount()
+    {
+        this._notificationSubscription.remove();
+    }
+
+    _handleNotification = notification => 
+    {
+        console.log("Notification", notification);
+        NavigateScreen("NotificationDetailScreen", {...notification.data});
     }
 
     login = async() => {
@@ -71,6 +90,7 @@ class OpenScreen extends Component{
                 {
                     this.props.initWillData(JSON.parse(responseJson.data.will));
                     this.props.navigation.navigate("HomeScreen");
+                    //NavigateScreen("HomeScreen", {});
                 }
             }
         })

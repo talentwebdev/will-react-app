@@ -36,7 +36,7 @@ const drawerNavigator = createDrawerNavigator({
         EmailSentScreen: {screen: EmailSent, navigationOptions: {headerShown: false}},
         EmailFailedScreen: {screen: EmailFailed, navigationOptions: {headerShown: false}},
         NotificationsScreen: {screen: Notifications, navigationOptions: {headerShown: false}},
-        NotificationDetailScreen: {screen: NotificationDetail, navigationOptions: {headerShown:false}},                
+                       
         },
         {
             initialRouteName: "MyWillScreen",
@@ -71,6 +71,7 @@ const MainNavigator = createStackNavigator({
         FinalWillScreen: {screen: FinalWill, navigationOptions: {headerShown: false}},   
         ViewWillScreen: {screen: ViewWill, navigationOptions: {headerShown: false}},
         DrawerScreen: {screen: drawerNavigator, navigationOptions: {headerShown: false}},
+        NotificationDetailScreen: {screen: NotificationDetail, navigationOptions: {headerShown:false}}, 
     },
     {
         initialRouteName: "OpenScreen",

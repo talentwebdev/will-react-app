@@ -8,6 +8,17 @@ import background from "./../../assets/images/background.png";
 
 class NotificationDetail extends Component 
 {
+    constructor(props)
+    {
+        super(props);
+
+        const { navigation } = this.props;
+
+        this.state = {
+            title: navigation.getParam("title") !== null ? navigation.getParam("title") : "",
+            content: navigation.getParam("content") !== null ? navigation.getParam("content") : ""
+        }
+    }
     render()
     {
         return (
@@ -17,29 +28,19 @@ class NotificationDetail extends Component
                 </View>
                 <View style={styles.detailContainer}>
                     <View style={styles.titleNotificationContainer}>
-                        <Text style={styles.titleText}>Title of Notification</Text>
+                        <Text style={styles.titleText}>{this.state.title}</Text>
                     </View>
                     <ScrollView style={styles.textContainer}>
                         <Text style={styles.text}>
-                            
-                            Viewabcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
-                            abcdefghijklmnopqr
+                            {this.state.content}
                         </Text>
                     </ScrollView>
                 </View>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button}
+                        onPress={() => {this.props.navigation.navigate("DrawerScreen", {
+                            page: "NotificationsScreen"
+                        });}}>
                         <Text style={styles.text}>Back</Text>
                     </TouchableOpacity>
                 </View>

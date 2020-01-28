@@ -34,7 +34,6 @@ export default async function registerForPushNotificationsAsync() {
         console.log("get expo token", data);
         console.log("token:", await getToken());
         console.log("get expo token fetchd");
-        alert("get token success");
       }else{
         alert('please grant this app notification permission in settings.')
       }
