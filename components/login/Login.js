@@ -12,7 +12,7 @@ import {
     } from "react-native";
 import Icon  from "react-native-vector-icons/AntDesign";
 import {connect} from "react-redux";
-import {API_URL} from "react-native-dotenv";
+import {API_URL} from "./../../Environment/Environment";
 
 // import style
 import styles from "./style";
@@ -20,7 +20,18 @@ import images from "./../../stylebase/images";
 
 // import images
 import background from "./../../assets/images/background.png";
+import {UPDATE_USERDATA, INIT_WILL_DATA} from "./../../reducer/types";
+import { bindActionCreators } from "redux";
+import Spinner from 'react-native-loading-spinner-overlay';
 
+function setUserData(data)
+{
+    return {type: UPDATE_USERDATA, payload: data};
+}
+function initWillData(data)
+{
+    return {type: INIT_WILL_DATA, payload: data};
+}
 
 class Login extends Component{
     constructor(props)
@@ -31,11 +42,18 @@ class Login extends Component{
             keyboardshow: false,
             styles: {
                 container: styles.container,
-                container_keyboard: styles.container_keyboard
+                container_keyboard: styles.container_keyboard,
+                textInput: styles.textInput,
+                textInput_keyboard: styles.textInput_keyboard,
+                login_btn: styles.login_btn,
+                login_btn_keyboard: styles.login_btn_keyboard,
+                back_btn: styles.back_btn,
+                back_btn_keyboard: styles.back_btn_keyboard,
             },
             user: this.props.user,
-            email: "",
-            password: "",
+            email: "zhuping@gmail.com",
+            password: "password",
+            loading: false,
         }
 
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
@@ -52,8 +70,10 @@ class Login extends Component{
     handleKeyboardDidShow = (event) => {
         const { height } = Dimensions.get('window');
         const keyboardHeight = event.endCoordinates.height;
-        console.log(height - keyboardHeight);
 
+        const x = parseFloat(height - keyboardHeight - 40 - images.logo.normal_image.style.height) / 6.0;
+
+        
         this.setState({
             keyboardshow: true
         });
@@ -62,12 +82,24 @@ class Login extends Component{
             ...state, 
             styles: {
                 ...state.styles,
-                container_keyboard: {
-                    ...state.styles.container_keyboard,
-                    height: height - keyboardHeight,
+                textInput_keyboard: {
+                    ...state.styles.textInput_keyboard,
+                    height: x, 
+                    marginTop: x / 3.0,
+                },
+                login_btn_keyboard: {
+                    ...state.styles.login_btn_keyboard,
+                    height: x,
+                    marginTop: x / 3.0,
+                },
+                back_btn_keyboard: {
+                    ...state.styles.back_btn_keyboard,
+                    height: x,
+                    marginTop: x / 3.0,
                 }
             }
         }));
+        
     }
 
     handleKeyboardDidHide = (event) => {
@@ -78,6 +110,7 @@ class Login extends Component{
 
     onLogin()
     {
+        this.setState({loading: true});
         fetch(API_URL+"/user/signin", {
             method: "POST",
             body: JSON.stringify({
@@ -87,9 +120,29 @@ class Login extends Component{
         })
         .then((response) => response.json())
         .then((responseJson) => {
-            console.log(responseJson);
+            this.setState({loading: false});
+            if(responseJson.status === true)
+            {
+                console.log(responseJson);
+                this.props.setUserData(responseJson.data);
+                if(responseJson.data.will === null || responseJson.data.will === "" || responseJson.data.will === undefined)
+                {
+                    this.props.navigation.navigate("MakeWillScreen");
+                }
+                else
+                {
+                    this.props.initWillData(JSON.parse(responseJson.data.will));
+                    this.props.navigation.navigate("HomeScreen");
+                }
+            }
+            else
+            {
+                alert("Can not Sign in");
+            }
         })
         .catch((error) => {
+            this.setState({loading: false});
+            alert("Can not Sign in");
             console.log("sigin error", error);
         });
     }
@@ -97,6 +150,12 @@ class Login extends Component{
     render(){
         return (
             <ImageBackground source={background} style={styles.background} >
+                <Spinner
+                    //visibility of Overlay Loading Spinner
+                    visible={this.state.loading}
+                    //Text with the Spinner
+                    color="white"
+                    />
                 <SafeAreaView style={
                                 this.state.keyboardshow ? 
                                 this.state.styles.container_keyboard : 
@@ -109,14 +168,18 @@ class Login extends Component{
                         </Text>
                     }
                     
-                    <View style={styles.inputContainer}>
+                    <View style={
+                            this.state.keyboardshow ? 
+                            styles.inputContainer_keyboard : styles.inputContainer}>
                         <Image
                             style={images.logo.normal_image.style} 
                             source={images.logo.normal_image.source}
                             >                        
                         </Image>
                         <TextInput 
-                            style={styles.textInput}
+                            style={this.state.keyboardshow ? 
+                                    this.state.styles.textInput_keyboard : 
+                                    this.state.styles.textInput} 
                             autoComplete ="email"
                             placeholder="Email" 
                              keyboardType="email-address"
@@ -125,7 +188,9 @@ class Login extends Component{
                             onChangeText={(email) => {this.setState({email})}}
                             />
                         <TextInput 
-                            style={styles.textInput}
+                            style={this.state.keyboardshow ? 
+                                this.state.styles.textInput_keyboard : 
+                                this.state.styles.textInput} 
                             autoComplete ="password"
                             placeholder="Password" 
                             placeholderTextColor="#FFF"
@@ -136,7 +201,9 @@ class Login extends Component{
                             />
 
                         <TouchableOpacity 
-                            style={styles.login_btn}
+                            style={this.state.keyboardshow ? 
+                                this.state.styles.login_btn_keyboard : 
+                                this.state.styles.login_btn} 
                             onPress={this.onLogin}>
                             <Text style={styles.text}>
                                 Login
@@ -146,7 +213,10 @@ class Login extends Component{
                         
                     </View>
                     <TouchableOpacity 
-                        style={styles.back_btn}>
+                        style={this.state.keyboardshow ? 
+                                this.state.styles.back_btn_keyboard : 
+                                this.state.styles.back_btn}
+                        onPress={() => {this.props.navigation.navigate("OpenScreen")}}>
                         <Text style={styles.text}>
                             Back
                         </Text>
@@ -160,4 +230,11 @@ class Login extends Component{
 const mapStatesToPros = (state, ownProps) => {
     return {...ownProps, user: state.user}
 };
-export default connect(mapStatesToPros)(Login);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setUserData: bindActionCreators(setUserData, dispatch),
+        initWillData: bindActionCreators(initWillData, dispatch),
+    }
+}
+export default connect(mapStatesToPros, mapDispatchToProps)(Login);

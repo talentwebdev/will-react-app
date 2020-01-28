@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     menuIcon: {
         ...base_styles.position.top_back_image_position,
         position:"absolute", 
-        zIndex:base_styles.zIndex.normal_image_z_index,
+        zIndex: 1000,
     }
 });
 

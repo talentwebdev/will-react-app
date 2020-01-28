@@ -28,19 +28,20 @@ class CountrySelect extends Component
     {
         super(props);
 
+        const data  = this.props.will.datas[this.props.will.datas.length - 1];
         this.state = {
             text: this.props.will.pages[this.props.will.pages.length - 1].title,
-            location: this.props.will.datas[this.props.will.datas.length - 1],
+            location:  data === undefined || data === null || data === ""  ? "None" : data,
             pagedata: this.props.will.pages[this.props.will.pages.length - 1],
         };
 
         this.onNext = this.onNext.bind(this);
-        this.onPrev = this.onPrev.bind(this);        
+        this.onPrev = this.onPrev.bind(this);      
     }
 
     onNext()
     {   
-        if(this.state.location !== "" && this.state.location !== null)
+        if(this.state.location !== "" && this.state.location !== null && this.state.location !== 'None')
         {
             let routeName;
 
@@ -59,7 +60,14 @@ class CountrySelect extends Component
                 }
             }
 
-            this.props.navigation.navigate(routeName);
+            const resetAction = StackActions.reset({
+                index: 1,
+                actions: [
+                  NavigationActions.navigate({ routeName: 'MakeWillScreen' }),
+                  NavigationActions.navigate({ routeName: routeName }),
+                ],
+            });
+            this.props.navigation.dispatch(resetAction);
         }
     }
 
@@ -76,7 +84,7 @@ class CountrySelect extends Component
     {
         const placeholder = {
             label: 'Select a Location...',
-            value: null,
+            value: "None",
             color: '#9EA0A4',            
           };
 

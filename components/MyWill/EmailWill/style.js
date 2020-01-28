@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    emailContainer_keyboard: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
     titleText: {
         color: base_styles.color.noraml_text_font_color,
         fontSize: base_styles.size.title_text_font_size,

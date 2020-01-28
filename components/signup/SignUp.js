@@ -47,6 +47,7 @@ class SignUp extends ValidationComponent{
             email: "zhuping@gmail.com",
             password: "password",
             confirmpassword: "password",
+            loading: false,
         }
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
@@ -137,6 +138,7 @@ class SignUp extends ValidationComponent{
     render(){
         return (
             <ImageBackground source={background} style={styles.background} >
+                
                 <SafeAreaView style={styles.container}>
                     {
                         this.state.keyboardshow && 
@@ -238,7 +240,8 @@ class SignUp extends ValidationComponent{
                         <TouchableOpacity 
                             style={this.state.keyboardshow ? 
                                     this.state.styles.back_btn_keyboard : 
-                                    this.state.styles.back_btn}>
+                                    this.state.styles.back_btn}
+                            onPress={() => {this.props.navigation.navigate("OpenScreen");}}>
 
                             <Text style={styles.text}>
                                 Back

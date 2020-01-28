@@ -21,12 +21,6 @@ class OpenScreen extends Component{
                         </Image>
                     </View>
                     <View style={styles.buttonContainer}>
-                        
-                        <TouchableOpacity style={styles.facebook_btn} onPress={() => {this.props.navigation.openDrawer()}}>
-                            <Text style={styles.text}>
-                                Connect with Facebook
-                            </Text>
-                        </TouchableOpacity>
                         <View style={styles.signup_container}>
                             <TouchableOpacity style={styles.signup_btn}
                                     onPress={() => {this.props.navigation.navigate("SignupScreen")}}>

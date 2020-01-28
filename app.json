@@ -24,10 +24,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zhuping.reactnative"
     },
-	"android": {
-      "package": "com.zhuping.reactnative"
+    "android": {
+      "package": "com.zhuping.reactnative",
+	  "googleServicesFile": "./google-services.json"
     }
   }
 }

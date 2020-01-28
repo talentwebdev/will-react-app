@@ -24,8 +24,9 @@ const checkNotification = (key) => {
 }
 const ContentComponent = props => (
     <SafeAreaView style={{flex: 1}}>
-    <Icon name="cross" color="#FFF" style={styles.menuIcon} size={30} onPress={() => { props.navigation.closeDrawer()}}></Icon>
+    
     <ImageBackground source={background} style={styles.background} >
+        <Icon name="cross" color="#FFF" style={styles.menuIcon} size={30} onPress={() => { props.navigation.closeDrawer()}}></Icon>
         <SafeAreaView style={styles.container}>
             <View style={styles.logoContainer}>
                 <Image

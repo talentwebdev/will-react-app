@@ -74,9 +74,9 @@ class Notifications extends Component
     {
         return (
             <ImageBackground source={background} style={styles.background}>
-                <Icon name="menu" color="#FFF" style={styles.menuIcon} size={30} onPress={() => {console.log(this.props.navigation); this.props.navigation.openDrawer()}}></Icon>
+                <Icon name="menu" color="#FFF" style={styles.menuIcon} size={30} onPress={() => {this.props.navigation.openDrawer()}}></Icon>
                 <View style={styles.toplogoContainer}>                    
-                    <Image source={base_images.logo.small_image.source} style={[base_images.logo.small_image.style, {zIndex: 1000}]} onPress={() => {console.log("clicked");this.props.navigation.navigate("HomeScreen")}}></Image>
+                    <Image source={base_images.logo.small_image.source} style={[base_images.logo.small_image.style, {zIndex: 1000}]} onPress={() => {this.props.navigation.navigate("HomeScreen")}}></Image>
                 </View>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>Notifications</Text>

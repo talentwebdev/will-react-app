@@ -20,30 +20,60 @@ import Question from "./../WillComponents/question/question";
 import MakeWill from "./../WillComponents/makewill/MakeWill";
 import CountrySelect from "./../WillComponents/countryselect/CountrySelect";
 import PeopleList from "./../WillComponents/PeopleList/PeopleList";
-import Norminate from "./../WillComponents/Norminate/Norminate";
+import People from "./../WillComponents/People/People";
+import Payment from "./../WillComponents/Payment/Payment";
+import Address from "./../WillComponents/Address/Address";
+import SelectOption from "./../WillComponents/SelectOption/SelectOption";
+import FinalWill from "./../WillComponents/FinalWill/FinalWill";
+import PaymentWebView from "./../WillComponents/Payment/PaymentWebView";
+import PaymentSuccessScreen from "./../WillComponents/Payment/PaymentSuccessScreen";
+import ViewWill from "./../WillComponents/ViewWill/ViewWill";
 import ContentComponent from "./ContentComponent";
 
+const drawerNavigator = createDrawerNavigator({
+        MyWillScreen: {screen: MyWill, navigationOptions: {headerShown:false}},
+        EmailWillScreen: {screen: EmailWill, navigationOptions: {headerShown: false}},
+        EmailSentScreen: {screen: EmailSent, navigationOptions: {headerShown: false}},
+        EmailFailedScreen: {screen: EmailFailed, navigationOptions: {headerShown: false}},
+        NotificationsScreen: {screen: Notifications, navigationOptions: {headerShown: false}},
+        NotificationDetailScreen: {screen: NotificationDetail, navigationOptions: {headerShown:false}},                
+        },
+        {
+            initialRouteName: "MyWillScreen",
+            drawerPosition:'left',
+            drawerType: "back",
+            drawerWidth: function(){
+                const {width} = Dimensions.get('window');
+                return width;
+            },
+            contentOptions:{
+            activeTintColor:'orange'
+            },
+            contentComponent: ContentComponent,
+        });
 const MainNavigator = createStackNavigator({
         OpenScreen: {screen: OpenScreen, navigationOptions: {headerShown:false} },
         SignupScreen: {screen: SignUp, navigationOptions: {headerShown:false} },
         LoginScreen: {screen: Login, navigationOptions: {headerShown:false}},
         IdentifyScreen: {screen: Identify, navigationOptions: {headerShown: false}},
         HomeScreen: {screen: HomeScreen, navigationOptions: {headerShown: false}},
-        NotificationsScreen: {screen: Notifications, navigationOptions: {headerShown: false}},
-        NotificationDetailScreen: {screen: NotificationDetail, navigationOptions: {headerShown:false}},
-        MyWillScreen: {screen: MyWill, navigationOptions: {headerShown:false}},
-        EmailWillScreen: {screen: EmailWill, navigationOptions: {headerShown: false}},
-        EmailSentScreen: {screen: EmailSent, navigationOptions: {headerShown: false}},
-        EmailFailedScreen: {screen: EmailFailed, navigationOptions: {headerShown: false}},
         FamilyScreen: {screen: Family, navigationOptions: {headerShown: false}},
         QuestionScreen: {screen: Question, navigationOptions: {headerShown: false}},
         MakeWillScreen: {screen: MakeWill, navigationOptions: {headerShown: false}},
         CountrySelectScreen: {screen: CountrySelect, navigationOptions: {headerShown: false}},
         PeopleListScreen: {screen: PeopleList, navigationOptions: {headerShown: false}},
-        NorminateScreen: {screen: Norminate, navigationOptions: {headerShown: false}},
+        PeopleScreen: {screen: People, navigationOptions: {headerShown: false}},
+        SelectOptionScreen: {screen: SelectOption, navigationOptions: {headerShown: false}},
+        PaymentScreen: {screen: Payment, navigationOptions: {headerShown: false}},
+        PaymentWebViewScreen: { screen: PaymentWebView, navigationOptions: {headerShown: false}},
+        PaymentSuccessScreen: {screen: PaymentSuccessScreen, navigationOptions: {headerShown: false}},
+        AddressScreen: {screen: Address, navigationOptions: {headerShown: false}},
+        FinalWillScreen: {screen: FinalWill, navigationOptions: {headerShown: false}},   
+        ViewWillScreen: {screen: ViewWill, navigationOptions: {headerShown: false}},
+        DrawerScreen: {screen: drawerNavigator, navigationOptions: {headerShown: false}},
     },
     {
-        initialRouteName: "MakeWillScreen",
+        initialRouteName: "OpenScreen",
         drawerPosition:'left',
         drawerType: "back",
         drawerWidth: function(){

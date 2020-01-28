@@ -26,7 +26,7 @@ class EmailSent extends Component{
     render(){
         return (
             <ImageBackground source={background} style={styles.background} >
-                <Icon name="menu" color="#FFF" style={styles.menuIcon} size={30} onPress={() => {console.log(this.props.navigation); this.props.navigation.openDrawer()}}></Icon>
+                <Icon name="menu" color="#FFF" style={styles.menuIcon} size={30} onPress={() => {this.props.navigation.openDrawer()}}></Icon>
                 <SafeAreaView style={styles.container}>
                     <View style={styles.logoContainer}>
                         <Image
@@ -45,7 +45,8 @@ class EmailSent extends Component{
                         <Text style={styles.text}>Please check your inbox</Text>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.button_back}>
+                        <TouchableOpacity style={styles.button_back}
+                            onPress={() => {this.props.navigation.navigate("MyWillScreen")}}>
                             <Text style={styles.text}>Back</Text>
                         </TouchableOpacity>
                     </View>

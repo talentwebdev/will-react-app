@@ -12,6 +12,7 @@
     "axios": "^0.19.1",
     "expo": "~36.0.0",
     "expo-linear-gradient": "~8.0.0",
+    "expo-push-notification-helper": "^0.4.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
@@ -21,6 +22,7 @@
     "react-native-gesture-handler": "^1.5.3",
     "react-native-keyboard-aware-scroll-view": "^0.9.1",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-loading-spinner-overlay": "^1.0.1",
     "react-native-picker-select": "^6.3.3",
     "react-native-reanimated": "~1.4.0",
     "react-native-safe-area-context": "0.6.0",
@@ -29,6 +31,7 @@
     "react-native-simple-radio-button": "^2.7.4",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "^0.11.7",
+    "react-native-webview": "7.4.3",
     "react-navigation": "^4.0.10",
     "react-navigation-drawer": "^2.3.3",
     "react-navigation-stack": "^2.0.15",
@@ -37,8 +40,8 @@
     "redux": "^4.0.5"
   },
   "devDependencies": {
-    "babel-preset-expo": "~8.0.0",
-    "@babel/core": "^7.0.0"
+    "@babel/core": "^7.0.0",
+    "babel-preset-expo": "~8.0.0"
   },
   "private": true
 }

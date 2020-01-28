@@ -6,7 +6,7 @@ import  Icon  from "react-native-vector-icons/FontAwesome";
 import styles from "./style";
 import images from "./../../../stylebase/images";
 import {connect} from "react-redux";
-import {sendNextWillStep} from "./action";
+import {sendNextWillStep, sendInitWillStep} from "./action";
 import { bindActionCreators } from "redux";
 
 class MakeWill extends Component
@@ -25,6 +25,7 @@ class MakeWill extends Component
 
     onNext()
     {
+        this.props.sendInitWillStep();
         this.props.sendNextWillStep();
         this.props.navigation.navigate("CountrySelectScreen");
     }
@@ -55,7 +56,7 @@ class MakeWill extends Component
                         <Text style={styles.text}>Show Me An Example</Text>
                     </TouchableOpacity>      
                     <TouchableOpacity style={styles.backButton} 
-                        onPress={() => {this.props.navigation.navigate("FamilyScreen");}}>
+                        onPress={() => {this.props.navigation.navigate("DrawerScreen");}}>
                         <Text style={styles.text}>Back</Text>
                     </TouchableOpacity>                 
                 </View>                
@@ -72,7 +73,8 @@ const mapStatesToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = dispatch => {
     return { 
-        sendNextWillStep: bindActionCreators(sendNextWillStep, dispatch)
+        sendNextWillStep: bindActionCreators(sendNextWillStep, dispatch),
+        sendInitWillStep: bindActionCreators(sendInitWillStep, dispatch),
     }
 }
 

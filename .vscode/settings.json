@@ -1,17 +1,7 @@
 {
+  "search.exclude": {
+  },
   "files.exclude": {
-    "node_modules/**/*": "explorerExcludedFiles",
-    ".expo/*": "explorerExcludedFiles",
-    "npm-debug.*": "explorerExcludedFiles",
-    "*.jks": "explorerExcludedFiles",
-    "*.p8": "explorerExcludedFiles",
-    "*.p12": "explorerExcludedFiles",
-    "*.key": "explorerExcludedFiles",
-    "*.mobileprovision": "explorerExcludedFiles",
-    "*.orig.*": "explorerExcludedFiles",
-    "web-build/": "explorerExcludedFiles",
-    "web-report/": "explorerExcludedFiles",
-    ".DS_Store": "explorerExcludedFiles",
     "logs": "explorerExcludedFiles",
     "*.log": "explorerExcludedFiles",
     "npm-debug.log*": "explorerExcludedFiles",
@@ -31,7 +21,6 @@
     "bower_components": "explorerExcludedFiles",
     ".lock-wscript": "explorerExcludedFiles",
     "build/Release": "explorerExcludedFiles",
-    "node_modules/": "explorerExcludedFiles",
     "jspm_packages/": "explorerExcludedFiles",
     "typings/": "explorerExcludedFiles",
     "*.tsbuildinfo": "explorerExcludedFiles",
@@ -44,8 +33,6 @@
     ".node_repl_history": "explorerExcludedFiles",
     "*.tgz": "explorerExcludedFiles",
     ".yarn-integrity": "explorerExcludedFiles",
-    ".env": "explorerExcludedFiles",
-    ".env.test": "explorerExcludedFiles",
     ".cache": "explorerExcludedFiles",
     ".next": "explorerExcludedFiles",
     ".nuxt": "explorerExcludedFiles",
@@ -56,7 +43,6 @@
     ".fusebox/": "explorerExcludedFiles",
     ".dynamodb/": "explorerExcludedFiles",
     ".tern-port": "explorerExcludedFiles",
-    ".expo/web/cache/development/babel-loader/0c66f0962a6ac705973aa152b642d705.json.gz": "explorerExcludedFiles",
     ".expo/": "explorerExcludedFiles"
   }
 }

@@ -9,7 +9,8 @@ import female_img from "./../../assets/images/female.png";
 import male_img from "./../../assets/images/male.png";
 import nonbinary_img from "./../../assets/images/nonbinary.png";
 import  Icon  from "react-native-vector-icons/FontAwesome";
-import { API_URL } from 'react-native-dotenv';
+import { API_URL } from '../../Environment/Environment';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 class Identify extends Component 
 {
@@ -20,10 +21,10 @@ class Identify extends Component
         this.state = {
             selected: "",
             user: this.props.user,
+            loading: false,
         }
 
         this.onNext = this.onNext.bind(this);
-        console.log(this.props);
     }
 
     onNext()
@@ -31,7 +32,7 @@ class Identify extends Component
         
         if(this.state.user.gender !== undefined)
         {
-            console.log(this.state.user);
+            this.setState({loading: true});
             fetch(API_URL+"/user/signup", {
                 method: "POST", 
                 header: {
@@ -40,12 +41,17 @@ class Identify extends Component
             })
             .then((response) => response.json())
             .then((responseJson) => {
+                this.setState({loading: false});
                 if(responseJson.status === true)
                 {
                     this.props.navigation.navigate("LoginScreen");
                 }
+                else
+                    alert("Can not signup");
             })
             .catch((error) => {
+                this.setState({loading: false});
+                alert("Can not signup");
                 console.log("error", error);
             });
         }
@@ -56,6 +62,12 @@ class Identify extends Component
     {
         return (
             <ImageBackground source={background} style={styles.background}>
+                <Spinner
+                    //visibility of Overlay Loading Spinner
+                    visible={this.state.loading}
+                    //Text with the Spinner
+                    color="white"
+                    />
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>
                         How do you identify yourself?

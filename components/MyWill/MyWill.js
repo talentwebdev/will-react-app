@@ -20,12 +20,18 @@ class MyWill extends Component{
     constructor(props)
     {
         super(props);
+        const { navigation } = this.props;
+
+        if(navigation.getParam("page") !== "MyWillScreen")
+        {
+            navigation.navigate(navigation.getParam("page"));   
+        }
     }
 
     render(){
         return (
             <ImageBackground source={background} style={styles.background} >
-                <Icon name="menu" color="#FFF" style={styles.menuIcon} size={30} onPress={() => {console.log(this.props.navigation); this.props.navigation.openDrawer()}}></Icon>
+                <Icon name="menu" color="#FFF" style={styles.menuIcon} size={30} onPress={() => {this.props.navigation.openDrawer()}}></Icon>
                 <SafeAreaView style={styles.container}>
                     <View style={styles.logoContainer}>
                         <Image
@@ -35,13 +41,16 @@ class MyWill extends Component{
                         </Image>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => {this.props.navigation.navigate("MakeWillScreen")}}>
                             <Text style={styles.text}>Edit Will</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => {this.props.navigation.navigate("EmailWillScreen")}}>
                             <Text style={styles.text}>Email Will</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button_back}>
+                        <TouchableOpacity style={styles.button_back}
+                            onPress={() => { this.props.navigation.navigate("HomeScreen")}}>
                             <Text style={styles.text}>Back</Text>
                         </TouchableOpacity>
                     </View>

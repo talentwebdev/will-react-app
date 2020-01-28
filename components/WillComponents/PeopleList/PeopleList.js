@@ -24,8 +24,6 @@ class PeopleList extends Component
             pagedata: this.props.will.pages[this.props.will.pages.length-1],
         };
 
-        console.log(this.props.will.datas[this.props.will.datas.length-1]);
-
         this.updateChildrenList = this.updateChildrenList.bind(this);
         this.addNewChild = this.addNewChild.bind(this);
         this.onNext = this.onNext.bind(this);
@@ -63,7 +61,6 @@ class PeopleList extends Component
     onNext()
     {
         const items = this.state.children.filter(item => item.name !== "" && item.id_number !== "");
-        console.log(items);
         this.props.sendNextWillStep(items, this.state.pagedata);
         this.props.navigation.navigate(this.state.pagedata.next.component);
     }
@@ -71,7 +68,7 @@ class PeopleList extends Component
     onPrev()
     {
         this.props.sendPrevWillStep();
-        this.props.navigation.navigation(this.props.will.pages[this.props.will.pages.length - 2].component);
+        this.props.navigation.navigate(this.props.will.pages[this.props.will.pages.length - 2].component);
     }
 
     render()

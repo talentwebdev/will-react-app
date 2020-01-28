@@ -35,7 +35,8 @@ class HomeScreen extends Component{
                         </Image>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => {this.props.navigation.navigate("DrawerScreen", {page: "MyWillScreen"})}}>
                             <Text style={styles.text}>My Will</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button}>
@@ -44,7 +45,8 @@ class HomeScreen extends Component{
                         <TouchableOpacity style={styles.button}>
                             <Text style={styles.text}>Notifications</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => {this.props.navigation.navigate("LoginScreen")}}>
                             <Text style={styles.text}>Log Out</Text>
                         </TouchableOpacity>
                     </View>
