@@ -22,7 +22,7 @@ class Payment extends Component
     onPrev()
     {
         const routeName = this.props.will.pages[this.props.will.pages.length - 1];        
-        this.props.navigation.navigate(routeName)
+        this.props.navigation.navigate(routeName);
     }
 
     render()
@@ -33,7 +33,7 @@ class Payment extends Component
                     <View style={styles.questionPanel}>
                         <Text style={styles.questionText}>{this.state.text}</Text>
                         <TouchableOpacity style={styles.selectButton}
-                            onPress={() => {this.props.navigation.navigate("PaymentSuccessScreen")}}>
+                            onPress={() => {this.props.navigation.navigate("PaymentWebViewScreen")}}>
                             <Text style={styles.text}>WeWill Will - R399</Text>
                         </TouchableOpacity>
                         

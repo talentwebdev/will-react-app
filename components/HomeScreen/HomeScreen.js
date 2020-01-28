@@ -16,11 +16,19 @@ import base_images from "./../../stylebase/images";
 
 // import images
 import background from "./../../assets/images/background.png";
+import {_initStorage} from "./../../storage/storage";
 
 class HomeScreen extends Component{
+
     constructor(props)
     {
         super(props);
+        this.onLogout = this.onLogout.bind(this);
+    }
+
+    onLogout = async() => {
+        await _initStorage();
+        this.props.navigation.navigate("LoginScreen");
     }
 
     render(){
@@ -46,7 +54,7 @@ class HomeScreen extends Component{
                             <Text style={styles.text}>Notifications</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button}
-                            onPress={() => {this.props.navigation.navigate("LoginScreen")}}>
+                            onPress={this.onLogout}>
                             <Text style={styles.text}>Log Out</Text>
                         </TouchableOpacity>
                     </View>

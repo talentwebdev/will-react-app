@@ -23,6 +23,7 @@ import background from "./../../assets/images/background.png";
 import {UPDATE_USERDATA, INIT_WILL_DATA} from "./../../reducer/types";
 import { bindActionCreators } from "redux";
 import Spinner from 'react-native-loading-spinner-overlay';
+import {_storeEmail, _storePassword} from "./../../storage/storage";
 
 function setUserData(data)
 {
@@ -119,11 +120,15 @@ class Login extends Component{
             })
         })
         .then((response) => response.json())
-        .then((responseJson) => {
+        .then(async (responseJson) => {
+            await _storeEmail(this.state.email);
+            await _storePassword(this.state.password);
+            console.log("store email & password to storage", this.state.email, this.state.password);
+
             this.setState({loading: false});
             if(responseJson.status === true)
             {
-                console.log(responseJson);
+
                 this.props.setUserData(responseJson.data);
                 if(responseJson.data.will === null || responseJson.data.will === "" || responseJson.data.will === undefined)
                 {

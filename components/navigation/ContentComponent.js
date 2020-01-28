@@ -15,6 +15,7 @@ import base_images from "./../../stylebase/images";
 
 // import images
 import background from "./../../assets/images/background.png";
+import {_initStorage} from "./../../storage/storage";
 
 const checkMyWill = (key) => {
     return key === "MyWillScreen" || key === "EmailWillScreen" || key === "EmailSentScreen" || key === "EmailFailedScreen";
@@ -45,7 +46,8 @@ const ContentComponent = props => (
                 <TouchableOpacity style={checkNotification(props.activeItemKey) ? styles.button_selected : styles.button}>
                     <Text style={styles.text}>Notifications</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                    onPress={async () => { await _initStorage(); props.navigation.navigate("LoginScreen"); }}>
                     <Text style={styles.text}>Log Out</Text>
                 </TouchableOpacity>
             </View>
