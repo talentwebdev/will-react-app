@@ -5,6 +5,8 @@ import styles from "./style";
 import base_images from "./../../stylebase/images";
 
 import background from "./../../assets/images/background.png";
+import {API_URL} from "./../../Environment/Environment";
+import {connect} from "react-redux";
 
 class NotificationDetail extends Component 
 {
@@ -16,8 +18,25 @@ class NotificationDetail extends Component
 
         this.state = {
             title: navigation.getParam("title") !== null ? navigation.getParam("title") : "",
-            content: navigation.getParam("content") !== null ? navigation.getParam("content") : ""
-        }
+            content: navigation.getParam("content") !== null ? navigation.getParam("content") : "",
+            id: navigation.getParam("id"),
+        };
+
+        fetch(API_URL+"/notification/read", {
+            method: "POST", 
+            body: JSON.stringify({
+                id: this.state.id,
+                authorization: this.props.user.token
+            })
+            
+        })
+        .then(response => response.json())
+        .then(responseJson => {
+
+        })
+        .catch(err => {
+            console.log("read notification error", err);
+        })
     }
     render()
     {
@@ -49,4 +68,10 @@ class NotificationDetail extends Component
     }
 }
 
-export default NotificationDetail;
+const mapStatesToProps = (state, props) => {
+    return {
+        ...props,
+        user: state.user
+    }
+}
+export default connect(mapStatesToProps)(NotificationDetail);

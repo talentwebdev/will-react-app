@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MainNavigator from "./navigation/MainNavigator";
 import { createAppContainer } from 'react-navigation';
-import registerForPushNotificationsAsync from "./../notification/registerPushNotificationAsync";
+//import registerForPushNotificationsAsync from "./../notification/registerPushNotificationAsync";
 import {setTopLevelNavigator, NavigateScreen} from "./NavigationService";
 
 class AppRootContainer extends Component
@@ -19,7 +19,7 @@ class AppRootContainer extends Component
 
     componentDidMount()
     {
-        registerForPushNotificationsAsync();
+        
         
         //this._notificationSubscription = Notifications.addListener(this._handleNotification);
     }

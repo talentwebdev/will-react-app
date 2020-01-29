@@ -37,13 +37,15 @@ const ContentComponent = props => (
                 </Image>
             </View>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={checkMyWill(props.activeItemKey) ? styles.button_selected : styles.button}>
+                <TouchableOpacity style={checkMyWill(props.activeItemKey) ? styles.button_selected : styles.button}
+                    onPress={() => {props.navigation.navigate("MyWillScreen")}}>
                     <Text style={styles.text}>My Will</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.text}>My Profile</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={checkNotification(props.activeItemKey) ? styles.button_selected : styles.button}>
+                <TouchableOpacity style={checkNotification(props.activeItemKey) ? styles.button_selected : styles.button}
+                    onPress={() => { props.navigation.navigate("NotificationsScreen");/*props.navigation.navigate("DrawerScreen", {page: "NotificationsScreen"});*/ }}>
                     <Text style={styles.text}>Notifications</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}

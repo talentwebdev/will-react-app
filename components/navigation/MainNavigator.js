@@ -29,6 +29,11 @@ import PaymentWebView from "./../WillComponents/Payment/PaymentWebView";
 import PaymentSuccessScreen from "./../WillComponents/Payment/PaymentSuccessScreen";
 import ViewWill from "./../WillComponents/ViewWill/ViewWill";
 import ContentComponent from "./ContentComponent";
+import MyProfile from "./../MyProfile/MyProfile";
+import ProfileResetPassword from "./../MyProfile/ProfileResetPassword/ProfileResetPassword";
+import ResetPassword from "./../ResetPassword/ResetPassword";
+import ResetPasswordCode from "./../ResetPassword/ResetPasswordCode";
+import ResetPasswordInput from "./../ResetPassword/ResetPasswordInput";
 
 const drawerNavigator = createDrawerNavigator({
         MyWillScreen: {screen: MyWill, navigationOptions: {headerShown:false}},
@@ -36,7 +41,7 @@ const drawerNavigator = createDrawerNavigator({
         EmailSentScreen: {screen: EmailSent, navigationOptions: {headerShown: false}},
         EmailFailedScreen: {screen: EmailFailed, navigationOptions: {headerShown: false}},
         NotificationsScreen: {screen: Notifications, navigationOptions: {headerShown: false}},
-                       
+        
         },
         {
             initialRouteName: "MyWillScreen",
@@ -72,6 +77,11 @@ const MainNavigator = createStackNavigator({
         ViewWillScreen: {screen: ViewWill, navigationOptions: {headerShown: false}},
         DrawerScreen: {screen: drawerNavigator, navigationOptions: {headerShown: false}},
         NotificationDetailScreen: {screen: NotificationDetail, navigationOptions: {headerShown:false}}, 
+        MyProfileScreen: {screen: MyProfile, navigationOptions: {headerShown: false}},
+        ResetPasswordScreen: {screen: ResetPassword, navigationOptions: {headerShown: false}},
+        ResetPasswordCodeScreen: {screen: ResetPasswordCode, navigationOptions: {headerShown: false}},
+        ResetPasswordInputScreen: {screen: ResetPasswordInput, navigationOptions: {headerShown: false}},
+        ProfileResetPasswordScreen: {screen: ProfileResetPassword, navigationOptions: {headerShown: false}},
     },
     {
         initialRouteName: "OpenScreen",

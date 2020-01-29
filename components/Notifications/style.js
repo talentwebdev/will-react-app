@@ -86,8 +86,6 @@ const styles = StyleSheet.create({
         height: 40,
         borderBottomWidth: 1,
         borderBottomColor: "#FFF",
-        borderTopWidth: 1,
-        borderTopColor: "#FFF",
         justifyContent: "center",
     },
     menuIcon: {

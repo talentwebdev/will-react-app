@@ -30,7 +30,7 @@ class EmailWill extends Component{
 
         this.state = {
             keyboardshow: false,
-            email: "zhuping.kp@gmail.com",
+            email: "",
             sending: false,
         }
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);

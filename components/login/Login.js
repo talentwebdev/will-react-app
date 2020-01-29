@@ -24,6 +24,7 @@ import {UPDATE_USERDATA, INIT_WILL_DATA} from "./../../reducer/types";
 import { bindActionCreators } from "redux";
 import Spinner from 'react-native-loading-spinner-overlay';
 import {_storeEmail, _storePassword} from "./../../storage/storage";
+import registerForPushNotificationsAsync from "./../../notification/registerPushNotificationAsync";
 
 function setUserData(data)
 {
@@ -52,14 +53,15 @@ class Login extends Component{
                 back_btn_keyboard: styles.back_btn_keyboard,
             },
             user: this.props.user,
-            email: "zhuping@gmail.com",
-            password: "password",
+            email: "",
+            password: "",
             loading: false,
         }
 
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
         this.onLogin = this.onLogin.bind(this);
+        this.onResetPassword = this.onResetPassword.bind(this);
     }
 
 
@@ -109,7 +111,7 @@ class Login extends Component{
         });
     }
 
-    onLogin()
+    async onLogin()
     {
         this.setState({loading: true});
         console.log(API_URL);
@@ -129,7 +131,6 @@ class Login extends Component{
             this.setState({loading: false});
             if(responseJson.status === true)
             {
-
                 this.props.setUserData(responseJson.data);
                 if(responseJson.data.will === null || responseJson.data.will === "" || responseJson.data.will === undefined)
                 {
@@ -140,6 +141,22 @@ class Login extends Component{
                     this.props.initWillData(JSON.parse(responseJson.data.will));
                     this.props.navigation.navigate("HomeScreen");
                 }
+
+                let token = await registerForPushNotificationsAsync();
+                fetch(API_URL+"/user/savetoken", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        authorization: responseJson.data.token,
+                        token: token
+                    })                    
+                })
+                .then(response => response.json())
+                .then(responseJson => {
+                    console.log("savetoken response", responseJson);
+                })
+                .catch(err => {
+                    console.log("savetoken error", err);
+                });
             }
             else
             {
@@ -151,6 +168,11 @@ class Login extends Component{
             alert("Can not Sign in");
             console.log("sigin error", error);
         });
+    }
+
+    onResetPassword()
+    {
+        
     }
 
     render(){
@@ -213,6 +235,15 @@ class Login extends Component{
                             onPress={this.onLogin}>
                             <Text style={styles.text}>
                                 Login
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                            style={this.state.keyboardshow ? 
+                                this.state.styles.login_btn_keyboard : 
+                                this.state.styles.login_btn} 
+                            onPress={() => {this.props.navigation.navigate("ResetPasswordScreen")}}>
+                            <Text style={styles.text}>
+                                Forgot Password
                             </Text>
                         </TouchableOpacity>
 

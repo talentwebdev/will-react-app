@@ -47,10 +47,12 @@ class HomeScreen extends Component{
                             onPress={() => {this.props.navigation.navigate("DrawerScreen", {page: "MyWillScreen"})}}>
                             <Text style={styles.text}>My Will</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => {this.props.navigation.navigate("MyProfileScreen")}}>
                             <Text style={styles.text}>My Profile</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button}
+                            onPress={() => {this.props.navigation.navigate("DrawerScreen", {page: "NotificationsScreen"})}}>
                             <Text style={styles.text}>Notifications</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button}

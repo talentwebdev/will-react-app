@@ -56,7 +56,7 @@ class MakeWill extends Component
                         <Text style={styles.text}>Show Me An Example</Text>
                     </TouchableOpacity>      
                     <TouchableOpacity style={styles.backButton} 
-                        onPress={() => {this.props.navigation.navigate("DrawerScreen");}}>
+                        onPress={() => {this.props.navigation.navigate("DrawerScreen", {page: "MyWillScreen"});}}>
                         <Text style={styles.text}>Back</Text>
                     </TouchableOpacity>                 
                 </View>                

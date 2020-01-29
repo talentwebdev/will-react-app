@@ -7,61 +7,82 @@ import styles from "./style";
 import base_images from "./../../stylebase/images";
 
 import background from "./../../assets/images/background.png";
+import { API_URL } from "../../Environment/Environment";
+import { connect } from "react-redux";
+
 
 class Notifications extends Component 
 {
-    state = {
-        items: [
-            { key: "1", title: "12345"},
-            { key: "2", title: "12345"},
-            { key: "3", title: "12345"},
-            { key: "4", title: "12345"},
-            { key: "5", title: "12345"},
-            { key: "6", title: "12345"},
-            { key: "7", title: "12345"},
-            { key: "8", title: "12345"},
-            { key: "9", title: "12345"},
-            { key: "10", title: "12345"},
-            { key: "11", title: "12345"},
-            { key: "12", title: "12345"},
-            { key: "13", title: "12345"},
-            { key: "14", title: "12345"},
-            { key: "15", title: "12345"},
-            { key: "16", title: "12345"},
-            { key: "17", title: "12345"},
-            { key: "18", title: "12345"},
-        ],
-        selectedItem: -1
-    }
 
     constructor(props)
     {
         super(props);
 
+        this.state = {
+            items: [],
+        }
+
         this.renderItem = this.renderItem.bind(this);
+        this.onSelect = this.onSelect.bind(this);
+
+        fetch(API_URL+"/notification/fetch", {
+            method: "POST",
+            body: JSON.stringify({
+                authorization: this.props.user.token
+            })
+        })
+        .then(response => response.json())
+        .then(responseJson => {
+            console.log("fetch notification success", responseJson);
+            if(responseJson.status === true)
+            {
+                let items = responseJson.data.map(item => ({...item}));
+                this.setState({items: items});
+            }
+        })
+        .catch(err => {
+            console.log("fetch notification error", err);
+        });
+
+        
     }
-    renderItem = ({item}) => {
+
+    onSelect = (index) => {
+        let items = [...this.state.items];
+
+        items[index].read = true;
+        this.setState({
+            items: items
+        });
+
+        this.props.navigation.navigate("NotificationDetailScreen", {
+            id: items[index].id,
+            title: items[index].title,
+            content: items[index].content
+        });
+    }
+    renderItem = (_item) => {
         return (
-            <View key={item.key} style={styles.listItemContainer}>
-                <RadioButton labelHorizontal={true} key={item.index}>
+            <View key={_item.item.key} style={styles.listItemContainer}>
+                <RadioButton labelHorizontal={true} key={_item.index}>
                     <RadioButtonInput
-                        obj={{label: item.title, value: item.key }}
-                        index={item.index}
+                        obj={{label: _item.item.title, value: _item.key }}
+                        index={_item.index}
                         isSelected={true}
                         borderWidth={1}
-                        buttonInnerColor={this.state.selectedItem == item.key ? "#FFF" : 'rgba(0, 0, 0, 0)'}
+                        buttonInnerColor={_item.item.read === true ? "#FFF" : 'rgba(0, 0, 0, 0)'}
                         buttonOuterColor={"#FFF"}
                         buttonSize={20}
                         buttonOuterSize={20}
-                        onPress={() => {this.setState({selectedItem: item.key})}}
+                        onPress={() => {this.onSelect(_item.index )}}
                         buttonStyle={{}}
                         buttonWrapStyle={{marginLeft: 10}}
                         />
                     <RadioButtonLabel
-                        obj={{label: item.title, value: item.key }}
-                        index={item.index}
+                        obj={{label: _item.item.title, value: _item.key }}
+                        index={_item.item.index}
                         labelHorizontal={true}
-                        onPress={() => {this.setState({selectedItem: item.key})}}
+                        onPress={() => {this.onSelect(_item.index )}}
                         labelStyle={{fontSize: 20, color: '#FFF'}}
                         labelWrapStyle={{}}
                         />
@@ -94,4 +115,11 @@ class Notifications extends Component
     }
 }
 
-export default Notifications;
+
+const mapStatesToProps = (state, props) => {
+    return {
+        ...props,
+        user: state.user
+    }
+}
+export default connect(mapStatesToProps)(Notifications);

@@ -41,12 +41,12 @@ class SignUp extends ValidationComponent{
                 back_btn: styles.back_btn,
                 back_btn_keyboard: styles.back_btn_keyboard
             },
-            name: "123",
-            surname: "zhuping",
-            id_number: "1234",
-            email: "zhuping@gmail.com",
-            password: "password",
-            confirmpassword: "password",
+            name: "",
+            surname: "",
+            id_number: "",
+            email: "",
+            password: "",
+            confirmpassword: "",
             loading: false,
         }
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);

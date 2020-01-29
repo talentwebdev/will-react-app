@@ -53,7 +53,7 @@ class PaymentSuccessScreen extends Component
     onSendWill()
     {
         // TODO: navigate to send will screen
-        this.props.navigation.navigate("")
+        this.props.navigation.navigate("DrawerScreen", {page: "EmailWillScreen"});
     }
 
     render()

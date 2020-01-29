@@ -29,35 +29,7 @@ export default async function registerForPushNotificationsAsync() {
   }
 
   // Get the token that identifies this device
-  initnotify().then( async(data)=>{
-    if(data){
-        console.log("get expo token", data);
-        console.log("token:", await getToken());
-        console.log("get expo token fetchd");
-      }else{
-        alert('please grant this app notification permission in settings.')
-      }
- 
-  })
-
-  /**
-   * TODO: Post token to backend sever from where you can retrieve it to send push notifications
-   */
-  /*
-  return fetch(PUSH_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      token: {
-        value: token,
-      },
-      user: {
-        username: 'Brent',
-      },
-    }),
-  });
-  */
+  let token = await Notifications.getExpoPushTokenAsync();
+  //let token = "EXPO1234";
+  return token;
 }
