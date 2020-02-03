@@ -98,7 +98,7 @@ class CountrySelect extends Component
 
                         <View>
                             <Text style={[styles.text, {textAlign: "left"}]}>
-                                Country of Residence
+                                Select Country
                             </Text>
                             <RNPickerSelect
                                 placeholder={placeholder}

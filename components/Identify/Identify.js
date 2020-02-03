@@ -11,6 +11,14 @@ import nonbinary_img from "./../../assets/images/nonbinary.png";
 import  Icon  from "react-native-vector-icons/FontAwesome";
 import { API_URL } from '../../Environment/Environment';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { bindActionCreators } from "redux";
+import {UPDATE_USERDATA} from "./../../reducer/types";
+import registerForPushNotificationsAsync from "./../../notification/registerPushNotificationAsync";
+
+function setUserData(data)
+{
+    return {type: UPDATE_USERDATA, payload: data};
+}
 
 class Identify extends Component 
 {
@@ -40,14 +48,32 @@ class Identify extends Component
                 body: JSON.stringify(this.state.user)
             })
             .then((response) => response.json())
-            .then((responseJson) => {
+            .then(async (responseJson) => {
                 this.setState({loading: false});
                 if(responseJson.status === true)
                 {
-                    this.props.navigation.navigate("LoginScreen");
+                    this.props.setUserData(responseJson.data);
+                    this.props.navigation.navigate("MakeWillScreen");
+
+                    let token = await registerForPushNotificationsAsync();
+                    fetch(API_URL+"/user/savetoken", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            authorization: responseJson.data.token,
+                            token: token
+                        })                    
+                    })
+                    .then(response => response.json())
+                    .then(responseJson => {
+                        console.log("savetoken response", responseJson);
+                    })
+                    .catch(err => {
+                        console.log("savetoken error", err);
+                    });
                 }
-                else
-                    alert("Can not signup");
+                else{
+                    alert("Can not Signup");
+                }
             })
             .catch((error) => {
                 this.setState({loading: false});
@@ -113,4 +139,10 @@ const mapStatesToPros = (state, ownProps) => {
     return {...ownProps, user: state.user};
 }
 
-export default connect(mapStatesToPros)(Identify);
+const mapDispatchToProps = dispatch => {
+    return {
+        setUserData: bindActionCreators(setUserData, dispatch)
+    }
+}
+
+export default connect(mapStatesToPros, mapDispatchToProps)(Identify);
