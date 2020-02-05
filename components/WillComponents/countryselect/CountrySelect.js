@@ -128,10 +128,13 @@ class CountrySelect extends Component
                             onPress={this.onPrev}>
                             <Text style={styles.text}>Back</Text>
                         </TouchableOpacity>
+                        {this.state.location !== "None" && 
                         <TouchableOpacity style={styles.nextButton}
-                            onPress={this.onNext}>
-                            <Text style={styles.text}>Next</Text>
+                        onPress={this.onNext}>
+                        <Text style={styles.text}>Next</Text>
                         </TouchableOpacity>
+                    }
+                        
                     </View>
                     
                 </View>

@@ -82,7 +82,9 @@ class OpenScreen extends Component{
             if(responseJson.status === true)
             {
                 this.props.setUserData(responseJson.data);
-                if(responseJson.data.will === null || responseJson.data.will === "" || responseJson.data.will === undefined)
+                if(responseJson.data.type === "admin")
+                    this.props.navigation.navigate("NotificationSendScreen");                
+                else if(responseJson.data.will === null || responseJson.data.will === "" || responseJson.data.will === undefined)
                 {
                     this.props.navigation.navigate("MakeWillScreen");
                 }

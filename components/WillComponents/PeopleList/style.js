@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: base_styles.font.normal_text_title_font_weight,
         color: base_styles.color.normal_text_title_font_color,
-        fontSize: base_styles.size.title_text_font_size,
+        fontSize: base_styles.size.question_text_font_size,
         marginBottom: base_styles.margin.normal_space_margin * 2,
     },
     listContainer: {

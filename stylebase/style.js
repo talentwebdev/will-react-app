@@ -1,4 +1,25 @@
 
+var React = require('react-native');
+
+var {PixelRatio} = React;
+
+var QUESTION_TEXT_FONT_SIZE   = 18;
+if(PixelRatio.get() <= 1)
+{
+    QUESTION_TEXT_FONT_SIZE = 12;
+}
+else if(PixelRatio.get() <= 1.5)
+{
+    QUESTION_TEXT_FONT_SIZE = 25;
+}
+else if(PixelRatio.get() <= 2)
+{
+    QUESTION_TEXT_FONT_SIZE = 30;
+}
+else
+{
+    QUESTION_TEXT_FONT_SIZE = 35;
+}
 
 const base_styles = {
     margin: {
@@ -35,6 +56,7 @@ const base_styles = {
 
         title_text_font_size: 20,
         normal_border_radius: 20,
+        question_text_font_size: QUESTION_TEXT_FONT_SIZE,
     },
     zIndex: {
         normal_image_z_index: 100,

@@ -51,10 +51,7 @@ class MakeWill extends Component
                     <TouchableOpacity style={styles.primaryButton}
                         onPress={this.onNext}>
                         <Text style={styles.text}>Make My Will</Text>
-                    </TouchableOpacity>                    
-                    <TouchableOpacity style={styles.primaryButton}>
-                        <Text style={styles.text}>Show Me An Example</Text>
-                    </TouchableOpacity>      
+                    </TouchableOpacity>         
                     <TouchableOpacity style={styles.backButton} 
                         onPress={() => {this.props.navigation.navigate("DrawerScreen", {page: "MyWillScreen"});}}>
                         <Text style={styles.text}>Back</Text>

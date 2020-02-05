@@ -34,6 +34,9 @@ import ProfileResetPassword from "./../MyProfile/ProfileResetPassword/ProfileRes
 import ResetPassword from "./../ResetPassword/ResetPassword";
 import ResetPasswordCode from "./../ResetPassword/ResetPasswordCode";
 import ResetPasswordInput from "./../ResetPassword/ResetPasswordInput";
+import NotificationSend from "./../Admin/NotificationSend/NotificationSend";
+import NotificationSendDetail from "./../Admin/NotificationSend/NotificationSendDetail";
+import NotificationCreate from "./../Admin/NotificationSend/NotificationCreate";
 
 const drawerNavigator = createDrawerNavigator({
         MyWillScreen: {screen: MyWill, navigationOptions: {headerShown:false}},
@@ -82,6 +85,9 @@ const MainNavigator = createStackNavigator({
         ResetPasswordCodeScreen: {screen: ResetPasswordCode, navigationOptions: {headerShown: false}},
         ResetPasswordInputScreen: {screen: ResetPasswordInput, navigationOptions: {headerShown: false}},
         ProfileResetPasswordScreen: {screen: ProfileResetPassword, navigationOptions: {headerShown: false}},
+        NotificationSendScreen: {screen: NotificationSend, navigationOptions: {headerShown: false}},
+        NotificationSendDetailScreen: {screen: NotificationSendDetail, navigationOptions: {headerShown: false}},
+        NotificationCreateScreen: {screen: NotificationCreate, navigationOptions: {headerShown: false}},
     },
     {
         initialRouteName: "OpenScreen",

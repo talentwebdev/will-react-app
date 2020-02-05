@@ -127,12 +127,14 @@ class Login extends Component{
             await _storeEmail(this.state.email);
             await _storePassword(this.state.password);
             console.log("store email & password to storage", this.state.email, this.state.password);
-
+            console.log("sign in", responseJson);
             this.setState({loading: false});
             if(responseJson.status === true)
             {
                 this.props.setUserData(responseJson.data);
-                if(responseJson.data.will === null || responseJson.data.will === "" || responseJson.data.will === undefined)
+                if(responseJson.data.type === "admin")
+                    this.props.navigation.navigate("NotificationSendScreen");                
+                else if(responseJson.data.will === null || responseJson.data.will === "" || responseJson.data.will === undefined)
                 {
                     this.props.navigation.navigate("MakeWillScreen");
                 }

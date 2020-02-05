@@ -37,6 +37,12 @@ class EmailWill extends Component{
         this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.handleKeyboardDidHide);
 
         this.onSend = this.onSend.bind(this);
+
+        const { navigation } = this.props;
+        if(navigation.getParam("page") !== "MyWillScreen")
+        {
+            navigation.navigate(navigation.getParam("page"));   
+        }
     }
 
     handleKeyboardDidShow = event => 

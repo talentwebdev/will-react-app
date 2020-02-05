@@ -21,6 +21,12 @@ class EmailFailed extends Component{
     constructor(props)
     {
         super(props);
+
+        const { navigation } = this.props;
+        if(navigation.getParam("page") !== "MyWillScreen")
+        {
+            navigation.navigate(navigation.getParam("page"));   
+        }
     }
 
     render(){

@@ -9,6 +9,7 @@ import base_images from "./../../stylebase/images";
 import background from "./../../assets/images/background.png";
 import { API_URL } from "../../Environment/Environment";
 import { connect } from "react-redux";
+import Spinner from 'react-native-loading-spinner-overlay';
 
 
 class Notifications extends Component 
@@ -20,11 +21,22 @@ class Notifications extends Component
 
         this.state = {
             items: [],
+            loading: true,
         }
 
         this.renderItem = this.renderItem.bind(this);
         this.onSelect = this.onSelect.bind(this);
 
+        const { navigation } = this.props;
+        if(navigation.getParam("page") !== "MyWillScreen")
+        {
+            navigation.navigate(navigation.getParam("page"));   
+        }
+    }
+
+    componentDidMount()
+    {
+        console.log("notification loaded", this.props.user);
         fetch(API_URL+"/notification/fetch", {
             method: "POST",
             body: JSON.stringify({
@@ -33,6 +45,7 @@ class Notifications extends Component
         })
         .then(response => response.json())
         .then(responseJson => {
+            this.setState({loading: false});
             console.log("fetch notification success", responseJson);
             if(responseJson.status === true)
             {
@@ -41,6 +54,7 @@ class Notifications extends Component
             }
         })
         .catch(err => {
+            this.setState({loading: false});
             console.log("fetch notification error", err);
         });
 
@@ -64,6 +78,7 @@ class Notifications extends Component
     renderItem = (_item) => {
         return (
             <View key={_item.item.key} style={styles.listItemContainer}>
+                
                 <RadioButton labelHorizontal={true} key={_item.index}>
                     <RadioButtonInput
                         obj={{label: _item.item.title, value: _item.key }}
@@ -95,6 +110,12 @@ class Notifications extends Component
     {
         return (
             <ImageBackground source={background} style={styles.background}>
+                <Spinner
+                    //visibility of Overlay Loading Spinner
+                    visible={this.state.loading}
+                    //Text with the Spinner
+                    color="white"
+                    />
                 <Icon name="menu" color="#FFF" style={styles.menuIcon} size={30} onPress={() => {this.props.navigation.openDrawer()}}></Icon>
                 <View style={styles.toplogoContainer}>                    
                     <Image source={base_images.logo.small_image.source} style={[base_images.logo.small_image.style, {zIndex: 1000}]} onPress={() => {this.props.navigation.navigate("HomeScreen")}}></Image>

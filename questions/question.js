@@ -26,7 +26,7 @@ const will_option_name = {
 
 export const question = {
     component: "CountrySelectScreen", 
-    title: "Would you like to leave your entire estate to your spouse upon your death?",
+    title: "We tailor your will to the laws of the country you live in",
     south_africa: {
         component: "AddressScreen",
         title: "What is your residental address?",
@@ -284,7 +284,7 @@ export const question = {
                             value: value_names.children,
                             next: {
                                 component: "PeopleScreen",
-                                title: "Who sould you like to nominate or appoint as the guardian of your child/children?",
+                                title: "Who would you like to nominate or appoint as the guardian of your child/children?",
                                 value: value_names.guard_appoint,
                                 next: {
                                     component: "PeopleListScreen",
