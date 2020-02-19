@@ -44,5 +44,6 @@
     ".dynamodb/": "explorerExcludedFiles",
     ".tern-port": "explorerExcludedFiles",
     ".expo/": "explorerExcludedFiles"
-  }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

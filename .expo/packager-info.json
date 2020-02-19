@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 27216,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "packagerPid": 10480,
+  "expoServerNgrokUrl": "https://bw-y5a.anonymous.will-react-app.exp.direct",
+  "packagerNgrokUrl": "https://packager.bw-y5a.anonymous.will-react-app.exp.direct",
+  "ngrokPid": 18864,
   "webpackServerPort": 19006
 }

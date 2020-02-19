@@ -8,6 +8,7 @@ import {sendNextWillStep, sendPrevWillStep} from "./action";
 import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 import { StackActions, NavigationActions } from 'react-navigation';
+import {value_names} from "./../../../questions/question";
 
 class Question extends Component
 {
@@ -16,10 +17,15 @@ class Question extends Component
     constructor(props)
     {
         super(props);
+
+        const pagedata = this.props.will.pages[this.props.will.pages.length - 1];
         this.state = {
             text: this.props.will.pages[this.props.will.pages.length - 1].title,
             selected: this.props.will.datas[this.props.will.datas.length - 1],
-            pagedata: this.props.will.pages[this.props.will.pages.length - 1],
+            pagedata: pagedata,
+            yesText: pagedata.value === value_names.dubai_court ? "Dubai" : "Yes",
+            // when change this text, you should change the text also in action.js
+            noText: pagedata.value === value_names.dubai_court ? "Abu Dhabi" : "No",
         }
 
         this.onNext = this.onNext.bind(this);
@@ -31,17 +37,19 @@ class Question extends Component
         if(this.state.selected === undefined || this.state.selected === "" || this.state.selected === null)
             return;
         
+            console.log("QuestionScreen", this.state.selected);
         this.props.sendNextWillStep(this.state.selected, this.state.pagedata);
         let routeName;
-        if(this.state.selected === "yes")
+        if(this.state.selected === this.state.yesText)
         {
             routeName = this.state.pagedata.yes.component;
             
         }
-        else if(this.state.selected === "no")
+        else if(this.state.selected === this.state.noText)
         {
             routeName = this.state.pagedata.no.component;
         }
+        console.log("QuestionScreen", routeName);
 
         const resetAction = StackActions.reset({
             index: 1,
@@ -74,13 +82,13 @@ class Question extends Component
                 <View style={styles.questionContainer}>
                     <View style={styles.questionPanel}>
                         <Text style={styles.questionText}>{this.state.text}</Text>
-                        <TouchableOpacity style={styles.selectButton} onPress={() => {this.setState({selected: "yes"})}}>
-                            <Icon name="check" style={[styles.checkIcon, {opacity: (this.state.selected === "yes" ? 1 : 0) }]} size={15} color="#FFF" />
-                            <Text style={styles.text}>Yes</Text>
+                        <TouchableOpacity style={styles.selectButton} onPress={() => {this.setState({selected: this.state.yesText})}}>
+                            <Icon name="check" style={[styles.checkIcon, {opacity: (this.state.selected === this.state.yesText ? 1 : 0) }]} size={15} color="#FFF" />
+                            <Text style={styles.text}>{this.state.yesText}</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.selectButton} onPress={() => {this.setState({selected: "no"})}}>
-                                <Icon name="check" style={[styles.checkIcon, {opacity: (this.state.selected === "no" ? 1 : 0)}]} size={15} color="#FFF" />
-                            <Text style={styles.text}>No</Text>
+                        <TouchableOpacity style={styles.selectButton} onPress={() => {this.setState({selected: this.state.noText})}}>
+                                <Icon name="check" style={[styles.checkIcon, {opacity: (this.state.selected === this.state.noText ? 1 : 0)}]} size={15} color="#FFF" />
+                            <Text style={styles.text}>{this.state.noText}</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.buttonContainer}>

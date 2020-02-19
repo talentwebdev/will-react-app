@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         backgroundColor: base_styles.color.normal_button_third_color,
         height: base_styles.size.normal_button_height,
         borderRadius: base_styles.size.normal_button_border_radius,
-        marginRight: 5,
+        marginRight: 10,
         marginLeft: 10,
         alignItems: "center",
         justifyContent: "center",

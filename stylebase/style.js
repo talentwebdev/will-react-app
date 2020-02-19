@@ -14,11 +14,11 @@ else if(PixelRatio.get() <= 1.5)
 }
 else if(PixelRatio.get() <= 2)
 {
-    QUESTION_TEXT_FONT_SIZE = 30;
+    QUESTION_TEXT_FONT_SIZE = 25;
 }
 else
 {
-    QUESTION_TEXT_FONT_SIZE = 35;
+    QUESTION_TEXT_FONT_SIZE = 25;
 }
 
 const base_styles = {

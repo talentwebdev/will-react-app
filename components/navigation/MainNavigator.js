@@ -28,6 +28,7 @@ import FinalWill from "./../WillComponents/FinalWill/FinalWill";
 import PaymentWebView from "./../WillComponents/Payment/PaymentWebView";
 import PaymentSuccessScreen from "./../WillComponents/Payment/PaymentSuccessScreen";
 import ViewWill from "./../WillComponents/ViewWill/ViewWill";
+import UAEGuardian from "./../WillComponents/UAEGuardian/UAEGuardian";
 import ContentComponent from "./ContentComponent";
 import MyProfile from "./../MyProfile/MyProfile";
 import ProfileResetPassword from "./../MyProfile/ProfileResetPassword/ProfileResetPassword";
@@ -88,6 +89,7 @@ const MainNavigator = createStackNavigator({
         NotificationSendScreen: {screen: NotificationSend, navigationOptions: {headerShown: false}},
         NotificationSendDetailScreen: {screen: NotificationSendDetail, navigationOptions: {headerShown: false}},
         NotificationCreateScreen: {screen: NotificationCreate, navigationOptions: {headerShown: false}},
+        UAEGuardianScreen: {screen: UAEGuardian, navigationOptions: {headerShown: false}},
     },
     {
         initialRouteName: "OpenScreen",
