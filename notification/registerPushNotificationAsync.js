@@ -1,6 +1,7 @@
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 import { initnotify, getToken  } from 'expo-push-notification-helper';
+import Constants from 'expo-constants';
 
 const PUSH_ENDPOINT = 'https://your-server.com/users/push-token';
 
@@ -16,20 +17,26 @@ const temp = new Promise((resolve, reject) => {
   })
 });
 export default async function registerForPushNotificationsAsync() {
-  const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-  // only asks if permissions have not already been determined, because
-  // iOS won't necessarily promp t the user a second time.
-  // On Android, permissions are granted on app installation, so
-  // `askAsync` will never prompt the user
-
-  // Stop here if the user did not grant permissions
-  if (status !== 'granted') {
-    //alert('No notification permissions!');
-    return;
+  if (Constants.isDevice) {
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
+    let finalStatus = existingStatus;
+    if (existingStatus !== 'granted') {
+      const { status } = await Permissions.askAsync(
+        Permissions.NOTIFICATIONS
+      );
+      finalStatus = status;
+    }
+    if (finalStatus !== 'granted') {
+      alert('Failed to get push token for push notification!');
+      return;
+    }
+    let token = await Notifications.getExpoPushTokenAsync();
+    return token;
+  } else {
+    alert('Must use physical device for Push Notifications');
   }
 
-  // Get the token that identifies this device
-  let token = await Notifications.getExpoPushTokenAsync();
-  //let token = "EXPO1234";
-  return token;
+  return "null";
 }

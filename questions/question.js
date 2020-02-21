@@ -34,6 +34,33 @@ const will_option_name = {
     option_10: "Will Option 10 Joint Will - Husband and wife with adult children",
 }
 
+function getUAELastModule(countryWill, noCountryWill)
+{
+    return {
+        component: "PeopleListScreen", 
+        title: "List of Beneficiaries", 
+        value: value_names.beneficiaries,
+        next : {
+            component: "QuestionScreen",
+            title: "Do you have a Will in another Country?",
+            yes: {
+                component: "PeopleScreen",
+                title: "Please state the Country so that we can exclude the said Will from the UAE will",
+                value: value_names.state_country,
+                next: {
+                    component: "FinalWillScreen",
+                    value: countryWill, 
+                    title: "Will " + countryWill,
+                }   
+            },
+            no: {
+                component: "FinalWillScreen",
+                value: noCountryWill, 
+                title: "Will " + noCountryWill,
+            }
+        }        
+    }
+}
 export const question = {
     component: "CountrySelectScreen", 
     title: "We tailor your will to the laws of the country you live in",
@@ -63,23 +90,28 @@ export const question = {
                                 component: "QuestionScreen",
                                 title: "Would you like a joint will with your spouse?",
                                 yes: {
-                                    component: "QuestionScreen",
-                                    title: "If you are not survived by your spouse, Do you want your estate to your children?",
-                                    yes: {
-                                        component: "FinalWillScreen",
-                                        value: 10,
-                                        title: will_option_name.option_10,
-                                    },
-                                    no: {
-                                        component: "PeopleListScreen",
-                                        title: "List Beneficiaries",
-                                        value: value_names.beneficiaries,
-                                        next: {
+                                    component: "SelectOptionScreen",
+                                    title: "How are you married?",
+                                    value: value_names.married_option,
+                                    next: {
+                                        component: "QuestionScreen",
+                                        title: "If you are not survived by your spouse, Do you want your estate to your children?",
+                                        yes: {
                                             component: "FinalWillScreen",
-                                            value: 8,
-                                            title: will_option_name.option_8,
+                                            value: 10,
+                                            title: will_option_name.option_10,
+                                        },
+                                        no: {
+                                            component: "PeopleListScreen",
+                                            title: "List Beneficiaries",
+                                            value: value_names.beneficiaries,
+                                            next: {
+                                                component: "FinalWillScreen",
+                                                value: 8,
+                                                title: will_option_name.option_8,
+                                            }
                                         }
-                                    }
+                                    }                                    
                                 },
                                 no: {
                                     component: "QuestionScreen",
@@ -132,19 +164,24 @@ export const question = {
                                         component: "QuestionScreen",
                                         title: "Would you like a join will with your spouse?",
                                         yes: {
-                                            component: "PeopleScreen", 
-                                            title: "name of Spouse",
-                                            value: value_names.spouse,
+                                            component: "SelectOptionScreen",
+                                            title: "How are you married?",
+                                            value: value_names.married_option,
                                             next: {
-                                                component: "PeopleListScreen", 
-                                                title: "List Beneficiaries",
-                                                value: value_names.beneficiaries,
+                                                component: "PeopleScreen", 
+                                                title: "name of Spouse",
+                                                value: value_names.spouse,
                                                 next: {
-                                                    component: "FinalWillScreen",
-                                                    value: 9,
-                                                    title: will_option_name.option_9,
-                                                }                                                
-                                            }
+                                                    component: "PeopleListScreen", 
+                                                    title: "List Beneficiaries",
+                                                    value: value_names.beneficiaries,
+                                                    next: {
+                                                        component: "FinalWillScreen",
+                                                        value: 9,
+                                                        title: will_option_name.option_9,
+                                                    }                                                
+                                                }
+                                            }                                            
                                         },
                                         no: {
                                             component: "PeopleScreen", 
@@ -166,19 +203,24 @@ export const question = {
                                         component: "QuestionScreen",
                                         title: "Would you like a join will with your spouse?",
                                         yes: {
-                                            component: "PeopleScreen", 
-                                            title: "name of Spouse",
-                                            value: value_names.spouse,
+                                            component: "SelectOptionScreen",
+                                            title: "How are you married?",
+                                            value: value_names.married_option,
                                             next: {
-                                                component: "PeopleListScreen", 
-                                                title: "List Beneficiaries",
-                                                value: value_names.beneficiaries,
+                                                component: "PeopleScreen", 
+                                                title: "name of Spouse",
+                                                value: value_names.spouse,
                                                 next: {
-                                                    component: "FinalWillScreen",
-                                                    value: 9,
-                                                    title: will_option_name.option_9,
-                                                }                                                
-                                            }
+                                                    component: "PeopleListScreen", 
+                                                    title: "List Beneficiaries",
+                                                    value: value_names.beneficiaries,
+                                                    next: {
+                                                        component: "FinalWillScreen",
+                                                        value: 9,
+                                                        title: will_option_name.option_9,
+                                                    }                                                
+                                                }
+                                            }                                            
                                         },
                                         no: {
                                             component: "PeopleScreen", 
@@ -381,45 +423,9 @@ export const question = {
                                                                 component: "PeopleListScreen",
                                                                 title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                                 value: value_names.uae_assets,
-                                                                next: {
-                                                                    component: "QuestionScreen",
-                                                                    title: "Do you have a Will in another Country?",
-                                                                    yes: {
-                                                                        component: "PeopleScreen",
-                                                                        title: "Please state the Country so that we can exclude the said Will from the UAE will",
-                                                                        value: value_names.state_country,
-                                                                        next: {
-                                                                            component: "FinalWillScreen",
-                                                                            value: 1, 
-                                                                            title: "Will 1",
-                                                                        }   
-                                                                    },
-                                                                    no: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 5, 
-                                                                        title: "Will 5",
-                                                                    }
-                                                                }
+                                                                next: getUAELastModule(1, 5)
                                                             },
-                                                            no: {
-                                                                component: "QuestionScreen",
-                                                                title: "Do you have a will in another country?",
-                                                                yes: {
-                                                                    component: "PeopleScreen",
-                                                                    title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                    value: value_names.state_country,
-                                                                    next: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 3,
-                                                                        title: "Will 3",
-                                                                    }
-                                                                },
-                                                                no: {
-                                                                    component: "FinalWillScreen",
-                                                                        value: 7,
-                                                                        title: "Will 7",
-                                                                }
-                                                            }
+                                                            no: getUAELastModule(3, 7)
                                                         }
                                                     }
                                                 }
@@ -440,45 +446,9 @@ export const question = {
                                                         component: "PeopleListScreen",
                                                         title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                         value: value_names.uae_assets,
-                                                        next: {
-                                                            component: "QuestionScreen",
-                                                            title: "Do you have a will in another country?",
-                                                            yes: {
-                                                                component: "PeopleScreen",
-                                                                title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                value: value_names.state_country,
-                                                                next: {
-                                                                    component: "FinalWillScreen",
-                                                                    value: 2,
-                                                                    title: "Will 2",
-                                                                }
-                                                            },
-                                                            no: {
-                                                                component: "FinalWillScreen",
-                                                                value: 6,
-                                                                title: "Will 6",
-                                                            }
-                                                        }
+                                                        next: getUAELastModule(2, 6)
                                                     },
-                                                    no: {
-                                                        component: "QuestionScreen",
-                                                                title: "Do you have a will in another country?",
-                                                                yes: {
-                                                                    component: "PeopleScreen",
-                                                                    title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                    value: value_names.state_country,
-                                                                    next: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 4,
-                                                                        title: "Will 4",
-                                                                    }
-                                                                },
-                                                                no: {
-                                                                    component: "FinalWillScreen",
-                                                                    value: 8,
-                                                                    title: "Will 8",
-                                                                }
-                                                    }
+                                                    no: getUAELastModule(4, 8)
                                                 }
                                             }
                                         }
@@ -513,45 +483,9 @@ export const question = {
                                                                     component: "PeopleListScreen",
                                                                     title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                                     value: value_names.uae_assets,
-                                                                    next: {
-                                                                        component: "QuestionScreen",
-                                                                        title: "Do you have a Will in another Country?",
-                                                                        yes: {
-                                                                            component: "PeopleScreen",
-                                                                            title: "Please state the Country so that we can exclude the said Will from the UAE will",
-                                                                            value: value_names.state_country,
-                                                                            next: {
-                                                                                component: "FinalWillScreen",
-                                                                                value: 9, 
-                                                                                title: "Will 9",
-                                                                            }   
-                                                                        },
-                                                                        no: {
-                                                                            component: "FinalWillScreen",
-                                                                            value: 13, 
-                                                                            title: "Will 13",
-                                                                        }
-                                                                    }
+                                                                    next: getUAELastModule(9, 13)
                                                                 },
-                                                                no: {
-                                                                    component: "QuestionScreen",
-                                                                    title: "Do you have a will in another country?",
-                                                                    yes: {
-                                                                        component: "PeopleScreen",
-                                                                        title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                        value: value_names.state_country,
-                                                                        next: {
-                                                                            component: "FinalWillScreen",
-                                                                            value: 11,
-                                                                            title: "Will 11",
-                                                                        }
-                                                                    },
-                                                                    no: {
-                                                                        component: "FinalWillScreen",
-                                                                            value: 15,
-                                                                            title: "Will 15",
-                                                                    }
-                                                                }
+                                                                no: getUAELastModule(11, 15)
                                                             }
                                                         }
                                                     }
@@ -574,52 +508,16 @@ export const question = {
                                                         component: "PeopleListScreen",
                                                         title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                         value: value_names.uae_assets,
-                                                        next: {
-                                                            component: "QuestionScreen",
-                                                            title: "Do you have a will in another country?",
-                                                            yes: {
-                                                                component: "PeopleScreen",
-                                                                title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                value: value_names.state_country,
-                                                                next: {
-                                                                    component: "FinalWillScreen",
-                                                                    value: 10,
-                                                                    title: "Will 10",
-                                                                }
-                                                            },
-                                                            no: {
-                                                                component: "FinalWillScreen",
-                                                                value: 14,
-                                                                title: "Will 14",
-                                                            }
-                                                        }
+                                                        next: getUAELastModule(10, 14)
                                                     },
-                                                    no: {
-                                                        component: "QuestionScreen",
-                                                        title: "Do you have a will in another country?",
-                                                        yes: {
-                                                            component: "PeopleScreen",
-                                                            title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                            value: value_names.state_country,
-                                                            next: {
-                                                                component: "FinalWillScreen",
-                                                                value: 12,
-                                                                title: "Will 12",
-                                                            }
-                                                        },
-                                                        no: {
-                                                            component: "FinalWillScreen",
-                                                            value: 16,
-                                                            title: "Will 16",
-                                                        }
-                                                    }
+                                                    no: getUAELastModule(12, 16)
                                                 }
                                             }
                                         }
                                     }
                                 },
                                 no: {
-                                    component: "NotProvideWillScreen",
+                                    component: "NoProvideWillScreen",
                                     title: "Unfortunately we can not provide you with a will in terms of UAE law",
                                 }
                             },
@@ -656,45 +554,9 @@ export const question = {
                                                                 component: "PeopleListScreen",
                                                                 title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                                 value: value_names.uae_assets,
-                                                                next: {
-                                                                    component: "QuestionScreen",
-                                                                    title: "Do you have a Will in another Country?",
-                                                                    yes: {
-                                                                        component: "PeopleScreen",
-                                                                        title: "Please state the Country so that we can exclude the said Will from the UAE will",
-                                                                        value: value_names.state_country,
-                                                                        next: {
-                                                                            component: "FinalWillScreen",
-                                                                            value: 1, 
-                                                                            title: "Will 1",
-                                                                        }   
-                                                                    },
-                                                                    no: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 5, 
-                                                                        title: "Will 5",
-                                                                    }
-                                                                }
+                                                                next: getUAELastModule(1, 5)
                                                             },
-                                                            no: {
-                                                                component: "QuestionScreen",
-                                                                title: "Do you have a will in another country?",
-                                                                yes: {
-                                                                    component: "PeopleScreen",
-                                                                    title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                    value: value_names.state_country,
-                                                                    next: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 3,
-                                                                        title: "Will 3",
-                                                                    }
-                                                                },
-                                                                no: {
-                                                                    component: "FinalWillScreen",
-                                                                        value: 7,
-                                                                        title: "Will 7",
-                                                                }
-                                                            }
+                                                            no: getUAELastModule(3, 7)
                                                         }
                                                     }
                                                 }
@@ -715,45 +577,9 @@ export const question = {
                                                         component: "PeopleListScreen",
                                                         title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                         value: value_names.uae_assets,
-                                                        next: {
-                                                            component: "QuestionScreen",
-                                                            title: "Do you have a will in another country?",
-                                                            yes: {
-                                                                component: "PeopleScreen",
-                                                                title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                value: value_names.state_country,
-                                                                next: {
-                                                                    component: "FinalWillScreen",
-                                                                    value: 2,
-                                                                    title: "Will 2",
-                                                                }
-                                                            },
-                                                            no: {
-                                                                component: "FinalWillScreen",
-                                                                value: 6,
-                                                                title: "Will 6",
-                                                            }
-                                                        }
+                                                        next: getUAELastModule(2, 6)
                                                     },
-                                                    no: {
-                                                        component: "QuestionScreen",
-                                                                title: "Do you have a will in another country?",
-                                                                yes: {
-                                                                    component: "PeopleScreen",
-                                                                    title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                    value: value_names.state_country,
-                                                                    next: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 4,
-                                                                        title: "Will 4",
-                                                                    }
-                                                                },
-                                                                no: {
-                                                                    component: "FinalWillScreen",
-                                                                    value: 8,
-                                                                    title: "Will 8",
-                                                                }
-                                                    }
+                                                    no: getUAELastModule(4, 8)
                                                 }
                                             }
                                         }
@@ -788,45 +614,9 @@ export const question = {
                                                                     component: "PeopleListScreen",
                                                                     title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                                     value: value_names.uae_assets,
-                                                                    next: {
-                                                                        component: "QuestionScreen",
-                                                                        title: "Do you have a Will in another Country?",
-                                                                        yes: {
-                                                                            component: "PeopleScreen",
-                                                                            title: "Please state the Country so that we can exclude the said Will from the UAE will",
-                                                                            value: value_names.state_country,
-                                                                            next: {
-                                                                                component: "FinalWillScreen",
-                                                                                value: 9, 
-                                                                                title: "Will 9",
-                                                                            }   
-                                                                        },
-                                                                        no: {
-                                                                            component: "FinalWillScreen",
-                                                                            value: 13, 
-                                                                            title: "Will 13",
-                                                                        }
-                                                                    }
+                                                                    next: getUAELastModule(9, 13)
                                                                 },
-                                                                no: {
-                                                                    component: "QuestionScreen",
-                                                                    title: "Do you have a will in another country?",
-                                                                    yes: {
-                                                                        component: "PeopleScreen",
-                                                                        title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                        value: value_names.state_country,
-                                                                        next: {
-                                                                            component: "FinalWillScreen",
-                                                                            value: 11,
-                                                                            title: "Will 11",
-                                                                        }
-                                                                    },
-                                                                    no: {
-                                                                        component: "FinalWillScreen",
-                                                                            value: 15,
-                                                                            title: "Will 15",
-                                                                    }
-                                                                }
+                                                                no: getUAELastModule(11, 15)
                                                             }
                                                         }
                                                     }
@@ -849,52 +639,16 @@ export const question = {
                                                         component: "PeopleListScreen",
                                                         title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                         value: value_names.uae_assets,
-                                                        next: {
-                                                            component: "QuestionScreen",
-                                                            title: "Do you have a will in another country?",
-                                                            yes: {
-                                                                component: "PeopleScreen",
-                                                                title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                value: value_names.state_country,
-                                                                next: {
-                                                                    component: "FinalWillScreen",
-                                                                    value: 10,
-                                                                    title: "Will 10",
-                                                                }
-                                                            },
-                                                            no: {
-                                                                component: "FinalWillScreen",
-                                                                value: 14,
-                                                                title: "Will 14",
-                                                            }
-                                                        }
+                                                        next: getUAELastModule(10, 14)
                                                     },
-                                                    no: {
-                                                        component: "QuestionScreen",
-                                                        title: "Do you have a will in another country?",
-                                                        yes: {
-                                                            component: "PeopleScreen",
-                                                            title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                            value: value_names.state_country,
-                                                            next: {
-                                                                component: "FinalWillScreen",
-                                                                value: 12,
-                                                                title: "Will 12",
-                                                            }
-                                                        },
-                                                        no: {
-                                                            component: "FinalWillScreen",
-                                                            value: 16,
-                                                            title: "Will 16",
-                                                        }
-                                                    }
+                                                    no: getUAELastModule(12, 16)
                                                 }
                                             }
                                         }
                                     }
                                 },
                                 no: {
-                                    component: "NotProvideWillScreen",
+                                    component: "NoProvideWillScreen",
                                     title: "Unfortunately we can not provide you with a will in terms of UAE law",
                                 }
                             }
@@ -906,7 +660,7 @@ export const question = {
                         yes: {
                             component: "QuestionScreen",
                             value: value_names.dubai_court,
-                            title: "Qould you like to register your Will in the DIFC(Dubai) or Abu Dhabi Court?",
+                            title: "Would you like to register your Will in the DIFC(Dubai) or Abu Dhabi Court?",
                             yes: {// Dubai
                                 component: "QuestionScreen",
                                 title: "Are you children usually resident in the Emirates of Dubai or RAK?", 
@@ -937,49 +691,13 @@ export const question = {
                                                             component: "PeopleListScreen", 
                                                             title: "Do you have any Assets outside of the UAE that ou would like to add to the Will?", 
                                                             value: value_names.uae_assets,
-                                                            next: {
-                                                                component: "QuestionScreen",
-                                                                title: "Do you have a will in another country?",
-                                                                yes: {
-                                                                    component: "PeopleScreen",
-                                                                    title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                    value: value_names.state_country,
-                                                                    next: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 17,
-                                                                        title: "Will 17",
-                                                                    }
-                                                                },
-                                                                no: {
-                                                                    component: "FinalWillScreen",
-                                                                        value: 21,
-                                                                        title: "Will 21",
-                                                                }
-                                                            }
+                                                            next: getUAELastModule(17, 21)
                                                         },
                                                         no: {
                                                             component: "PeopleListScreen",
                                                             title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                             value: value_names.uae_assets,
-                                                            next: {
-                                                                component: "QuestionScreen",
-                                                                title: "Do you have a will in another country?",
-                                                                yes: {
-                                                                    component: "PeopleScreen",
-                                                                    title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                    value: value_names.state_country,
-                                                                    next: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 19,
-                                                                        title: "Will 19",
-                                                                    }
-                                                                },
-                                                                no: {
-                                                                    component: "FinalWillScreen",
-                                                                        value: 23,
-                                                                        title: "Will 23",
-                                                                }
-                                                            }
+                                                            next: getUAELastModule(19, 23)
                                                         }
                                                     }
                                                 }
@@ -1002,50 +720,9 @@ export const question = {
                                                 component: "PeopleListScreen",
                                                 title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                 value: value_names.uae_assets,
-                                                next: {
-                                                    component: "QuestionScreen",
-                                                    title: "Do you have a will in another country?",
-                                                    yes: {
-                                                        component: "PeopleScreen",
-                                                        title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                        value: value_names.state_country,
-                                                        next: {
-                                                            component: "FinalWillScreen",
-                                                            value: 18,
-                                                            title: "Will 18",
-                                                        }
-                                                    },
-                                                    no: {
-                                                        component: "FinalWillScreen",
-                                                        value: 22,
-                                                        title: "Will 22",
-                                                    }
-                                                }
+                                                next: getUAELastModule(18, 22)
                                             },
-                                            no: {
-                                                component: "PeopleListScreen",
-                                                title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                value: value_names.uae_assets,
-                                                next: {
-                                                    component: "QuestionScreen",
-                                                    title: "Do you have a will in another country?",
-                                                    yes: {
-                                                        component: "PeopleScreen",
-                                                        title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                        value: value_names.state_country,
-                                                        next: {
-                                                            component: "FinalWillScreen",
-                                                            value: 20,
-                                                            title: "Will 20",
-                                                        }
-                                                    },
-                                                    no: {
-                                                        component: "FinalWillScreen",
-                                                        value: 24,
-                                                        title: "Will 24",
-                                                    }
-                                                }
-                                            }
+                                            no: getUAELastModule(20, 24)
                                         }
                                     }
                                 }
@@ -1080,49 +757,13 @@ export const question = {
                                                             component: "PeopleListScreen", 
                                                             title: "Do you have any Assets outside of the UAE that ou would like to add to the Will?", 
                                                             value: value_names.uae_assets,
-                                                            next: {
-                                                                component: "QuestionScreen",
-                                                                title: "Do you have a will in another country?",
-                                                                yes: {
-                                                                    component: "PeopleScreen",
-                                                                    title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                    value: value_names.state_country,
-                                                                    next: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 25,
-                                                                        title: "Will 25",
-                                                                    }
-                                                                },
-                                                                no: {
-                                                                    component: "FinalWillScreen",
-                                                                        value: 29,
-                                                                        title: "Will 29",
-                                                                }
-                                                            }
+                                                            next: getUAELastModule(25, 29)
                                                         },
                                                         no: {
                                                             component: "PeopleListScreen",
                                                             title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                             value: value_names.uae_assets,
-                                                            next: {
-                                                                component: "QuestionScreen",
-                                                                title: "Do you have a will in another country?",
-                                                                yes: {
-                                                                    component: "PeopleScreen",
-                                                                    title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                                    value: value_names.state_country,
-                                                                    next: {
-                                                                        component: "FinalWillScreen",
-                                                                        value: 27,
-                                                                        title: "Will 27",
-                                                                    }
-                                                                },
-                                                                no: {
-                                                                    component: "FinalWillScreen",
-                                                                        value: 31,
-                                                                        title: "Will 31",
-                                                                }
-                                                            }
+                                                            next: getUAELastModule(27, 31)
                                                         }
                                                     }
                                                 }
@@ -1145,49 +786,13 @@ export const question = {
                                                 component: "PeopleListScreen",
                                                 title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                 value: value_names.uae_assets,
-                                                next: {
-                                                    component: "QuestionScreen",
-                                                    title: "Do you have a will in another country?",
-                                                    yes: {
-                                                        component: "PeopleScreen",
-                                                        title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                        value: value_names.state_country,
-                                                        next: {
-                                                            component: "FinalWillScreen",
-                                                            value: 26,
-                                                            title: "Will 26",
-                                                        }
-                                                    },
-                                                    no: {
-                                                        component: "FinalWillScreen",
-                                                        value: 30,
-                                                        title: "Will 30",
-                                                    }
-                                                }
+                                                next: getUAELastModule(26, 30)
                                             },
                                             no: {
                                                 component: "PeopleListScreen",
                                                 title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
                                                 value: value_names.uae_assets,
-                                                next: {
-                                                    component: "QuestionScreen",
-                                                    title: "Do you have a will in another country?",
-                                                    yes: {
-                                                        component: "PeopleScreen",
-                                                        title: "Please state the country so that we can exclude the said will from the UAE will",
-                                                        value: value_names.state_country,
-                                                        next: {
-                                                            component: "FinalWillScreen",
-                                                            value: 28,
-                                                            title: "Will 28",
-                                                        }
-                                                    },
-                                                    no: {
-                                                        component: "FinalWillScreen",
-                                                        value: 32,
-                                                        title: "Will 32",
-                                                    }
-                                                }
+                                                next: getUAELastModule(28, 32)
                                             }
                                         }
                                     }
@@ -1195,7 +800,7 @@ export const question = {
                             }
                         },
                         no: {
-                            component: "NotProvideWillScreen",
+                            component: "NoProvideWillScreen",
                             title: "Unfortunately we can not provide you with a will in terms of UAE law",
                         }
                     }

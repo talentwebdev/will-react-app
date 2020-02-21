@@ -1,9 +1,11 @@
-import {NEXT_WILL_DATA, INIT_WILL_DATA, PREV_WILL_DATA} from "./types";
+import {NEXT_WILL_DATA, INIT_WILL_DATA, PREV_WILL_DATA, FINAL_WILL_DATA} from "./types";
 
 const initState = {
     pages: [],
     datas: [],
-    will_data: {}
+    will_data: {},
+    final_will: {},
+
 };
 
 function will_reducer(state = initState, action)
@@ -14,7 +16,11 @@ function will_reducer(state = initState, action)
         return {
             ...action.payload
         };
-
+    case FINAL_WILL_DATA: 
+        return {
+            ...state,
+            final_will: action.payload
+        };  
     //save page history and data history into redux center once user click next butto to go foward
     case NEXT_WILL_DATA:
         {

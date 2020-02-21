@@ -3,7 +3,7 @@ import {get_will_option_2} from "./will_option_2";
 import {get_will_option_3} from "./will_option_3";
 import {get_will_option_4} from "./will_option_4";
 import {get_will_option_5} from "./will_option_5";
-import {get_will_option_6} from "./will_option_6.js";
+import {get_will_option_6} from "./will_option_6";
 import {get_will_option_7} from "./will_option_7";
 import {get_will_option_8} from "./will_option_8";
 import {get_will_option_9} from "./will_option_9";

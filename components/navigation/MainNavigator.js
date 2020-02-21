@@ -27,6 +27,7 @@ import SelectOption from "./../WillComponents/SelectOption/SelectOption";
 import FinalWill from "./../WillComponents/FinalWill/FinalWill";
 import PaymentWebView from "./../WillComponents/Payment/PaymentWebView";
 import PaymentSuccessScreen from "./../WillComponents/Payment/PaymentSuccessScreen";
+import NoProvideWill from "./../WillComponents/NoProvideWill/NoProvideWill";
 import ViewWill from "./../WillComponents/ViewWill/ViewWill";
 import UAEGuardian from "./../WillComponents/UAEGuardian/UAEGuardian";
 import ContentComponent from "./ContentComponent";
@@ -90,6 +91,7 @@ const MainNavigator = createStackNavigator({
         NotificationSendDetailScreen: {screen: NotificationSendDetail, navigationOptions: {headerShown: false}},
         NotificationCreateScreen: {screen: NotificationCreate, navigationOptions: {headerShown: false}},
         UAEGuardianScreen: {screen: UAEGuardian, navigationOptions: {headerShown: false}},
+        NoProvideWillScreen: {screen: NoProvideWill, navigationOptions: {headerShown: false}},
     },
     {
         initialRouteName: "OpenScreen",

@@ -12,7 +12,7 @@ import {API_URL} from "./../../Environment/Environment";
 import Spinner from 'react-native-loading-spinner-overlay';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {UPDATE_USERDATA, INIT_WILL_DATA} from "./../../reducer/types";
+import {UPDATE_USERDATA, FINAL_WILL_DATA} from "./../../reducer/types";
 import { Notifications } from 'expo';
 import {NavigateScreen} from "./../NavigationService";
 
@@ -23,7 +23,7 @@ function setUserData(data)
 }
 function initWillData(data)
 {
-    return {type: INIT_WILL_DATA, payload: data};
+    return {type: FINAL_WILL_DATA, payload: data};
 }
 
 class OpenScreen extends Component{

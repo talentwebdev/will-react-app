@@ -28,7 +28,7 @@ class Notifications extends Component
         this.onSelect = this.onSelect.bind(this);
 
         const { navigation } = this.props;
-        if(navigation.getParam("page") !== "MyWillScreen")
+        if(navigation.getParam("page") !== "MyWillScreen" && navigation.getParam("page") !== undefined && navigation.getParam("page") !== null)
         {
             navigation.navigate(navigation.getParam("page"));   
         }

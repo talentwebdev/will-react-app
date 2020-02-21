@@ -2,14 +2,14 @@ import {value_names} from "./../questions/question";
 
 export function get_will_option_3(data)
 {
-    const beneficiaries = data[value_names.not_survived_appoint_estate] ;
+    const beneficiaries = data[value_names.beneficiaries] === undefined ? [] : data[value_names.beneficiaries];
     let beneficiary_name = "";
     for(var i = 0 ; i < beneficiaries.length ; i++)
     {
         beneficiary_name += beneficiaries[i].name + (i === beneficiaries.length - 1 ? " " : ", ");
     }
 
-    const children = data[value_names.children];
+    const children = data[value_names.children] === undefined ? [] : data[value_names.children];
     let children_name = "";
     for(var i = 0 ; i < children.length ; i++)
     {

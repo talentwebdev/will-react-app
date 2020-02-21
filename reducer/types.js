@@ -3,3 +3,4 @@ export const UPDATE_USERDATA = "UPDATE_USERDATA";
 export const INIT_WILL_DATA = "INIT_WILL_DATA";
 export const NEXT_WILL_DATA = "NEXT_WILL_DATA";
 export const PREV_WILL_DATA = "PREV_WILL_DATA";
+export const FINAL_WILL_DATA = "FINAL_WILL_DATA";

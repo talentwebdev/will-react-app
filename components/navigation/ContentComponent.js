@@ -41,7 +41,7 @@ const ContentComponent = props => (
                     onPress={() => {props.navigation.navigate("MyWillScreen")}}>
                     <Text style={styles.text}>My Will</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => {props.navigation.navigate("MyProfileScreen")}}>
                     <Text style={styles.text}>My Profile</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={checkNotification(props.activeItemKey) ? styles.button_selected : styles.button}

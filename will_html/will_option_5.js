@@ -2,7 +2,7 @@ import {value_names} from "./../questions/question";
 
 export function get_will_option_5(data)
 {
-    const children = data[value_names.children];
+    const children = data[value_names.children] === undefined ? [] : data[value_names.children];
     let children_name = "";
     for(var i = 0 ; i < children.length ; i++)
     {

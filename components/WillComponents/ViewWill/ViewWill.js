@@ -3,7 +3,9 @@ import WebView from "react-native-webview";
 import { TouchableOpacity, Text, View } from "react-native";
 import {connect} from "react-redux";
 import {getWillHTML} from "./../../../will_html/mainwill";
+import {getUAEWillHTML} from "./../../../will_uae_html/mainwill";
 import styles from "./style";
+import {value_names} from "./../../../questions/question";
 
 class ViewWill extends Component
 {
@@ -11,12 +13,13 @@ class ViewWill extends Component
     {
         super(props);
         
-        let willType = this.props.will.will_data["will_type"];
-        let data = this.props.will.will_data;
+        let willType = this.props.will.final_will["will_type"];
+        let data = this.props.will.final_will;
 
         data['user'] = this.props.user;
+
         this.state = {
-            html: getWillHTML(willType, data)
+            html: data[value_names.country_location] === "UAE" ? getUAEWillHTML(willType, data) : getWillHTML(willType, data),
         }
     }
 

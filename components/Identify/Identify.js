@@ -14,6 +14,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { bindActionCreators } from "redux";
 import {UPDATE_USERDATA} from "./../../reducer/types";
 import registerForPushNotificationsAsync from "./../../notification/registerPushNotificationAsync";
+import {_storeEmail, _storePassword} from "./../../storage/storage";
 
 function setUserData(data)
 {
@@ -49,27 +50,37 @@ class Identify extends Component
             })
             .then((response) => response.json())
             .then(async (responseJson) => {
+                console.log("signup", responseJson, this.state.user);
                 this.setState({loading: false});
+                await _storeEmail(this.state.user.email);
+                await _storePassword(this.state.user.password);
+                
                 if(responseJson.status === true)
                 {
                     this.props.setUserData(responseJson.data);
                     this.props.navigation.navigate("MakeWillScreen");
 
-                    let token = await registerForPushNotificationsAsync();
-                    fetch(API_URL+"/user/savetoken", {
-                        method: "POST",
-                        body: JSON.stringify({
-                            authorization: responseJson.data.token,
-                            token: token
-                        })                    
-                    })
-                    .then(response => response.json())
-                    .then(responseJson => {
-                        console.log("savetoken response", responseJson);
-                    })
-                    .catch(err => {
-                        console.log("savetoken error", err);
-                    });
+                    try{
+                        let token = await registerForPushNotificationsAsync();
+                        fetch(API_URL+"/user/savetoken", {
+                            method: "POST",
+                            body: JSON.stringify({
+                                authorization: responseJson.data.token,
+                                token: token
+                            })                    
+                        })
+                        .then(response => response.json())
+                        .then(responseJson => {
+                            console.log("savetoken response", responseJson);
+                        })
+                        .catch(err => {
+                            console.log("savetoken error", err);
+                        });
+                    }catch(e){
+                        console.log(e);
+                    }
+                    
+                    
                 }
                 else{
                     alert("Can not Signup");

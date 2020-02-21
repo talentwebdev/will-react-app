@@ -20,7 +20,7 @@ import images from "./../../stylebase/images";
 
 // import images
 import background from "./../../assets/images/background.png";
-import {UPDATE_USERDATA, INIT_WILL_DATA} from "./../../reducer/types";
+import {UPDATE_USERDATA, INIT_WILL_DATA, FINAL_WILL_DATA} from "./../../reducer/types";
 import { bindActionCreators } from "redux";
 import Spinner from 'react-native-loading-spinner-overlay';
 import {_storeEmail, _storePassword} from "./../../storage/storage";
@@ -32,7 +32,7 @@ function setUserData(data)
 }
 function initWillData(data)
 {
-    return {type: INIT_WILL_DATA, payload: data};
+    return {type: FINAL_WILL_DATA, payload: data};
 }
 
 class Login extends Component{
@@ -144,21 +144,27 @@ class Login extends Component{
                     this.props.navigation.navigate("HomeScreen");
                 }
 
-                let token = await registerForPushNotificationsAsync();
-                fetch(API_URL+"/user/savetoken", {
-                    method: "POST",
-                    body: JSON.stringify({
-                        authorization: responseJson.data.token,
-                        token: token
-                    })                    
-                })
-                .then(response => response.json())
-                .then(responseJson => {
-                    console.log("savetoken response", responseJson);
-                })
-                .catch(err => {
-                    console.log("savetoken error", err);
-                });
+                try{
+                    let token = await registerForPushNotificationsAsync();
+                    fetch(API_URL+"/user/savetoken", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            authorization: responseJson.data.token,
+                            token: token
+                        })                    
+                    })
+                    .then(response => response.json())
+                    .then(responseJson => {
+                        console.log("savetoken response", responseJson);
+                    })
+                    .catch(err => {
+                        console.log("savetoken error", err);
+                    });
+                }catch(e){
+                    console.log("registerForPushNotificationsAsync", e);
+                    return;
+                }
+                
             }
             else
             {

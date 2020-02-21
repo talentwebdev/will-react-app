@@ -3,7 +3,7 @@ import {value_names} from "./../questions/question";
 export function get_will_option_6(data)
 {
 
-    const beneficiaries = data[value_names.beneficiaries];
+    const beneficiaries = data[value_names.beneficiaries] === undefined ? [] : data[value_names.beneficiaries];
     let beneficiaries_name = "";
     for(var i = 0 ; i < beneficiaries.length ; i++)
     {

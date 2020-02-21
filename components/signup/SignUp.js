@@ -195,6 +195,7 @@ class SignUp extends ValidationComponent{
                             placeholder="Email" 
                             placeholderTextColor="#FFF"
                             ref="email"
+                            keyboardType="email-address"
                             value={this.state.email}
                             onChangeText={(email) => {this.setState({email})}}
                             />

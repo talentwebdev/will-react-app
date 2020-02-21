@@ -24,8 +24,8 @@ export function get_will_option_8(data)
         <div style="text-align: center; ${p_title_style}">${data[value_names.user].name}</div>
         <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
         <div style="text-align: center; ${p_title_style}">AND</div> 
-        <div style="text-align: center; ${p_title_style}">${data[value_names.user].name}</div>
-        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
+        <div style="text-align: center; ${p_title_style}">${data[value_names.spouse].name}</div>
+        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.spouse].id_number} :)</div>
     </p>
 
     <div class="paragraph" style="${div_style+paragraph_style}" >

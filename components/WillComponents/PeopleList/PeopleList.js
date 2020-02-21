@@ -32,7 +32,7 @@ class PeopleList extends Component
 
         if(pagedata.value === value_names.uae_assets || pagedata.value === value_names.specific_assets)
             nameText = "Asset", idNumberText = "Location", type = contentType.uae_asset;
-        else if(willData[value_names.country_location] === "UAE" && pagedata.value === value_names.children)
+        else if(willData[value_names.country_location] === "UAE" && (pagedata.value === value_names.children || pagedata.value === value_names.beneficiaries))
             nameText = "Full Name", idNumberText = "Passport Number", type = contentType.uae_children;
 
         this.state = {
@@ -63,6 +63,7 @@ class PeopleList extends Component
         if(item === 0) children[index].name = value;
         else if(item === 1) children[index].id_number = value;
         else if(item === 2) children[index].nationality = value;
+        else if(item === 3) children[index].date_of_birth = value;
 
         this.setState({
             children: children
@@ -72,7 +73,7 @@ class PeopleList extends Component
     addNewChild()
     {
         let children = [...this.state.children];
-        children.push({name: "", id_number: "", nationality: ""});
+        children.push({name: "", id_number: "", nationality: "", date_of_birth: ""});
         this.setState({
             children: children
         });
@@ -91,7 +92,7 @@ class PeopleList extends Component
         if(this.state.type === contentType.south_africa_people || this.state.type === contentType.uae_asset)
             items = this.state.children.filter(item => item.name !== "" && item.id_number !== "");
         else if(this.state.type === contentType.uae_children)
-            items = this.state.children.filter(item => item.name !== "" && item.id_number !== "" && item.nationality !== "");
+            items = this.state.children.filter(item => item.name !== "" && item.id_number !== "" && item.date_of_birth !== "" && item.nationality !== "");
         if(this.state.isNone === false && items.length === 0)
             return;
         
@@ -142,6 +143,14 @@ class PeopleList extends Component
                         placeholderTextColor="#FFF"
                         value={item.nationality}
                         onChangeText={(nationality) => {this.updateChildrenList(nationality, index, 2)}}>
+                    </TextInput>
+                    }
+                    {this.state.type === contentType.uae_children && 
+                    <TextInput style={styles.textInput} 
+                        placeholder="Date of birth"
+                        placeholderTextColor="#FFF"
+                        value={item.date_of_birth}
+                        onChangeText={(nationality) => {this.updateChildrenList(nationality, index, 3)}}>
                     </TextInput>
                     }
                 </View>

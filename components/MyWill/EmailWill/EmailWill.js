@@ -19,9 +19,12 @@ import base_images from "./../../../stylebase/images";
 import background from "./../../../assets/images/background.png";
 
 import {getWillHTML} from "./../../../will_html/mainwill";
+import {getUAEWillHTML} from "./../../../will_uae_html/mainwill";
 import {API_URL} from "./../../../Environment/Environment";
 import {connect} from "react-redux";
 import Spinner from 'react-native-loading-spinner-overlay';
+import {StackActions, NavigationActions} from "react-navigation";
+import {value_names} from "./../../../questions/question";
 
 class EmailWill extends Component{
     constructor(props)
@@ -39,7 +42,7 @@ class EmailWill extends Component{
         this.onSend = this.onSend.bind(this);
 
         const { navigation } = this.props;
-        if(navigation.getParam("page") !== "MyWillScreen")
+        if(navigation.getParam("page") !== "MyWillScreen" && navigation.getParam("page") !== undefined && navigation.getParam("page") !== null && navigation.getParam("page") !== '')
         {
             navigation.navigate(navigation.getParam("page"));   
         }
@@ -61,12 +64,13 @@ class EmailWill extends Component{
 
     onSend()
     {
-        let data = this.props.will.will_data;
+        let data = this.props.will.final_will;
         data['user'] = this.props.user;
 
-        const willType = this.props.will.will_data["will_type"];
+        const willType = this.props.will.final_will["will_type"];
 
         this.setState({sending: true});
+        console.log(data);
         fetch(API_URL + "/email/send", {
             method: "POST",
             headers: {
@@ -74,22 +78,62 @@ class EmailWill extends Component{
             },
             body: JSON.stringify({
                 email: this.state.email,
-                content: getWillHTML(willType, data),
+                content: data[value_names.country_location] === "UAE" ? getUAEWillHTML(willType, data) : getWillHTML(willType, data),
                 authorization: this.props.user.token
             })
         })
         .then(response => response.json())
         .then(responseJson => {
             console.log(responseJson);
-            this.setState({sending: false});
-            if(responseJson.status === true)
-                this.props.navigation.navigate("EmailSentScreen");
+            
+            if(data[value_names.mirror] === "Yes"){
+                let newdata = {...data};
+                newdata[value_names.spouse] = this.props.user;
+                newdata.user = data.spouse;
+                fetch(API_URL + "/email/send", {
+                    method: "POST",
+                    headers: {
+                        
+                    },
+                    body: JSON.stringify({
+                        email: this.state.email,
+                        content: getUAEWillHTML(willType, newdata),
+                        authorization: this.props.user.token
+                    })
+                })
+                .then(response => response.json())
+                .then(responsejson => {
+                    if(responsejson.status === true){
+                        console.log("navigate");
+                        this.props.navigation.navigate("EmailSentScreen", {page: null});
+                    }
+                    else 
+                    {
+                        this.props.navigation.navigate("EmailFailedScreen", {page: null});
+                    }
+                    this.setState({sending: false});
+                })
+                .catch(err => {
+                    this.setState({sending: false});
+                    this.props.navigation.navigate("EmailFailedScreen", {page: null});
+                    console.log("email send error", err);
+                });
+                return;
+            }
+
+            if(responseJson.status === true){
+                console.log("navigate");
+                this.props.navigation.navigate("EmailSentScreen", {page: null});
+            }
             else 
-                this.props.navigation.navigate("EmailFailedScreen");
+            {
+                this.props.navigation.navigate("EmailFailedScreen", {page: null});
+            }
+            this.setState({sending: false});
         })
         .catch(err => {
             this.setState({sending: false});
-            this.props.navigation.navigate("EmailFailedScreen");
+            this.props.navigation.navigate("EmailFailedScreen", {page: null});
             console.log("email send error", err);
         })
     }

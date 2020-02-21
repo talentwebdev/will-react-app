@@ -52,10 +52,10 @@ class MyProfile extends Component{
                 reset_btn_keyboard: styles.reset_btn_keyboard,
             },
             user: this.props.user,
-            email: "",
-            name: "",
-            surname: "",
-            id_number: "",
+            email: this.props.user.email,
+            name:  this.props.user.name,
+            surname:  this.props.user.surname,
+            id_number:  this.props.user.id_number,
             loading: false,
         }
 

@@ -2,7 +2,7 @@ import {value_names} from "./../questions/question";
 
 export function get_will_option_9(data)
 {
-    const children = data[value_names.children];
+    const children = data[value_names.children] === undefined ? [] : data[value_names.children];
     let children_name = "";
     for(var i = 0 ; i < children.length ; i++)
     {
@@ -31,8 +31,8 @@ export function get_will_option_9(data)
         <div style="text-align: center; ${p_title_style}">${data[value_names.user].name}</div>
         <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
         <div style="text-align: center; ${p_title_style}">AND</div> 
-        <div style="text-align: center; ${p_title_style}">${data[value_names.user].name}</div>
-        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
+        <div style="text-align: center; ${p_title_style}">${data[value_names.spouse].name}</div>
+        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.spouse].id_number} :)</div>
     </p>
 
     <div class="paragraph" style="${div_style+paragraph_style}" >

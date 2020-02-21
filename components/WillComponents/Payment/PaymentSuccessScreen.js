@@ -7,6 +7,7 @@ import styles from "./style";
 import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 import {API_URL} from "./../../../Environment/Environment";
+import {setFinalWill} from "./action";
 
 class PaymentSuccessScreen extends Component
 {
@@ -20,8 +21,10 @@ class PaymentSuccessScreen extends Component
         this.onViewWill = this.onViewWill.bind(this);
         this.onSendWill = this.onSendWill.bind(this);
 
+        this.props.setFinalWill(this.props.will.will_data);
+
         // TODO: Save Will Content to backend
-        const will_data = JSON.stringify({datas: this.props.will.data, will_data: this.props.will.will_data});
+        const will_data = JSON.stringify(this.props.will.will_data);
         fetch(API_URL+"/user/willupdate", {
             method: "POST", 
             headers: {
@@ -83,4 +86,9 @@ const mapStatesToProps = (state, ownProps) => {
         ...ownProps, will: state.will, user: state.user
     }
 }; 
-export default connect(mapStatesToProps)(PaymentSuccessScreen);
+const mapDispatchToProps = dispatch => {
+    return {
+        setFinalWill: bindActionCreators(setFinalWill, dispatch)
+    }
+}
+export default connect(mapStatesToProps, mapDispatchToProps)(PaymentSuccessScreen);

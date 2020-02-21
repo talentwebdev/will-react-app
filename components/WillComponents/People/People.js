@@ -15,6 +15,7 @@ const contentType = {
     uae_executor: "uae_executor",
     uae_alternative_executor: "uae_alternative_executor",
     uae_your_information: "uae_your_information",
+    uae_spouse: "uae_spouse", 
     uae_normal_people: "uae_normal_people",
 }
 class PeopLe extends Component
@@ -41,6 +42,8 @@ class PeopLe extends Component
                 type = contentType.uae_alternative_executor;
             else if(page.value === value_names.your_information)
                 type = contentType.uae_your_information;
+            else if(page.value === value_names.spouse)
+                type = contentType.uae_spouse;
             else 
                 type = contentType.uae_normal_people;
         }
@@ -61,6 +64,7 @@ class PeopLe extends Component
 
             // your information
             emirates_id: data.emirates_id,
+            birth_of_date: data.birth_of_date,
 
             keyboardHeight: 0,
             page: page,
@@ -99,7 +103,7 @@ class PeopLe extends Component
                 name: this.state.name, id_number: this.state.id_number
             }, this.state.page);
         }
-        else if(this.state.type === contentType.uae_executor)
+        else if(this.state.type === contentType.uae_executor || this.state.type === contentType.uae_alternative_executor)
         {
             if(this.state.uae_name === "" || this.state.uae_name === undefined || this.state.uae_name === null || 
                 this.state.uae_passport === "" || this.state.uae_passport === undefined || this.state.uae_passport === null || 
@@ -114,19 +118,6 @@ class PeopLe extends Component
                 nationality: this.state.uae_nationality,
             }, this.state.page);
         }  
-        else if(this.state.type === contentType.uae_alternative_executor)
-        {
-            if(this.state.uae_name === "" || this.state.uae_name === undefined || this.state.uae_name === null || 
-                this.state.uae_passport === "" || this.state.uae_passport === undefined || this.state.uae_passport === null || 
-                this.state.uae_address === "" || this.state.uae_address === undefined || this.state.uae_address === null)
-                return;
-
-            this.props.sendNextWillStep({
-                name: this.state.uae_name, 
-                passport: this.state.uae_passport, 
-                address: this.state.uae_address,
-            }, this.state.page);
-        }   
         else if(this.state.type === contentType.uae_country)   
         {
             if(this.state.uae_country === "" || this.state.uae_country === undefined || this.state.uae_country === null)
@@ -139,12 +130,27 @@ class PeopLe extends Component
         else if(this.state.type === contentType.uae_your_information)
         {
             if(this.state.emirates_id === "" || this.state.emirates_id === undefined || this.state.emirates_id === null || 
-            this.state.uae_nationality === "" || this.state.uae_nationality === undefined || this.state.uae_nationality === null)
+            this.state.uae_nationality === "" || this.state.uae_nationality === undefined || this.state.uae_nationality === null || 
+            this.state.birth_of_date === "" || this.state.birth_of_date === undefined || this.state.birth_of_date === null)
                 return;
             
             this.props.sendNextWillStep({
                 emirates_id: this.state.emirates_id,
                 nationality: this.state.uae_nationality,
+                birth_of_date: this.state.birth_of_date,
+            }, this.state.page);
+        }
+        else if(this.state.type === contentType.uae_spouse)
+        {
+            if(this.state.uae_name === "" || this.state.uae_name === undefined || this.state.uae_name === null || 
+            this.state.uae_passport === "" || this.state.uae_passport === undefined || this.state.uae_passport === null || 
+            this.state.birth_of_date === "" || this.state.birth_of_date === undefined || this.state.birth_of_date === null)
+                return;
+            
+            this.props.sendNextWillStep({
+                name: this.state.uae_name,
+                passport: this.state.uae_passport,
+                birth_of_date: this.state.birth_of_date,
             }, this.state.page);
         }
         else if(this.state.type === contentType.uae_normal_people)
@@ -214,6 +220,7 @@ class PeopLe extends Component
                         {
                             (this.state.type === contentType.uae_executor || 
                                 this.state.type === contentType.uae_alternative_executor || 
+                                this.state.type === contentType.uae_spouse || 
                                 this.state.type === contentType.uae_normal_people) && 
                             <TextInput style={styles.textInput} 
                                 placeholder="Full Name" 
@@ -225,6 +232,7 @@ class PeopLe extends Component
                         {
                             (this.state.type === contentType.uae_executor || 
                                 this.state.type === contentType.uae_alternative_executor || 
+                                this.state.type === contentType.uae_spouse || 
                                 this.state.type === contentType.uae_normal_people) && 
                             <TextInput style={styles.textInput} 
                                 placeholder="Passport Number" 
@@ -253,7 +261,7 @@ class PeopLe extends Component
                             </TextInput>
                         }         
                         {
-                            (this.state.type === contentType.uae_executor || this.state.type === contentType.uae_your_information) && 
+                            (this.state.type === contentType.uae_executor || this.state.type === contentType.uae_alternative_executor || this.state.type === contentType.uae_your_information) && 
                             <TextInput style={styles.textInput} 
                                 placeholder="Nationality" 
                                 placeholderTextColor="#FFF"
@@ -272,6 +280,17 @@ class PeopLe extends Component
                                 onChangeText={(uae_country) => {this.setState({uae_country})}}>
                             </TextInput>
                         }   
+
+                        {
+                            (this.state.type === contentType.uae_your_information || 
+                                this.state.type === contentType.uae_spouse) && 
+                            <TextInput style={styles.textInput} 
+                                placeholder="Birth Of Date" 
+                                placeholderTextColor="#FFF"
+                                value={this.state.birth_of_date}
+                                onChangeText={(birth_of_date) => {this.setState({birth_of_date})}}>
+                            </TextInput>
+                        }      
                         
                     </View>
                     <View style={styles.buttonContainer}>
