@@ -16,4 +16,4 @@ export default function App() {
 }
 
 
-AppRegistry.registerComponent("rn-first-app", () => gestureHandlerRootHOC(App));
+AppRegistry.registerComponent("WeWill", () => gestureHandlerRootHOC(App));

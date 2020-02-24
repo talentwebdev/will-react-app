@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rn-first-app",
-    "slug": "rn-first-app",
+    "name": "WeWill",
+    "slug": "WeWill",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [

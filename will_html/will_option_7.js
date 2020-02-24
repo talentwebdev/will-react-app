@@ -1,6 +1,6 @@
 import {value_names} from "./../questions/question";
 
-export function get_will_option_7(data)
+export function get_will_option_7(data, pdf)
 {
     const children = data[value_names.children] === undefined ? [] : data[value_names.children];
     let children_name = "";
@@ -8,6 +8,7 @@ export function get_will_option_7(data)
     {
         children_name += children[i].name + (i === children.length - 1 ? " " : ", ");
     }   
+    const year = new Date().getFullYear();
 
     const number_size = 60;
     const total_size = 700;
@@ -25,11 +26,11 @@ export function get_will_option_7(data)
     const div_test_name_style = "width: 100%; border-bottom: 2px solid #000;height: 30px;";
     const div_witness_style = "margin-top: 80px;";
     const div_flex = "flex: 1;";
-    const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; width: 700px;">
+    const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
-        <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT OF</div> 
-        <div style="text-align: center; ${p_title_style}">${data[value_names.user].name}</div>
+        <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT OF</div>         
         <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
+        <div style="text-align: center; ${p_title_style}">${data[value_names.user].name}</div>
     </p>
     
     <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -37,7 +38,7 @@ export function get_will_option_7(data)
             <div class="number" style="${div_style+div_number_style}">
                 1. 
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">REVOCATION OF PREVIOUS WILLS: </div>
                 <div class="text" style="${div_style+div_text_style}">
                     I hereby revoke, cancel and annul any and all testamentary acts and
@@ -54,14 +55,14 @@ export function get_will_option_7(data)
             <div class="number" style="${div_style+div_number_style}">
                 2. 
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">APPOINTMENT OF AN EXECUTOR/ EXECUTRIX: </div>
                 <div class="paragraph" style="${div_style+paragraph_style}" >
                     <div style="display:flex; flex-direction: 'row'; "> 
                         <div class="number" style="${div_style+div_number_style}">
                             2.1
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px;">
+                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
                             <div class="text" style="${div_style+div_text_style}">
                                 I hereby nominate, constitute and appoint ${data[value_names.spouse].name} to be the Executor/Executrix and
                                 Administrator/Adminstratrix of my estate, granting unto him/her
@@ -91,7 +92,7 @@ export function get_will_option_7(data)
             <div style="width: ${witness_size_1_3}px;">
                 
             </div>
-            <div style="width: ${witness_size_1_2}px;">
+            <div style="${pdf === false ? `width: ${witness_size_1_2}px;` : `margin-left: 60%;`}">
                 <div class="testor_name" style='width: 100%; text-decoration: underline; ${div_test_name_style}'> </div>
                 <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR </div>      
                                     
@@ -114,14 +115,14 @@ export function get_will_option_7(data)
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}"></div>
                 <div class="paragraph" style="${div_style+paragraph_style}" >
                     <div style="display:flex; flex-direction: 'row'; "> 
                         <div class="number" style="${div_style+div_number_style}">
                             2.2
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px;">
+                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
                             <div class="text" style="${div_style+div_text_style}">
                                 In the event of our simultaneous deaths or ${data[value_names.spouse].name} predeceasing me , then and in such event I respectively direct
                                 as follows :-
@@ -131,7 +132,7 @@ export function get_will_option_7(data)
                                     <div class="number" style="${div_style+div_number_style}">
                                         2.2.1
                                     </div>
-                                    <div style="width: ${total_size - 3 * number_size}px;">
+                                    <div style="width: ${total_size - 3 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : ""}">
                                         <div class="text" style="${div_style+div_text_style}">
                                             I hereby nominate, constitute and appoint ${data[value_names.executor].name} to be the Executor/Executrix and
                                             Administrator/Adminstratrix of my estate, granting unto him/her
@@ -156,7 +157,7 @@ export function get_will_option_7(data)
             <div class="number" style="${div_style+div_number_style}">
                 3. 
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">POWER OF ASSUMPTION </div>
                 <div class="text" style="${div_style+div_text_style}">
                     Should any person nominated as Executor, Trustee or Guardian in terms
@@ -184,7 +185,7 @@ export function get_will_option_7(data)
             <div style="width: ${witness_size_1_3}px;">
                 
             </div>
-            <div style="width: ${witness_size_1_2}px;">
+            <div style="${pdf === false ? `width: ${witness_size_1_2}px;` : `margin-left: 60%;`}">
                 <div class="testor_name" style='width: 100%; text-decoration: underline; ${div_test_name_style}'> </div>
                 <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR </div>      
                                     
@@ -208,14 +209,14 @@ export function get_will_option_7(data)
             <div class="number" style="${div_style+div_number_style}">
                 4. 
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">APPOINTMENT OF HEIRS: </div>
                 <div class="paragraph" style="${div_style+paragraph_style}" >
                     <div style="display:flex; flex-direction: 'row'; ">
                         <div class="number" style="${div_style+div_number_style}">
                             4.1
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px;">
+                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
                             <div class="text" style="${div_style+div_text_style}">
                                 I hereby leave and bequeath the whole of my estate and effects
                                 whether movable or immovable, and whether in possession,
@@ -231,7 +232,7 @@ export function get_will_option_7(data)
                         <div class="number" style="${div_style+div_number_style}">
                             4.2
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px;">
+                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
                             <div class="text" style="${div_style+div_text_style}">
                                 In the event that I am not survived by my Husband / Wife ${data[value_names.spouse].name} , than and in such event I
                                 bequeath the whole of my estate and effects, whether movable or
@@ -258,7 +259,7 @@ export function get_will_option_7(data)
             <div style="width: ${witness_size_1_3}px;">
                 
             </div>
-            <div style="width: ${witness_size_1_2}px;">
+            <div style="${pdf === false ? `width: ${witness_size_1_2}px;` : `margin-left: 60%;`}">
                 <div class="testor_name" style='width: 100%; text-decoration: underline; ${div_test_name_style}'> </div>
                 <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR </div>      
                                     
@@ -281,13 +282,13 @@ export function get_will_option_7(data)
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}"> </div>
                 <div class="paragraph" style="${div_style+paragraph_style}" >
                     <div style="display:flex; flex-direction: 'row'; ">
                         <div class="number" style="${div_style+div_number_style}">
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px;">
+                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
                             <div class="text" style="${div_style+div_text_style}">                                
                             </div>                 
                             <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -295,7 +296,7 @@ export function get_will_option_7(data)
                                     <div class="number" style="${div_style+div_number_style}">
                                         4.2.1
                                     </div>
-                                    <div style="width: ${total_size - 3 * number_size}px;">
+                                    <div style="width: ${total_size - 3 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : ""}">
                                         <div class="text" style="${div_style+div_text_style}">                                
                                             I respectively hereby request that ${data[value_names.guard_appoint].name} have duel signing powers and act in an
                                             administrative role with My CHILD/CHILDREN until they
@@ -317,14 +318,14 @@ export function get_will_option_7(data)
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}"></div>
                 <div class="paragraph" style="${div_style+paragraph_style}" >
                     <div style="display:flex; flex-direction: 'row'; ">
                         <div class="number" style="${div_style+div_number_style}">
                             4.3
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px;">
+                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
                             <div class="text" style="${div_style+div_text_style}">
                                 In the event that I am not survived by my Wife/Husband and/or
                                 CHILD/CHILDREN, I respectively hereby leave and bequeath the
@@ -348,11 +349,11 @@ export function get_will_option_7(data)
             <div class="number" style="${div_style+div_number_style}">
                 5. 
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">APPOINTMENT OF GUARDIAN </div>
                 <div class="text" style="${div_style+div_text_style}">
-                    I nominate ${data[value_names.guard_appoint].name + ", _____"} as the guardian of MY minor children and failing his/her/their
-                    acceptance thereto,I nominate ${data[value_names.guard_appoint].name + ", _____"}.
+                    I nominate ${data[value_names.guard_appoint].name + ", " + data[value_names.guard_appoint].id_number } as the guardian of MY minor children and failing his/her/their
+                    acceptance thereto,I nominate ${data[value_names.another_guard_appoint].name + ", " + data[value_names.another_guard_appoint].id_number}.
                 </div>
             </div>                
         </div>
@@ -369,7 +370,7 @@ export function get_will_option_7(data)
             <div style="width: ${witness_size_1_3}px;">
                 
             </div>
-            <div style="width: ${witness_size_1_2}px;">
+            <div style="${pdf === false ? `width: ${witness_size_1_2}px;` : `margin-left: 60%;`}">
                 <div class="testor_name" style='width: 100%; text-decoration: underline; ${div_test_name_style}'> </div>
                 <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR </div>      
                                     
@@ -393,7 +394,7 @@ export function get_will_option_7(data)
             <div class="number" style="${div_style+div_number_style}">
                 6. 
             </div>
-            <div style="width: ${text_size}px;">
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">RESERVATION OF RIGHTS TO ALTER OR ADD TO WILL </div>
                 <div class="text" style="${div_style+div_text_style}">
                     I reserve the right at any time hereafter to make all such
@@ -410,7 +411,7 @@ export function get_will_option_7(data)
         <div class="text" style="${div_style+div_text_style}">
             IN WITNESS HEREOF, we have hereunto set our hands at 
             on
-            This day of (YEAR), in the presence of the
+            This day of ${year}, in the presence of the
             undersigned witnesses, being present at the same time.
         </div>
     </div>
@@ -420,10 +421,9 @@ export function get_will_option_7(data)
     </div>
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: row; ">
-            1. 
             <div style="flex: 1; width: ${witness_size_2}px;">
                 <div class="testor_name" style="${div_test_name_style + div_style}">         
-                    
+                1.  
                 </div>
                 <div class="small_title" style="${div_style+div_small_title_style}">NAME &amp; ID NUMBER </div>             
             </div>
@@ -431,16 +431,15 @@ export function get_will_option_7(data)
             <div style="flex: 1; width: ${witness_size_2}px;">
                 
             </div>
-            <div style="flex: 1; width: ${witness_size_2}px;">
+            <div style="flex: 1; width: ${witness_size_2}px; ${pdf === true ? `margin-left: 60%;` : ""}">
                 <div class="testor_name" style="${div_test_name_style + div_style}">      </div>      
                 <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR/TESTATRIX </div>              
-            </div>                
+            </div>            
         </div>
         <div style="display:flex; flex-direction: row; ">
-            2. 
-            <div style="flex: 1; width: ${witness_size_2}px;">
+             <div style="flex: 1; width: ${witness_size_2}px;">
                 <div class="testor_name" style="${div_test_name_style + div_style}">         
-                    
+                2.    
                 </div>
                 <div class="small_title" style="${div_style+div_small_title_style}">NAME &amp; ID NUMBER </div>             
             </div>

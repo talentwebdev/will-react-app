@@ -22,6 +22,7 @@ class MyWill extends Component{
         super(props);
         const { navigation } = this.props;
 
+        console.log("page", navigation.getParam("page"));
         if(navigation.getParam("page") !== "MyWillScreen" && navigation.getParam("page") !== undefined && navigation.getParam("page") !== null && navigation.getParam("page") !== '')
         {
             navigation.navigate(navigation.getParam("page"));   

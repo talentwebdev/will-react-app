@@ -1,8 +1,8 @@
 import {value_names} from "./../questions/question";
 
-export function get_will_option_23(data)
+export function get_will_option_23(data, pdf)
 {
-    const full_name = data[value_names.user] !== undefined ? data[value_names.user].name : '';
+    const full_name = data[value_names.user] !== undefined ? (data[value_names.user].name + " " + data[value_names.user].surname) : '';
     const date_of_birth=data[value_names.your_information] !== undefined ? data[value_names.your_information].birth_of_date: '';
     const country = data[value_names.your_information] !== undefined ? data[value_names.your_information].nationality : '';
     const passport_number = data[value_names.user] !== undefined ? data[value_names.user].id_number : '';
@@ -18,7 +18,7 @@ export function get_will_option_23(data)
     const alternative_executor_nationality = data[value_names.alternative_executor] !== undefined ? data[value_names.alternative_executor].nationality : '';
     const alternative_executor_passport = data[value_names.alternative_executor] !== undefined ? data[value_names.alternative_executor].passport : '';
 
-    const gender = "male";
+    let gender = "male";
     if(data[value_names.user] !== undefined && data[value_names.user].gender === "female")
         gender = "female";
 
@@ -72,7 +72,7 @@ export function get_will_option_23(data)
     const div_test_name_style = "width: 100%; border-bottom: 2px solid #000;height: 30px;";
     const div_witness_style = "margin-top: 80px;";
     const div_flex = "flex: 1;";
-    const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; width: 700px;">
+    const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
         <div style="text-align: center; ${p_title_style}">
             FULL WILL
@@ -88,7 +88,7 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">1. </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     I declare that I am not Muslim and have never been a Muslim.
                 </div>
@@ -99,7 +99,7 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">2. </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     This Will is made in respect of my immovable and movable Property situated in the 
                     United Arab Emirates (“my UAE Estate”) .                
@@ -111,7 +111,7 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">3. </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     I revoke all my earlier testamentary dispositions to the extent that they relate to my UAE Estate.               
                 </div>
@@ -122,7 +122,7 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">4. </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     I appoint ${executor_name} to be my executor and trustee in relation to my UAE Estate. In the event that
                       ${executor_name} predeceases me, then I appoint ${alternative_executor_name}, as the Executor and Trustee in relation to my UAE  Estate.
@@ -134,7 +134,7 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">5. </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     I appoint ${first_temporary_guardian_name + " " + second_temporary_guardian_name} to be the guardian of  my children in the event of my death, 
                     unless such guardianship has been previously withdrawn/revoked from (HIM/HER) by law 
@@ -153,7 +153,7 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">6. </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     My executor shall:
                 </div>
@@ -164,8 +164,8 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div class="number" style="${div_style+div_number_style}">6.1 </div>
-            <div style="width: ${total_size - number_size * 2}px;">
+            <div class="number" style="${div_style+div_number_style};margin-left: ${number_size}px; ">6.1 </div>
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size * 2}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     pay my debts, funeral and testamentary expenses, legacies, administrative fees and other liabilities on all property which vests in them; and  
                 </div>
@@ -176,8 +176,8 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div class="number" style="${div_style+div_number_style}">6.2 </div>
-            <div style="width: ${total_size - number_size * 2}px;">
+            <div class="number" style="${div_style+div_number_style};margin-left: ${number_size}px; ">6.2 </div>
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size * 2}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                 hold the residue of my UAE Estate after payment of my debts, funeral and testamentary expenses, legacies, 
                 administrative fees and other liabilities on all property which vests in them (“my Residuary Estate”).  
@@ -189,7 +189,7 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">7. </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     The law and the Rules of the Dubai International Financial Centre (including the Wills and Probate Registry (WPR) Rules) 
                     govern the validity of this Will and its construction, effect and the administration of my UAE Estate.
@@ -201,7 +201,7 @@ export function get_will_option_23(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">8. </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     The Courts of the Dubai International Financial Centre (as established under Dubai Law No. 12 of 2004) have
                      exclusive jurisdiction in any proceedings involving rights or obligations under this Will or the administration of my UAE Estate.

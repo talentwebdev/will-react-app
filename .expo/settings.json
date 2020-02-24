@@ -1,6 +1,6 @@
 {
-  "urlRandomness": "9f-f4x",
-  "hostType": "lan",
+  "urlRandomness": "sm-bsi",
+  "hostType": "localhost",
   "lanType": "ip",
   "dev": true,
   "minify": false,

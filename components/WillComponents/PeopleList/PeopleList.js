@@ -10,6 +10,7 @@ import {sendNextWillStep, sendPrevWillStep} from "./action";
 import {value_names} from "./../../../questions/question";
 import  Icon  from "react-native-vector-icons/FontAwesome";
 import {StackActions, NavigationActions} from "react-navigation";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const contentType = {
     south_africa_people: "south_africa_people",
@@ -48,12 +49,21 @@ class PeopleList extends Component
 
             isNone: false,
             type: type,
+            currentIndex: 0,
+            showdate: false,
         };
 
         this.updateChildrenList = this.updateChildrenList.bind(this);
         this.addNewChild = this.addNewChild.bind(this);
         this.onNext = this.onNext.bind(this);
         this.onPrev = this.onPrev.bind(this);
+        this.updateDate = this.updateDate.bind(this);
+    }
+
+    updateDate(index)
+    {
+        this.setState({currentIndex: index, showdate: true});
+
     }
 
     updateChildrenList(value, index, item)
@@ -150,7 +160,7 @@ class PeopleList extends Component
                         placeholder="Date of birth"
                         placeholderTextColor="#FFF"
                         value={item.date_of_birth}
-                        onChangeText={(nationality) => {this.updateChildrenList(nationality, index, 3)}}>
+                        onFocus={() => {this.updateDate(index)}}>
                     </TextInput>
                     }
                 </View>
@@ -188,6 +198,23 @@ class PeopleList extends Component
                             <Text style={styles.text}>Next</Text>
                         </TouchableOpacity>
                     </View>
+
+                    {this.state.showdate && 
+                         <DateTimePicker
+                            testID="dateTimePicker"
+                            timeZoneOffsetInMinutes={0}
+                            mode="date"
+                            value={new Date()}
+                            is24Hour={true}
+                            display="default"
+                            onChange={(e, selectedDate) => {
+                                console.log("changed date", selectedDate);
+                                this.setState({showdate: Platform.OS === 'ios' ? true : false});
+                                this.updateChildrenList(selectedDate.getFullYear() + "-" + selectedDate.getMonth() + "-" + selectedDate.getDate(), 
+                                    this.state.currentIndex, 3);
+                            }}
+                            />
+                        }
                 </View>
                 
             </ImageBackground>

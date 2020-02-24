@@ -15,7 +15,7 @@ class PaymentSuccessScreen extends Component
     {
         super(props);
         this.state = {
-            text: "Before We make your will. Please make Payment",
+            text: "Payment successful. Thank you for your payment",
         }
 
         this.onViewWill = this.onViewWill.bind(this);

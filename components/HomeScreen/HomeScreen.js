@@ -17,6 +17,21 @@ import base_images from "./../../stylebase/images";
 // import images
 import background from "./../../assets/images/background.png";
 import {_initStorage} from "./../../storage/storage";
+import {StackActions, NavigationActions} from "react-navigation";
+
+function navigateDrawerScreen(props, screen, param)
+{
+    const resetAction = StackActions.reset({
+        index: 0,
+        actions: [
+            NavigationActions.navigate({
+                routeName: screen, 
+                params: param
+            })
+        ]
+    });
+    props.navigation.dispatch(resetAction);
+}
 
 class HomeScreen extends Component{
 
@@ -44,7 +59,7 @@ class HomeScreen extends Component{
                     </View>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button}
-                            onPress={() => {this.props.navigation.navigate("DrawerScreen", {page: "MyWillScreen"})}}>
+                            onPress={() => {navigateDrawerScreen(this.props, "DrawerScreen", {page: "MyWillScreen"})}}>
                             <Text style={styles.text}>My Will</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button}
@@ -52,7 +67,7 @@ class HomeScreen extends Component{
                             <Text style={styles.text}>My Profile</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button}
-                            onPress={() => {this.props.navigation.navigate("DrawerScreen", {page: "NotificationsScreen"})}}>
+                            onPress={() => {navigateDrawerScreen(this.props, "DrawerScreen", {page: "NotificationsScreen"})}}>
                             <Text style={styles.text}>Notifications</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.button}

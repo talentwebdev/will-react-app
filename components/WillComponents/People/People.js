@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 
 import background from "./../../../assets/images/background_1.png";
-import { ImageBackground, TouchableOpacity, Text, View, TextInput, Keyboard } from "react-native";
+import { ImageBackground, TouchableOpacity, Text, View, TextInput, Keyboard, Platform } from "react-native";
 import styles from "./style";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {sendNextWillStep, sendPrevWillStep} from "./action";
 import { StackActions, NavigationActions } from 'react-navigation';
 import {value_names} from "./../../../questions/question";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const contentType = {
     south_africa_people: "south_africa_people",
@@ -69,6 +70,7 @@ class PeopLe extends Component
             keyboardHeight: 0,
             page: page,
             type: type,
+            showdate: false,
         }
 
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
@@ -287,10 +289,27 @@ class PeopLe extends Component
                             <TextInput style={styles.textInput} 
                                 placeholder="Birth Of Date" 
                                 placeholderTextColor="#FFF"
-                                value={this.state.birth_of_date}
-                                onChangeText={(birth_of_date) => {this.setState({birth_of_date})}}>
+                                onFocus={() => {
+                                    this.setState({showdate: true});
+                                }}                                
+                                value={this.state.birth_of_date}>
                             </TextInput>
                         }      
+                        {this.state.showdate && 
+                         <DateTimePicker
+                            testID="dateTimePicker"
+                            timeZoneOffsetInMinutes={0}
+                            mode="date"
+                            value={new Date()}
+                            is24Hour={true}
+                            display="default"
+                            onChange={(e, selectedDate) => {
+                                console.log("changed date", selectedDate);
+                                this.setState({showdate: Platform.OS === 'ios' ? true : false});
+                                this.setState({birth_of_date: selectedDate.getFullYear() + "-" + selectedDate.getMonth() + "-" + selectedDate.getDate()});
+                            }}
+                            />
+                        }
                         
                     </View>
                     <View style={styles.buttonContainer}>

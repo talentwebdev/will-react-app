@@ -18,9 +18,11 @@ import {bindActionCreators} from 'redux';
 // import style
 import styles from "./style";
 import {setUserData} from "./action";
+import {API_URL} from "./../../Environment/Environment";
 
 // import images
 import background from "./../../assets/images/background.png";
+import Spinner from "react-native-loading-spinner-overlay";
 
 class SignUp extends ValidationComponent{
     constructor(props)
@@ -120,15 +122,37 @@ class SignUp extends ValidationComponent{
 
         if(this.isFormValid() && this.state.password === this.state.confirmpassword)
         {
-            this.props.actions({
-                name: this.state.name,
-                surname:  this.state.surname,
-                email: this.state.email,
-                id_number: this.state.id_number,
-                password: this.state.password,
-                confirmpassword: this.state.confirmpassword
-            });
-            this.props.navigation.navigate("IdentifyScreen");
+            this.setState({loading: true});
+            fetch(API_URL + "/user/checkemail", {
+                method: "POST",
+                body: JSON.stringify({
+                    email: this.state.email
+                })
+            })
+            .then(response => response.json())
+            .then(responsejson => {
+                this.setState({loading: false});
+                if(responsejson.status === true)
+                {
+                    this.props.actions({
+                        name: this.state.name,
+                        surname:  this.state.surname,
+                        email: this.state.email,
+                        id_number: this.state.id_number,
+                        password: this.state.password,
+                        confirmpassword: this.state.confirmpassword
+                    });
+                    this.props.navigation.navigate("IdentifyScreen");
+                }
+                else
+                {
+                    alert("Same Email Already Exists");
+                }
+            })
+            .catch(err => {
+                this.setState({loading: false});
+                alert("Can not signup");
+            })
             
         }
         else{
@@ -138,7 +162,12 @@ class SignUp extends ValidationComponent{
     render(){
         return (
             <ImageBackground source={background} style={styles.background} >
-                
+                <Spinner
+                    //visibility of Overlay Loading Spinner
+                    visible={this.state.loading}
+                    //Text with the Spinner
+                    color="white"
+                    />
                 <SafeAreaView style={styles.container}>
                     {
                         this.state.keyboardshow && 

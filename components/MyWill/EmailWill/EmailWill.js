@@ -42,6 +42,7 @@ class EmailWill extends Component{
         this.onSend = this.onSend.bind(this);
 
         const { navigation } = this.props;
+        console.log("page", navigation.getParam("page"));
         if(navigation.getParam("page") !== "MyWillScreen" && navigation.getParam("page") !== undefined && navigation.getParam("page") !== null && navigation.getParam("page") !== '')
         {
             navigation.navigate(navigation.getParam("page"));   
@@ -67,10 +68,10 @@ class EmailWill extends Component{
         let data = this.props.will.final_will;
         data['user'] = this.props.user;
 
-        const willType = this.props.will.final_will["will_type"];
+        let willType = this.props.will.final_will["will_type"];
 
         this.setState({sending: true});
-        console.log(data);
+        console.log(willType);
         fetch(API_URL + "/email/send", {
             method: "POST",
             headers: {
@@ -78,7 +79,7 @@ class EmailWill extends Component{
             },
             body: JSON.stringify({
                 email: this.state.email,
-                content: data[value_names.country_location] === "UAE" ? getUAEWillHTML(willType, data) : getWillHTML(willType, data),
+                content: data[value_names.country_location] === "UAE" ? getUAEWillHTML(willType, data, true) : getWillHTML(willType, data, true),
                 authorization: this.props.user.token
             })
         })
@@ -97,7 +98,7 @@ class EmailWill extends Component{
                     },
                     body: JSON.stringify({
                         email: this.state.email,
-                        content: getUAEWillHTML(willType, newdata),
+                        content: getUAEWillHTML(willType, newdata, true),
                         authorization: this.props.user.token
                     })
                 })

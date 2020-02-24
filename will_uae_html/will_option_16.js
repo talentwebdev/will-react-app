@@ -1,8 +1,8 @@
 import {value_names} from "./../questions/question";
 
-export function get_will_option_16(data)
+export function get_will_option_16(data, pdf)
 {
-    const full_name = data[value_names.user] !== undefined ? data[value_names.user].name : '';
+    const full_name = data[value_names.user] !== undefined ? (data[value_names.user].name + " " + data[value_names.user].surname) : '';
     const date_of_birth=data[value_names.your_information] !== undefined ? data[value_names.your_information].birth_of_date: '';
     const country = data[value_names.your_information] !== undefined ? data[value_names.your_information].nationality : '';
     const passport_number = data[value_names.user] !== undefined ? data[value_names.user].id_number : '';
@@ -15,7 +15,7 @@ export function get_will_option_16(data)
     const executor_address = data[value_names.executor] !== undefined ? data[value_names.executor].address : "";
     const executor_nationality = data[value_names.executor] !== undefined ? data[value_names.executor].nationality : '';
     const executor_passport = data[value_names.executor] !== undefined ? data[value_names.executor].passport : '';
-    const gender = "male";
+    let gender = "male";
     if(data[value_names.user] !== undefined && data[value_names.user].gender === "female")
         gender = "female";
 
@@ -99,7 +99,7 @@ export function get_will_option_16(data)
     const div_test_name_style = "width: 100%; border-bottom: 2px solid #000;height: 30px;";
     const div_witness_style = "margin-top: 80px;";
     const div_flex = "flex: 1;";
-    const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; width: 700px;">
+    const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
         <div style="text-align: center; ${p_title_style}">
            Mirror Will
@@ -108,7 +108,7 @@ export function get_will_option_16(data)
     </p>
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
-        <div style="display:flex; flex-direction: 'column'; ${div_style+div_text_style}">
+        <div style="${div_style+div_text_style}">
             I ${full_name}, born on the ${date_of_birth}, 
             ${country} Citizen with Passport No. ${passport_number} and United Arab Emirates (UAE) Resident Card No. 
             ${uae_id}, Residing at ${address}, United Arab Emirates, in order to settle the succession of my estate upon my death do provide as follows, 
@@ -121,7 +121,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 ONE: 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="font-weight: bold; text-decoration: underline; ${div_style+div_small_title_style}">Declaration</div>
             </div>                
         </div>
@@ -129,7 +129,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     Being of sound and disposing mind and memory and over the age of twenty one (21) years and 
                     not being actuated by any duress, menace, fraud, mistake, or undue influence, do make, publish, 
@@ -146,7 +146,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 TWO 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_small_title_style}">
                     Appointment of Executors and Trustees
                 </div>
@@ -159,7 +159,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_number_style}">
                 a. 
             </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     I appoint my ${gender === "male" ? "WIFE" : "HUSBAND"}, ${spouse_name}, born on the ${spouse_date}, residing at ${address}, 
                     United Arab Emirates, holder of an ${country} Passport with Passport Number ${spouse_passport}, 
@@ -175,7 +175,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_number_style}">
                 b. 
             </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                 I appoint ${alternative_executor_name} with ${alternative_executor_nationality} Passport No. ${alternative_executor_passport} , 
                 to act as my substitute executor and trustee. 
@@ -187,7 +187,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_number_style}">
                 c. 
             </div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
                     Any executors or trustees acting under my WILL are referred to as “my trustees”.
             </div>                
@@ -199,7 +199,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 THREE 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="${div_style + div_text_style}">
                     I direct my trustees to make payment of my lawful debts and funeral expenses and of the expenses of winding up my estate.
                 </div>
@@ -212,7 +212,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 FOUR 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_small_title_style}">
                     Letters of Wishes
                 </div>
@@ -223,7 +223,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     I direct my trustees to give effect to any writings granted by me, 
                     however informal they may be provided they are signed by me, dated after the 
@@ -240,7 +240,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 FIVE 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_small_title_style}">
                     Jurisdiction
                 </div>
@@ -251,7 +251,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     It is expressly stipulated that this Will is in accordance with the United Arab Emirates
                     Article 17 of the Law of Civil Transactions promulgated by Federal Law No 5/1985, 
@@ -268,7 +268,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 SIX 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_small_title_style}">
                     Religion & Faith
                 </div>
@@ -279,7 +279,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     I confirm that I am of the Non-Muslim Religion.
                 </div>
@@ -292,7 +292,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
             SEVEN 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_small_title_style}">
                     Entitlements of Insurance Proceeds
                 </div>
@@ -303,7 +303,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     I direct my trustees that all proceeds from any insurance policies shall 
                     be distributed according to the existing nomination/beneficiary form filled 
@@ -319,7 +319,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
             EIGHT 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_small_title_style}">
                 Distribution of my Estate
                 </div>
@@ -330,7 +330,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                 I direct my trustees to make over the whole residue and remainder of my means and estate, 
                 moveable and non-moveable properties, all financial assets such as bank accounts, including savings, 
@@ -349,7 +349,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 NINE 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     If my ${gender === "male" ? "WIFE" : "HUSBAND"} ${spouse_name} does not survive me, but in such event only, 
                     I direct my trustees to make over the whole residue and remainder of my means and estate to the following manner:
@@ -361,7 +361,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">(a)</div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     The Residue of my estate is to be shared equally between, namely: 
                 </div>
@@ -372,7 +372,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     ${beneficiaries_list}
                     absolutely and in the event of them not surviving me or failing to take a vested interest, then to their children as shall survive 
@@ -386,7 +386,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">(b)</div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     If any part of the residue of my estate falls to a beneficiary who has not attained 
                     the age of twenty-one (21) years, my trustees shall hold the same in trust for this beneficiary 
@@ -399,7 +399,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">(c)</div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     Income arising from such share shall be accumulated but my trustees may apply all or part of 
                     the income or capital of this share for the maintenance, education or benefit of this beneficiary.
@@ -411,7 +411,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}"></div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     In the event of any of the foregoing shares of the residue remaining indisposed of by the 
                     preceding provisions, such share shall be distributed to the other beneficiaries pro rata 
@@ -426,7 +426,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 TEN 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     If any part of my estate is held for a beneficiary who lacks full legal capacity, my trustees shall have power: -
                 </div>
@@ -437,7 +437,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">a.</div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     To pay or apply any part of the income or capital falling to that beneficiary 
                     for his or her benefit in any manner my trustees think proper.
@@ -448,7 +448,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">b.</div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     To retain the same until such capacity is attained, accumulating income with capital, or
                 </div>
@@ -472,7 +472,7 @@ export function get_will_option_16(data)
             <div class="number" style="${div_style+div_text_title_style}">
                 ELEVEN 
             </div>
-            <div style="width: ${total_size - text_title_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - text_title_size}px;` : `margin-left: ${text_title_size}px;`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                 
                 </div>
@@ -483,7 +483,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style + paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">a.</div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     My trustees shall have the fullest powers of retention, realisation, investment, appropriation, transfer 
                     of property without realisation, and management of my estate as if they were absolute owners and not trustees.                
@@ -494,7 +494,7 @@ export function get_will_option_16(data)
     <div class="paragraph" style="${div_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">b.</div>
-            <div style="width: ${total_size - number_size}px;">
+            <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
                     My trustees may appoint one or more executor of their own number to act as solicitor or agent 
                     in any other capacity and allow that trustee the same remuneration, as to which that trustee would have been entitled to.

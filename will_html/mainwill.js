@@ -9,49 +9,49 @@ import {get_will_option_8} from "./will_option_8";
 import {get_will_option_9} from "./will_option_9";
 import {get_will_option_10} from "./will_option_10";
 
-export function getWillHTML(willType, data)
+export function getWillHTML(willType, data, pdf = false)
 {
     switch(willType)
     {
         case 1:
         {
-            return get_will_option_1(data);
+            return get_will_option_1(data, pdf);
         }
         case 2:
         {
-            return get_will_option_2(data);
+            return get_will_option_2(data, pdf);
         }
         case 3:
         {
-            return get_will_option_3(data);
+            return get_will_option_3(data, pdf);
         }
         case 4:
         {
-            return get_will_option_4(data);
+            return get_will_option_4(data, pdf);
         }
         case 5:
         {
-            return get_will_option_5(data);
+            return get_will_option_5(data, pdf);
         }
         case 6:
         {
-            return get_will_option_6(data);
+            return get_will_option_6(data, pdf);
         }
         case 7:
         {
-            return get_will_option_7(data);
+            return get_will_option_7(data, pdf);
         }
         case 8:
         {
-            return get_will_option_8(data);
+            return get_will_option_8(data, pdf);
         }
         case 9:
         {
-            return get_will_option_9(data);
+            return get_will_option_9(data, pdf);
         }
         case 10: 
         {
-            return get_will_option_10(data);
+            return get_will_option_10(data, pdf);
         }
         default: 
         {

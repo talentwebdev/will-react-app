@@ -8,6 +8,7 @@ export const value_names = {
     children: "children",
     beneficiaries: "beneficiaries",
     guard_appoint: "guard_appoint",
+    another_guard_appoint: "another_guard_appoint",
     spouse_passaway_appoint_estate: "spouse_passaway_appoint_estate",
     not_survived_appoint_estate: "not_survived_appoint_estate",
     married_option: "married_option",
@@ -22,6 +23,7 @@ export const value_names = {
     your_information: "your_information",
 }
 const will_option_name = {
+    /*
     option_1: "Will Option 1 Single Will - No Children or Spouse",
     option_2: "Will Option 2 Single Will - no Children but has spouse",
     option_3: "Will Option 3 Single Will - no spouse but has minor child/children",
@@ -32,6 +34,17 @@ const will_option_name = {
     option_8: "Will Option 8 Joint Will - Husband and wife but no children",
     option_9: "Will Option 9 Joint Will - Husband and Wife with minor children",
     option_10: "Will Option 10 Joint Will - Husband and wife with adult children",
+*/
+    option_1: "Your will has been completed",
+    option_2: "Your will has been completed",
+    option_3: "Your will has been completed",
+    option_4: "Your will has been completed",
+    option_5: "Your will has been completed",
+    option_6: "Your will has been completed",
+    option_7: "Your will has been completed",
+    option_8: "Your will has been completed",
+    option_9: "Your will has been completed",
+    option_10: "Your will has been completed",
 }
 
 function getUAELastModule(countryWill, noCountryWill)
@@ -50,13 +63,15 @@ function getUAELastModule(countryWill, noCountryWill)
                 next: {
                     component: "FinalWillScreen",
                     value: countryWill, 
-                    title: "Will " + countryWill,
+                    //title: "Will " + countryWill,
+                    title: 'Your will has been completed',
                 }   
             },
             no: {
                 component: "FinalWillScreen",
                 value: noCountryWill, 
-                title: "Will " + noCountryWill,
+                // title: "Will " + noCountryWill,
+                title: 'Your will has been completed',
             }
         }        
     }
@@ -95,7 +110,7 @@ export const question = {
                                     value: value_names.married_option,
                                     next: {
                                         component: "QuestionScreen",
-                                        title: "If you are not survived by your spouse, Do you want your estate to your children?",
+                                        title: "If you are not survived by your spouse, Do you want to leave your estate to your children?",
                                         yes: {
                                             component: "FinalWillScreen",
                                             value: 10,
@@ -158,57 +173,77 @@ export const question = {
                                 title: "Who would you like to nominate or appoint as the guardian of your child/children?",
                                 value: value_names.guard_appoint,
                                 next: {
-                                    component: "QuestionScreen",
-                                    title: "Would you like to leave your entire estate to your spouse upon your death?",
-                                    yes: {
+                                    component: "PeopleScreen", 
+                                    title: "If you are not survived by guardian. List another guardian",
+                                    value: value_names.another_guard_appoint,
+                                    next: {
                                         component: "QuestionScreen",
-                                        title: "Would you like a join will with your spouse?",
+                                        title: "Would you like to leave your entire estate to your spouse upon your death?",
                                         yes: {
-                                            component: "SelectOptionScreen",
-                                            title: "How are you married?",
-                                            value: value_names.married_option,
-                                            next: {
+                                            component: "QuestionScreen",
+                                            title: "Would you like a joint will with your spouse?",
+                                            yes: {
+                                                component: "SelectOptionScreen",
+                                                title: "How are you married?",
+                                                value: value_names.married_option,
+                                                next: {
+                                                    component: "PeopleScreen", 
+                                                    title: "Name of Spouse",
+                                                    value: value_names.spouse,
+                                                    next: {
+                                                        component: "PeopleListScreen", 
+                                                        title: "List Beneficiaries",
+                                                        value: value_names.beneficiaries,
+                                                        next: {
+                                                            component: "FinalWillScreen",
+                                                            value: 9,
+                                                            title: will_option_name.option_9,
+                                                        }                                                
+                                                    }
+                                                }                                            
+                                            },
+                                            no: {
                                                 component: "PeopleScreen", 
-                                                title: "name of Spouse",
+                                                title: "Name of Spouse",
                                                 value: value_names.spouse,
                                                 next: {
                                                     component: "PeopleListScreen", 
-                                                    title: "List Beneficiaries",
+                                                    title: "If you are not survived by your spouse. List Beneficiaries",
                                                     value: value_names.beneficiaries,
                                                     next: {
                                                         component: "FinalWillScreen",
-                                                        value: 9,
-                                                        title: will_option_name.option_9,
+                                                        value: 7,
+                                                        title: will_option_name.option_7,
                                                     }                                                
                                                 }
-                                            }                                            
-                                        },
-                                        no: {
-                                            component: "PeopleScreen", 
-                                            title: "name of Spouse",
-                                            value: value_names.spouse,
-                                            next: {
-                                                component: "PeopleListScreen", 
-                                                title: "List Beneficiaries",
-                                                value: value_names.beneficiaries,
-                                                next: {
-                                                    component: "FinalWillScreen",
-                                                    value: 7,
-                                                    title: will_option_name.option_7,
-                                                }                                                
                                             }
-                                        }
-                                    },
-                                    no: {
-                                        component: "QuestionScreen",
-                                        title: "Would you like a join will with your spouse?",
-                                        yes: {
-                                            component: "SelectOptionScreen",
-                                            title: "How are you married?",
-                                            value: value_names.married_option,
-                                            next: {
+                                        },
+                                        no: {
+                                            component: "QuestionScreen",
+                                            title: "Would you like a joint will with your spouse?",
+                                            yes: {
+                                                component: "SelectOptionScreen",
+                                                title: "How are you married?",
+                                                value: value_names.married_option,
+                                                next: {
+                                                    component: "PeopleScreen", 
+                                                    title: "Name of Spouse",
+                                                    value: value_names.spouse,
+                                                    next: {
+                                                        component: "PeopleListScreen", 
+                                                        title: "List Beneficiaries",
+                                                        value: value_names.beneficiaries,
+                                                        next: {
+                                                            component: "FinalWillScreen",
+                                                            value: 9,
+                                                            title: will_option_name.option_9,
+                                                        }                                                
+                                                    }
+                                                }                                            
+                                            },
+                                            no: {
                                                 component: "PeopleScreen", 
-                                                title: "name of Spouse",
+                                                title: "Name of Spouse",
                                                 value: value_names.spouse,
                                                 next: {
                                                     component: "PeopleListScreen", 
@@ -216,25 +251,10 @@ export const question = {
                                                     value: value_names.beneficiaries,
                                                     next: {
                                                         component: "FinalWillScreen",
-                                                        value: 9,
-                                                        title: will_option_name.option_9,
+                                                        value: 7,
+                                                        title: will_option_name.option_7,
                                                     }                                                
                                                 }
-                                            }                                            
-                                        },
-                                        no: {
-                                            component: "PeopleScreen", 
-                                            title: "name of Spouse",
-                                            value: value_names.spouse,
-                                            next: {
-                                                component: "PeopleListScreen", 
-                                                title: "List Beneficiaries",
-                                                value: value_names.beneficiaries,
-                                                next: {
-                                                    component: "FinalWillScreen",
-                                                    value: 7,
-                                                    title: will_option_name.option_9,
-                                                }                                                
                                             }
                                         }
                                     }
@@ -247,7 +267,7 @@ export const question = {
                         title: "Would you like to leave your entire estate to your spouse upon your death?",
                         yes: {
                             component: "PeopleScreen", 
-                            title: "name of Spouse",
+                            title: "Name of Spouse",
                             value: value_names.spouse,
                             next: {
                                 component: "QuestionScreen",
@@ -281,7 +301,7 @@ export const question = {
                         },
                         no: {
                             component: "PeopleScreen",
-                            title: "name of Spouse",
+                            title: "Name of Spouse",
                             value: value_names.spouse,
                             next: {
                                 component: "PeopleListScreen",
@@ -298,7 +318,7 @@ export const question = {
                 },
                 no: {
                     component: "QuestionScreen",
-                    title: "do you have child?",
+                    title: "Do you have children?",
                     yes: {
                         component: "QuestionScreen",
                         title: "Are your children over the age of majority (18 years of age)",
@@ -340,14 +360,19 @@ export const question = {
                                 title: "Who would you like to nominate or appoint as the guardian of your child/children?",
                                 value: value_names.guard_appoint,
                                 next: {
-                                    component: "PeopleListScreen",
-                                    title: "If you are not survived by your chidlren/child, Who are you appointing your estate to?",
-                                    value: value_names.not_survived_appoint_estate,
-                                    next: {
-                                        component: "FinalWillScreen",
-                                        value: 3,
-                                        title: will_option_name.option_3,
-                                    }                                    
+                                    component: "PeopleScreen",
+                                    title: "If you are not survived by guardian. List another guardian",
+                                    value: value_names.another_guard_appoint,
+                                    next: {                                        
+                                        component: "PeopleListScreen",
+                                        title: "If you are not survived by your chidlren/child, Who are you appointing your estate to?",
+                                        value: value_names.not_survived_appoint_estate,
+                                        next: {
+                                            component: "FinalWillScreen",
+                                            value: 3,
+                                            title: will_option_name.option_3,
+                                        }       
+                                    }                             
                                 }
                             }
                         }
