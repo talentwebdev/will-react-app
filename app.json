@@ -25,7 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.zhuping.reactnative"
+      "bundleIdentifier": "com.react.wewill"
     },
     "android": {
       "package": "com.zhuping.reactnative",
