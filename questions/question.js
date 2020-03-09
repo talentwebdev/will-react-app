@@ -9,8 +9,8 @@ export const value_names = {
     beneficiaries: "beneficiaries",
     guard_appoint: "guard_appoint",
     another_guard_appoint: "another_guard_appoint",
-    spouse_passaway_appoint_estate: "spouse_passaway_appoint_estate",
-    not_survived_appoint_estate: "not_survived_appoint_estate",
+    spouse_passaway_appoint_estate: "beneficiaries",
+    not_survived_appoint_estate: "beneficiaries",
     married_option: "married_option",
     mirror: "mirror",
     dubai_court: "dubai_court",
@@ -174,7 +174,7 @@ export const question = {
                                 value: value_names.guard_appoint,
                                 next: {
                                     component: "PeopleScreen", 
-                                    title: "If you are not survived by guardian. List another guardian",
+                                    title: "If you are not survived by guardian. List another Guardian",
                                     value: value_names.another_guard_appoint,
                                     next: {
                                         component: "QuestionScreen",
@@ -361,11 +361,11 @@ export const question = {
                                 value: value_names.guard_appoint,
                                 next: {
                                     component: "PeopleScreen",
-                                    title: "If you are not survived by guardian. List another guardian",
+                                    title: "If you are not survived by guardian. List another Guardian",
                                     value: value_names.another_guard_appoint,
                                     next: {                                        
                                         component: "PeopleListScreen",
-                                        title: "If you are not survived by your chidlren/child, Who are you appointing your estate to?",
+                                        title: "If you are not survived by your children/child, Who are you appointing your estate to?",
                                         value: value_names.not_survived_appoint_estate,
                                         next: {
                                             component: "FinalWillScreen",

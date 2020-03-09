@@ -2,6 +2,12 @@ import {value_names} from "./../questions/question";
 
 export function get_will_option_8(data, pdf)
 {
+    const beneficiaries = data[value_names.beneficiaries] === undefined ? [] : data[value_names.beneficiaries];
+    let beneficiaries_name = "";
+    for(var i = 0 ; i < beneficiaries.length ; i++)
+    {
+        beneficiaries_name += beneficiaries[i].name + (i === beneficiaries.length - 1 ? " " : ", ");
+    }
     const number_size = 60;
     const year = new Date().getFullYear();
     const total_size = 700;
@@ -22,11 +28,11 @@ export function get_will_option_8(data, pdf)
     const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
         <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT OF</div>         
-        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
         <div style="text-align: center; ${p_title_style}">${data[value_names.user].name + " " + data[value_names.user].surname}</div>
+        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number})</div>
         <div style="text-align: center; ${p_title_style}">AND</div>         
-        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.spouse].id_number} :)</div>
-        <div style="text-align: center; ${p_title_style}">${data[value_names.spouse].name + " " + data[value_names.spouse].surname}</div>
+        <div style="text-align: center; ${p_title_style}">${data[value_names.spouse].name}</div>
+        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.spouse].id_number})</div>
     </p>
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -64,13 +70,18 @@ export function get_will_option_8(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             2.1
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                                 We hereby nominate, constitute and appoint the survivor of us
                                 to be the Executor/Executrix and Administrator/Adminstratrix of
                                 the estate of the first dying, granting unto him/her all such power
                                 and authority as is allowed in law and especially the power of
-                                assumption, and we hereby
+                                assumption, and we hereby 
+                                Direct that our Executor/Executrix and Administrator/Adminstratrix
+                                shall not be bound to furnish security to the Master of the High
+                                Court or any other official or officer in respect of his/her execution
+                                of this our Last Will and Testament and/or the administration of our
+                                Estates.
                             </div>
                         </div>
                     </div>
@@ -120,13 +131,9 @@ export function get_will_option_8(data, pdf)
                     <div style="display:flex; flex-direction: 'row'; "> 
                         <div class="number" style="${div_style+div_number_style}">
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
-                                We hereby nominate, constitute and appoint the survivor of us
-                                to be the Executor/Executrix and Administrator/Adminstratrix of
-                                the estate of the first dying, granting unto him/her all such power
-                                and authority as is allowed in law and especially the power of
-                                assumption, and we hereby
+                                
                             </div>
                         </div>
                     </div>
@@ -136,7 +143,7 @@ export function get_will_option_8(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             2.2
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                                 In the event of our simultaneous deaths or our dying under such
                                 circumstances that it is impossible to ascertain which of us died
@@ -147,9 +154,9 @@ export function get_will_option_8(data, pdf)
                                     <div class="number" style="${div_style+div_number_style}">
                                         2.2.1
                                     </div>
-                                    <div style="width: ${total_size - 3 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : ""}">
+                                    <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         <div class="text" style="${div_style+div_text_style}">
-                                            We appoint ${data[value_names.user].name} to be our Executrix and
+                                            We appoint ${data[value_names.executor].name} to be our Executrix and
                                             Adminstratrix, granting unto her all such powers and
                                             authorities as are allowed in Law, including the powers of
                                             assumption. We direct that our said Executrix and
@@ -232,7 +239,7 @@ export function get_will_option_8(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             4.1
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                                 We hereby nominate, constitute and appoint the survivor of us to
                                 be the sole heir to the estate of the first-dying of us and we
@@ -250,7 +257,7 @@ export function get_will_option_8(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             4.2
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                                 In the event of our simultaneous deaths or our dying under such
                                 circumstances that it is impossible to ascertain which of us died
@@ -303,20 +310,20 @@ export function get_will_option_8(data, pdf)
                     <div style="display:flex; flex-direction: 'row'; ">
                         <div class="number" style="${div_style+div_number_style}">
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="paragraph" style="${div_style+paragraph_style}" >
                                 <div style="display:flex; flex-direction: 'row'; ">
                                     <div class="number" style="${div_style+div_number_style}">
                                         4.2.1
                                     </div>
-                                    <div style="width: ${total_size - 3 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : ""}">
+                                    <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         we respectively hereby leave and bequeath the whole of our
                                         respective estates and effects whether movable or
                                         immovable, and whether in possession, reversion,
                                         expectancy or contingency and wheresoever same may be
                                         situated, both such as we may now possess or may in future
-                                        become possessed of, nothing excepted to our parents,
-                                        ${data[value_names.user].name}, in equal shares, share and share
+                                        become possessed of, nothing excepted to 
+                                        ${beneficiaries_name}, in equal shares, share and share
                                         alike.           
                                     </div>
                                 </div>

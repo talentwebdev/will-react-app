@@ -51,6 +51,7 @@ class PeopleList extends Component
             type: type,
             currentIndex: 0,
             showdate: false,
+            date: new Date(),
         };
 
         this.updateChildrenList = this.updateChildrenList.bind(this);
@@ -160,6 +161,8 @@ class PeopleList extends Component
                         placeholder="Date of birth"
                         placeholderTextColor="#FFF"
                         value={item.date_of_birth}
+                        onChangeText={(birth_of_date) => {this.updateChildrenList(birth_of_date, index, 3)}} 
+                        onBlur={() => {this.setState({showdate: false})}}
                         onFocus={() => {this.updateDate(index)}}>
                     </TextInput>
                     }
@@ -199,24 +202,25 @@ class PeopleList extends Component
                         </TouchableOpacity>
                     </View>
 
-                    {this.state.showdate && 
-                         <DateTimePicker
-                            testID="dateTimePicker"
-                            timeZoneOffsetInMinutes={0}
-                            mode="date"
-                            value={new Date()}
-                            is24Hour={true}
-                            display="default"
-                            onChange={(e, selectedDate) => {
-                                console.log("changed date", selectedDate);
-                                this.setState({showdate: Platform.OS === 'ios' ? true : false});
-                                this.updateChildrenList(selectedDate.getFullYear() + "-" + selectedDate.getMonth() + "-" + selectedDate.getDate(), 
-                                    this.state.currentIndex, 3);
-                            }}
-                            />
-                        }
+                    
                 </View>
-                
+                {this.state.showdate && 
+                    <DateTimePicker
+                    testID="dateTimePicker"
+                    timeZoneOffsetInMinutes={0}
+                    mode="date"
+                    value={this.state.date}
+                    is24Hour={true}
+                    display="default"
+                    onChange={(e, selectedDate) => {
+                        console.log("changed date", selectedDate);
+                        this.setState({date: selectedDate});
+                        //this.setState({showdate: Platform.OS === 'ios' ? true : false});
+                        this.updateChildrenList(selectedDate.getFullYear() + "-" + selectedDate.getMonth() + "-" + selectedDate.getDate(), 
+                            this.state.currentIndex, 3);
+                    }}
+                    />
+                }
             </ImageBackground>
         );
     }

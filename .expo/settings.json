@@ -1,8 +1,8 @@
 {
-  "urlRandomness": "sm-bsi",
-  "hostType": "localhost",
+  "hostType": "lan",
   "lanType": "ip",
   "dev": true,
   "minify": false,
+  "urlRandomness": "d8-7rp",
   "https": false
 }

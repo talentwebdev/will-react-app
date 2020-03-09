@@ -35,8 +35,8 @@ export function get_will_option_3(data, pdf)
     const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
         <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT OF</div>         
-        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
         <div style="text-align: center; ${p_title_style}">${data[value_names.user].name + " " + data[value_names.user].surname}</div>
+        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number})</div>
     </p>
     
     <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -68,12 +68,16 @@ export function get_will_option_3(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             2.1
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                             I hereby nominate, constitute and appoint ${data[value_names.executor].name} to be the Executor/Executrix and
                                 Administrator/Adminstratrix of my estate, granting unto him/her
                                 all such power and authority as is allowed in law and especially the
-                                power of assumption, and I hereby
+                                power of assumption, and I hereby Direct that my
+                                Executor/Executrix and Administrator/Adminstratrix shall not be
+                                bound to furnish security to the Master of the High Court or any
+                                other official or officer in respect of his/her execution of this my
+                                Last Will and Testament and/or the administration of my Estates.
                             </div>
                         </div>
                     </div>
@@ -147,7 +151,7 @@ export function get_will_option_3(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             4.1
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                                 I hereby nominate, constitute and appoint ${beneficiary_name} to be the sole heir to my estate
                                 and I respectively hereby leave and bequeath the whole of my
@@ -161,10 +165,10 @@ export function get_will_option_3(data, pdf)
                                     <div class="number" style="${div_style+div_number_style}">
                                         4.1.1
                                     </div>
-                                    <div style="width: ${total_size - 3 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : ""}">
+                                    <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         <div class="text" style="${div_style+div_text_style}">
-                                            I respectively hereby request that ${data[value_names.user].name}
-                                            have duel signing powers and act in an administrative role
+                                            I respectively hereby request that ${data[value_names.guard_appoint].name}
+                                            have dual signing powers and act in an administrative role
                                             with my CHILD/CHILDREN until they retain the age of 21
                                             years old respectively, in order to manage the funds
                                             effectively.
@@ -180,9 +184,9 @@ export function get_will_option_3(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             4.2
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
-                                In the event that I am not survived by my Child/ children, ${children_name}, then and in such event do I
+                                In the event that I am not survived by my Child/ children, ${children_name}, then and in such event I
                                 respectively direct as follows :-
                             </div>                    
                             <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -190,14 +194,14 @@ export function get_will_option_3(data, pdf)
                                     <div class="number" style="${div_style+div_number_style}">
                                         4.2.1
                                     </div>
-                                    <div style="width: ${total_size - 3 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : ""}">
+                                    <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         <div class="text" style="${div_style+div_text_style}">
                                             I respectively hereby leave and bequeath the whole of my
                                             estate and effects whether movable or immovable, and
                                             whether in possession, reversion, expectancy or contingency
                                             and wheresoever same may be situated, both such as I may
                                             now possess or may in future become possessed of, nothing
-                                            excepted to my parents, ${data[value_names.user].name}, in equal
+                                            excepted to ${beneficiary_name}, in equal
                                             shares, share and share alike.
                                         </div>                    
                                     </div>
@@ -222,6 +226,12 @@ export function get_will_option_3(data, pdf)
                     on a beneficiary in terms of this our Will, will be excluded from the
                     estate of any person the beneficiary may marry or may have married.
                     Furthermore, we direct that it does not make a difference under which
+                    system a beneficiary marries; whether in community of property, out of
+
+                    Community of property or by the accrual system, the assets and their
+                    Increase/increased value through whatever course will be excluded from
+                    the estate of any person the beneficiary may or may have married - it
+                    will be for the sole benefit of the beneficiary.
                 </div>
             </div>                
         </div>
@@ -253,25 +263,6 @@ export function get_will_option_3(data, pdf)
             </div>
             <div style="flex: 2;">    
                                     
-            </div>                
-        </div>
-    </div>
-
-    <div class="paragraph" style="${div_style+paragraph_style}" >
-        <div style="display:flex; flex-direction: 'row'; ">
-            <div class="number" style="${div_style+div_number_style}">
-                
-            </div>
-            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
-                <div class="small_title" style="${div_style+div_small_title_style}">EXCLUSION OF COMMUNITY OF PROPERTY AND MARITAL POWER </div>
-                <div class="text" style="${div_style+div_text_style}">
-                    System a beneficiary marries; whether in community of property, out of
-
-                    Community of property or by the accrual system, the assets and their
-                    Increase/increased value through whatever course will be excluded from
-                    the estate of any person the beneficiary may or may have married - it
-                    will be for the sole benefit of the beneficiary.
-                </div>
             </div>                
         </div>
     </div>

@@ -27,7 +27,9 @@ export function get_will_option_1(data, pdf)
     const div_flex = "flex: 1;";
     const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
-    <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT</div> <div style="text-align: center; ${p_title_style}">OF</div> <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)${data[value_names.user].name + " " + data[value_names.user].surname}</div>
+    <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT</div> <div style="text-align: center; ${p_title_style}">OF</div> 
+    <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
+    <div style="text-align: center; ${p_title_style}">${data[value_names.user].name + " " + data[value_names.user].surname}</div>
     </p>
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -150,7 +152,12 @@ export function get_will_option_1(data, pdf)
                     I hereby expressly direct that any benefit accruing or being conferred
                     on a beneficiary in terms of this Will, will be excluded from the
                     estate of any person the beneficiary may marry or may have married.
-                    Furthermore, I direct that it does not make a difference under which
+                    Furthermore, I direct that it does not make a difference under which 
+                    System a beneficiary marries; whether in community of property, out of
+                    Community of property or by the accrual system, the assets and their
+                    Increase/increased value through whatever course will be excluded from
+                    the estate of any person the beneficiary may or may have married - it
+                    will be for the sole benefit of the beneficiary.
                 </div>
             </div>                
         </div>
@@ -182,23 +189,6 @@ export function get_will_option_1(data, pdf)
             </div>
             <div style="flex: 2;">    
                                     
-            </div>                
-        </div>
-    </div>
-
-    <div class="paragraph" style="${div_style+paragraph_style}" >
-        <div style="display:flex; flex-direction: 'row'; ">
-            <div class="number" style="${div_style+div_number_style}">
-                &nbsp;
-            </div>
-            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
-                <div class="text" style="${div_style+div_text_style}">
-                    System a beneficiary marries; whether in community of property, out of
-                    Community of property or by the accrual system, the assets and their
-                    Increase/increased value through whatever course will be excluded from
-                    the estate of any person the beneficiary may or may have married - it
-                    will be for the sole benefit of the beneficiary.
-                </div>
             </div>                
         </div>
     </div>

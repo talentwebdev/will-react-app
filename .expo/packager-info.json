@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 18780,
-  "expoServerNgrokUrl": "https://sm-bsi.zhuping19980609.will-react-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.sm-bsi.zhuping19980609.will-react-app.exp.direct",
-  "ngrokPid": 21712,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }

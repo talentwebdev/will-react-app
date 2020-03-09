@@ -43,7 +43,7 @@ class SelectOption extends Component
                 break;
 
         }
-        this.props.sendNextWillStep(this.state.selected, this.state.pagedata);
+        this.props.sendNextWillStep(data, this.state.pagedata);
         let routeName = this.state.pagedata.next.component;        
 
         const resetAction = StackActions.reset({

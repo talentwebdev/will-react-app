@@ -8,6 +8,7 @@ import {bindActionCreators} from "redux";
 import {sendNextWillStep, sendPrevWillStep} from "./action";
 import { StackActions, NavigationActions } from 'react-navigation';
 import {value_names} from "./../../../questions/question";
+import {DatePickerIOS} from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const contentType = {
@@ -71,6 +72,7 @@ class PeopLe extends Component
             page: page,
             type: type,
             showdate: false,
+            date: new Date(),
         }
 
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
@@ -196,6 +198,7 @@ class PeopLe extends Component
     {
         return(
             <ImageBackground source={background} style={styles.background}>
+                
                 <View style={[styles.questionContainer]}>
                     <View style={[styles.questionPanel, {marginBottom: this.state.keyboardHeight}]}>
                         <Text style={styles.questionText}>{this.state.text}</Text>
@@ -288,28 +291,18 @@ class PeopLe extends Component
                                 this.state.type === contentType.uae_spouse) && 
                             <TextInput style={styles.textInput} 
                                 placeholder="Birth Of Date" 
+                                onBlur={() => {this.setState({showdate: false})}}
                                 placeholderTextColor="#FFF"
                                 onFocus={() => {
                                     this.setState({showdate: true});
-                                }}                                
+                                }}                              
+                                onChangeText={(birth_of_date) => {
+                                    this.setState({birth_of_date})
+                                }}  
                                 value={this.state.birth_of_date}>
                             </TextInput>
                         }      
-                        {this.state.showdate && 
-                         <DateTimePicker
-                            testID="dateTimePicker"
-                            timeZoneOffsetInMinutes={0}
-                            mode="date"
-                            value={new Date()}
-                            is24Hour={true}
-                            display="default"
-                            onChange={(e, selectedDate) => {
-                                console.log("changed date", selectedDate);
-                                this.setState({showdate: Platform.OS === 'ios' ? true : false});
-                                this.setState({birth_of_date: selectedDate.getFullYear() + "-" + selectedDate.getMonth() + "-" + selectedDate.getDate()});
-                            }}
-                            />
-                        }
+
                         
                     </View>
                     <View style={styles.buttonContainer}>
@@ -322,8 +315,26 @@ class PeopLe extends Component
                             <Text style={styles.text}>Next</Text>
                         </TouchableOpacity>
                     </View>
+                    
                 </View>
                 
+                {this.state.showdate && 
+                    <DateTimePicker
+                    testID="dateTimePicker"
+                    timeZoneOffsetInMinutes={0}
+                    mode="date"
+                    value={this.state.date}
+                    initialDate={new Date()}
+                    is24Hour={true}
+                    display="default"
+                    onChange={(e, selectedDate) => {
+                        console.log("changed date", selectedDate);
+                        this.setState({date: selectedDate});
+                        //this.setState({showdate: Platform.OS === 'ios' ? true : false});
+                        this.setState({birth_of_date: selectedDate.getFullYear() + "-" + selectedDate.getMonth() + "-" + selectedDate.getDate()});
+                    }}
+                    />
+                }
             </ImageBackground>
         );
     }

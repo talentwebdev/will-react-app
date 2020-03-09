@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     questionPanel: {
         padding: 10,
-        height: '50%',
+        minHeight: '50%',
         marginLeft: 30, 
         marginRight: 30,
         backgroundColor: base_styles.color.normal_button_primary_color,

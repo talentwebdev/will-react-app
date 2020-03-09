@@ -28,8 +28,8 @@ export function get_will_option_4(data, pdf)
     const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
         <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT OF</div> 
-        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
         <div style="text-align: center; ${p_title_style}">${data[value_names.user].name + " " + data[value_names.user].surname}</div>
+        <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number})</div>
     </p>
     
     <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -61,7 +61,7 @@ export function get_will_option_4(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             2.1
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                                 I hereby nominate, constitute and appoint ${data[value_names.executor].name} to be the Executor/Executrix and
                                 Administrator/Adminstratrix of my estate, granting unto him/her
@@ -142,7 +142,7 @@ export function get_will_option_4(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             4.1
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                                 I hereby leave and bequeath the whole of my estate and effects
                                 whether movable or immovable, and whether in possession,
@@ -198,7 +198,7 @@ export function get_will_option_4(data, pdf)
                         <div class="number" style="${div_style+div_number_style}">
                             4.2
                         </div>
-                        <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                        <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
                                 In the event that I am not survived by my Child/children, ${children_name}, then and in such event I
                                 respectively direct as follows :-
@@ -208,14 +208,14 @@ export function get_will_option_4(data, pdf)
                                     <div class="number" style="${div_style+div_number_style}">
                                         4.2.1
                                     </div>
-                                    <div style="width: ${total_size - 2 * number_size}px; ${pdf === true ? `margin-left: ${number_size}px;` : "" }">
+                                    <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                                         <div class="text" style="${div_style+div_text_style}">
                                             I respectively hereby leave and bequeath the whole of my
                                             estate and effects whether movable or immovable, and
                                             whether in possession, reversion, expectancy or contingency
                                             and wheresoever same may be situated, both such as I may
                                             now possess or may in future become possessed of, nothing
-                                            excepted to my parents, ${data[value_names.user].name}, in equal
+                                            excepted to ${children_name}, in equal
                                             shares, share and share alike.
                                         </div>                 
                                     </div>
