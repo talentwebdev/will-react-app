@@ -1,6 +1,6 @@
 import {value_names} from "./../questions/question";
 
-export function get_will_option_7(data, pdf)
+export function get_will_option_7(data, pdf, isMirror)
 {
     const full_name = data[value_names.user] !== undefined ? (data[value_names.user].name + " " + data[value_names.user].surname) : '';
     const date_of_birth=data[value_names.your_information] !== undefined ? data[value_names.your_information].birth_of_date: '';
@@ -25,6 +25,9 @@ export function get_will_option_7(data, pdf)
     const alternative_executor_nationality = data[value_names.alternative_executor] !== undefined ? data[value_names.alternative_executor].nationality : '';
     const alternative_executor_passport = data[value_names.alternative_executor] !== undefined ? data[value_names.alternative_executor].passport : '';
 
+    if(data[value_names.children] === undefined){
+        data[value_names.children] = [];
+    }
     let children_name = "";
     for(var i = 0 ; i < data[value_names.children].length ; i++)
         children_name = data[value_names.children][i].name + ",";
@@ -49,7 +52,7 @@ export function get_will_option_7(data, pdf)
     const div_style = "line-height: 1.6; ";
     const p_style = "padding: 0px;";
     const p_title_style = "font-size: 34px;font-weight:bold;";
-    const paragraph_style = "margin-top: 20px;";
+    const paragraph_style = "page-break-inside: avoid;margin-top: 20px;";
     const div_small_title_style = "font-size: 20px;font-weight:bold;";
     const div_number_style="width: 60px;font-size: 20px;font-weight:bold;";
     const div_text_title_style="width: 120px;font-size: 20px;font-weight:bold;";
@@ -60,12 +63,12 @@ export function get_will_option_7(data, pdf)
     const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
         <div style="text-align: center; ${p_title_style}">
-            FULL WILL
+            ${isMirror ? "Mirror Will" : "FULL WILL"}
         </div> 
     </p>
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
-        <div style="display:flex; flex-direction: 'column'; ${div_style+div_text_style}">
+        <div style="${pdf === true ? "" : "display:flex; flex-direction: 'column';"} ${div_style+div_text_style}">
             I ${full_name} of ${address}, United Arab Emirates, declare this to be my last Will.
         </div>
     </div>
@@ -109,7 +112,7 @@ export function get_will_option_7(data, pdf)
             <div class="number" style="${div_style+div_number_style}">4. </div>
             <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    I appoint my EXECUTOR, ${executor_name} to be my executor and trustee in relation to my UAE Estate. In the event that
+                    I appoint ${executor_name} to be my executor and trustee in relation to my UAE Estate. In the event that
                     EXECUTOR predeceases me, then I appoint ${alternative_executor_name}, as the Executor and Trustee in relation to my UAE  Estate.
                 </div>
             </div>                
@@ -214,7 +217,7 @@ export function get_will_option_7(data, pdf)
                 <div class="small_title" style="font-weight: bold; ${div_style+div_test_name_style}">
                 </div>
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    Signature of Testator
+                    Signature of ${data[value_names.user].gender === "male" ? "Testator" : "testatrix"}
                 </div>
             </div>                
         </div>
@@ -258,7 +261,7 @@ export function get_will_option_7(data, pdf)
                 <div class="small_title" style="font-weight: bold; ${div_style+div_test_name_style}">
                 </div>
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    1st Witness Signature
+                    1st Witness Name
                 </div>
             </div>   
             <div style="width: ${total_size * 0.2}px;"></div>
@@ -266,7 +269,7 @@ export function get_will_option_7(data, pdf)
                 <div class="small_title" style="font-weight: bold; ${div_style+div_test_name_style}">
                 </div>
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    2nd Witness Signature
+                    2nd Witness Name
                 </div>
             </div>                
         </div>
@@ -306,7 +309,7 @@ export function get_will_option_7(data, pdf)
                 <div class="small_title" style="font-weight: bold; ${div_style+div_test_name_style}">
                 </div>
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    1st Witness Signature
+                    1st Witness Address
                 </div>
             </div>   
             <div style="width: ${total_size * 0.2}px;"></div>
@@ -314,7 +317,7 @@ export function get_will_option_7(data, pdf)
                 <div class="small_title" style="font-weight: bold; ${div_style+div_test_name_style}">
                 </div>
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    2nd Witness Signature
+                    2nd Witness Address
                 </div>
             </div>                
         </div>
@@ -324,7 +327,7 @@ export function get_will_option_7(data, pdf)
         <div style="display:flex; flex-direction: 'row'; ">
             <div style="width: ${total_size}px;">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    This Will, will be void if the Testator is a Muslim at any time before (HIS /HER) death.            
+                    This Will, will be void if the ${data[value_names.user].gender === "male" ? "Testator" : "testatrix"} is a Muslim at any time before ${data[value_names.user].gender === "male" ? "His" : "Her"} death.            
                 </div>
             </div>                
         </div>

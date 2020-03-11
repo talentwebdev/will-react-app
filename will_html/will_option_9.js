@@ -1,12 +1,16 @@
 import {value_names} from "./../questions/question";
+import {get_will_option_9_pdf} from "./will_option_9_pdf";
 
 export function get_will_option_9(data, pdf)
 {
+    if(pdf === true) {
+        return get_will_option_9_pdf(data, pdf);
+    }
     const children = data[value_names.children] === undefined ? [] : data[value_names.children];
     let children_name = "";
     for(var i = 0 ; i < children.length ; i++)
     {
-        children_name += children[i].name + (i === children.length - 1 ? " " : ", ");
+        children_name += children[i].name + ", " + children[i].id_number + (i === children.length - 1 ? " " : "/");
     }   
     const year = new Date().getFullYear();
     const number_size = 60;
@@ -18,13 +22,23 @@ export function get_will_option_9(data, pdf)
     const div_style = "line-height: 1.6; ";
     const p_style = "padding: 0px;";
     const p_title_style = "font-size: 34px;font-weight:bold;";
-    const paragraph_style = "margin-top: 15px;";
-    const div_small_title_style = "font-size: 20px;font-weight:bold;";
+    const paragraph_style = "page-break-inside: auto;margin-top: 15px;";
+    const div_small_title_style = "  page-break-before: avoid; font-size: 20px;font-weight:bold;";
     const div_number_style="width: 60px;font-size: 20px;font-weight:bold;";
-    const div_text_style = "font-size: 20px;font-weight:lighter;";
+    const div_text_style = " page-break-before: avoid; font-size: 20px;font-weight:lighter;page-break-inside: auto;";
     const div_test_name_style = "width: 100%; border-bottom: 2px solid #000;height: 30px;";
     const div_witness_style = "margin-top: 80px;";
     const div_flex = "flex: 1;";
+    const footer = `
+        position: fixed; 
+        bottom: 0px; 
+        left: 0px; 
+        right: 0px;
+        height: 250px; 
+        padding: 40px;
+
+        `;
+    
     const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
         <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT OF</div>         
@@ -34,7 +48,6 @@ export function get_will_option_9(data, pdf)
         <div style="text-align: center; ${p_title_style}">${data[value_names.spouse].name}</div>
         <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.spouse].id_number})</div>
     </p>
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'column'; ">
             <div class="small_title" style="${div_style+div_small_title_style}"> Married( ${data[value_names.married_option]} )</div>
@@ -57,7 +70,6 @@ export function get_will_option_9(data, pdf)
                 
         </div>
     </div>
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
@@ -90,7 +102,6 @@ export function get_will_option_9(data, pdf)
                 
         </div>
     </div>
-
     <div class="paragraph witness" style="${div_style+paragraph_style+div_witness_style}" >
         <div class="small_title" style="text-decoration: underline; ${div_style+div_small_title_style}">AS WITNESSES:- </div>
     </div>
@@ -120,7 +131,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
@@ -147,7 +157,7 @@ export function get_will_option_9(data, pdf)
                                     </div>
                                     <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         <div class="text" style="${div_style+div_text_style}">
-                                            We appoint ${data[value_names.executor].name} to be our Executrix and
+                                            We appoint ${data[value_names.executor].name + ", " + data[value_names.executor].id_number + ", " + data[value_names.executor].address} to be our Executrix and
                                             Adminstratrix, granting unto her all such powers and
                                             authorities as are allowed in Law, including the powers of
                                             assumption. We direct that our said Executrix and
@@ -164,7 +174,6 @@ export function get_will_option_9(data, pdf)
                 
         </div>
     </div>
-
     
     <div class="paragraph witness" style="${div_style+paragraph_style+div_witness_style}" >
         <div class="small_title" style="text-decoration: underline; ${div_style+div_small_title_style}">AS WITNESSES:- </div>
@@ -195,7 +204,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
@@ -217,7 +225,6 @@ export function get_will_option_9(data, pdf)
                 
         </div>
     </div>
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
@@ -260,7 +267,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
     <div class="paragraph witness" style="${div_style+paragraph_style+div_witness_style}" >
         <div class="small_title" style="text-decoration: underline; ${div_style+div_small_title_style}">AS WITNESSES:- </div>
     </div>
@@ -290,7 +296,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
@@ -326,7 +331,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
     
     <div class="paragraph witness" style="${div_style+paragraph_style+div_witness_style}" >
         <div class="small_title" style="text-decoration: underline; ${div_style+div_small_title_style}">AS WITNESSES:- </div>
@@ -357,7 +361,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style};"></div>
@@ -367,7 +370,7 @@ export function get_will_option_9(data, pdf)
             </div>
             <div style=" ${pdf === true ? `margin-left: ${number_size * 3}px;` : `width: ${total_size - 3 * number_size}px;`}">
                 <div class="text" style="${div_style+div_text_style}">
-                    we respectively hereby request that ${data[value_names.guard_appoint].name}
+                    we respectively hereby request that ${data[value_names.guard_appoint].name + ", " + data[value_names.guard_appoint].id_number}
                     have dual signing powers and act in an administrative role
                     with our CHILD/CHILDREN until they retain the age of 21
                     years old respectively, in order to manage the funds
@@ -412,7 +415,6 @@ export function get_will_option_9(data, pdf)
             </div>
         </div>
     </div>  
-
     
     <div class="paragraph witness" style="${div_style+paragraph_style+div_witness_style}" >
         <div class="small_title" style="text-decoration: underline; ${div_style+div_small_title_style}">AS WITNESSES:- </div>
@@ -443,7 +445,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
             <div class="number" style="${div_style+div_number_style}">
@@ -473,6 +474,22 @@ export function get_will_option_9(data, pdf)
                 6. 
             </div>
             <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
+                <div class="small_title" style="${div_style+div_small_title_style}">APPOINTMENT OF GUARDIAN </div>
+                <div class="text" style="${div_style+div_text_style}">
+                    I nominate ${data[value_names.guard_appoint].name + ", " + data[value_names.guard_appoint].id_number}
+                    as the guardian of my minor children and failing his/her/their acceptance
+                    thereto, I nominate ${data[value_names.another_guard_appoint].name + ", " + data[value_names.another_guard_appoint].id_number}.
+                </div>
+            </div>                
+        </div>
+    </div>
+
+    <div class="paragraph" style="${div_style+paragraph_style}" >
+        <div style="display:flex; flex-direction: 'row'; ">
+            <div class="number" style="${div_style+div_number_style}">
+                7. 
+            </div>
+            <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">RESERVATION OF RIGHTS TO ALTER OR ADD TO WILL </div>
                 <div class="text" style="${div_style+div_text_style}">
                     We reserve to ourselves the right at any time hereafter to make all such
@@ -484,7 +501,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
     
     <div class="paragraph witness" style="${div_style+paragraph_style+div_witness_style}" >
         <div class="small_title" style="text-decoration: underline; ${div_style+div_small_title_style}">AS WITNESSES:- </div>
@@ -515,8 +531,6 @@ export function get_will_option_9(data, pdf)
             </div>                
         </div>
     </div>
-
-
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div class="text" style="${div_style+div_text_style}">
             IN WITNESS HEREOF, we have hereunto set our hands at 
@@ -525,7 +539,6 @@ export function get_will_option_9(data, pdf)
             undersigned witnesses, being present at the same time.
         </div>
     </div>
-
     <div class="paragraph witness" style="${div_style+paragraph_style+div_witness_style}" >
         <div class="small_title" style="text-decoration: underline; ${div_style+div_small_title_style}">AS WITNESSES:- </div>
     </div>

@@ -13,6 +13,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 const contentType = {
     south_africa_people: "south_africa_people",
+    south_africa_executor: "south_africa_executor",
     uae_country: "uae_country",
     uae_executor: "uae_executor",
     uae_alternative_executor: "uae_alternative_executor",
@@ -32,7 +33,10 @@ class PeopLe extends Component
         let isUAE = will_data[value_names.country_location] === "UAE" ? true: false;
         let type;
         if(isUAE === false){
-            type = contentType.south_africa_people;
+            if(page.value === value_names.executor)
+                type = contentType.south_africa_executor;
+            else
+                type = contentType.south_africa_people;
         }
         else 
         {
@@ -107,6 +111,19 @@ class PeopLe extends Component
                 name: this.state.name, id_number: this.state.id_number
             }, this.state.page);
         }
+        else if(this.state.type === contentType.south_africa_executor)
+        {
+            if(this.state.name === "" || this.state.name === undefined || this.state.name === null || 
+                this.state.id_number === "" || this.state.id_number === undefined || this.state.id_number === null || 
+                this.state.uae_address === "" || this.state.uae_address === undefined || this.state.uae_address === null)
+                return;
+
+            this.props.sendNextWillStep({
+                name: this.state.name, 
+                id_number: this.state.id_number,
+                address: this.state.uae_address
+            }, this.state.page);
+        }
         else if(this.state.type === contentType.uae_executor || this.state.type === contentType.uae_alternative_executor)
         {
             if(this.state.uae_name === "" || this.state.uae_name === undefined || this.state.uae_name === null || 
@@ -118,6 +135,7 @@ class PeopLe extends Component
             this.props.sendNextWillStep({
                 name: this.state.uae_name, 
                 passport: this.state.uae_passport, 
+                id_number: this.state.uae_passport,
                 address: this.state.uae_address,
                 nationality: this.state.uae_nationality,
             }, this.state.page);
@@ -148,13 +166,16 @@ class PeopLe extends Component
         {
             if(this.state.uae_name === "" || this.state.uae_name === undefined || this.state.uae_name === null || 
             this.state.uae_passport === "" || this.state.uae_passport === undefined || this.state.uae_passport === null || 
+            this.state.emirates_id === "" || this.state.emirates_id === undefined || this.state.emirates_id === null || 
             this.state.birth_of_date === "" || this.state.birth_of_date === undefined || this.state.birth_of_date === null)
                 return;
             
             this.props.sendNextWillStep({
                 name: this.state.uae_name,
                 passport: this.state.uae_passport,
+                id_number: this.state.uae_passport,
                 birth_of_date: this.state.birth_of_date,
+                emirates_id: this.state.emirates_id,
             }, this.state.page);
         }
         else if(this.state.type === contentType.uae_normal_people)
@@ -165,6 +186,7 @@ class PeopLe extends Component
             
             this.props.sendNextWillStep({
                 name: this.state.uae_name,
+                id_number: this.state.uae_passport,
                 passport: this.state.uae_passport,
             }, this.state.page);
         }
@@ -203,7 +225,8 @@ class PeopLe extends Component
                     <View style={[styles.questionPanel, {marginBottom: this.state.keyboardHeight}]}>
                         <Text style={styles.questionText}>{this.state.text}</Text>
 
-                        {this.state.type === contentType.south_africa_people && 
+                        {(this.state.type === contentType.south_africa_people  || 
+                        this.state.type === contentType.south_africa_executor) && 
                             <TextInput style={styles.textInput} 
                                 placeholder="Enter Name" 
                                 placeholderTextColor="#FFF"
@@ -212,7 +235,8 @@ class PeopLe extends Component
                             </TextInput>
                         }
                         {
-                            this.state.type === contentType.south_africa_people && 
+                            (this.state.type === contentType.south_africa_people ||
+                            this.state.type === contentType.south_africa_executor)  && 
                             <TextInput style={styles.textInput} 
                                 placeholder="ID Number" 
                                 placeholderTextColor="#FFF"
@@ -247,7 +271,9 @@ class PeopLe extends Component
                             </TextInput>
                         }      
                         {
-                            (this.state.type === contentType.uae_executor || this.state.type === contentType.uae_alternative_executor) && 
+                            (this.state.type === contentType.uae_executor 
+                                || this.state.type === contentType.uae_alternative_executor
+                                || this.state.type === contentType.south_africa_executor) && 
                             <TextInput style={styles.textInput} 
                                 placeholder="Address" 
                                 placeholderTextColor="#FFF"
@@ -257,7 +283,8 @@ class PeopLe extends Component
                         }      
 
                         {
-                            (this.state.type === contentType.uae_your_information) && 
+                            (this.state.type === contentType.uae_your_information || 
+                                this.state.type === contentType.uae_spouse) && 
                             <TextInput style={styles.textInput} 
                                 placeholder="Emirates ID" 
                                 placeholderTextColor="#FFF"
@@ -292,10 +319,7 @@ class PeopLe extends Component
                             <TextInput style={styles.textInput} 
                                 placeholder="Birth Of Date" 
                                 onBlur={() => {this.setState({showdate: false})}}
-                                placeholderTextColor="#FFF"
-                                onFocus={() => {
-                                    this.setState({showdate: true});
-                                }}                              
+                                placeholderTextColor="#FFF"                          
                                 onChangeText={(birth_of_date) => {
                                     this.setState({birth_of_date})
                                 }}  

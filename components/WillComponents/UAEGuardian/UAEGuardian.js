@@ -24,10 +24,12 @@ class PeopLe extends Component
             name: data.name,
             passport: data.passport,
             address: data.address,
+            nationality: data.nationality,
 
             second_name: data.second_name,
             second_passport: data.second_passport,
             second_address: data.second_address, 
+            second_nationality: data.second_nationality,
             
             keyboardHeight: 0,
             page: page,
@@ -57,17 +59,24 @@ class PeopLe extends Component
     {
         if(this.state.name === "" || this.state.name === undefined || this.state.name === null || 
             this.state.passport === "" || this.state.passport === undefined || this.state.passport === null || 
-            this.state.address === "" || this.state.address === undefined || this.state.address === null)
+            this.state.address === "" || this.state.address === undefined || this.state.address === null || 
+            this.state.nationality === "" || this.state.nationality === undefined || this.state.nationality === null || 
+            this.state.second_name === "" || this.state.second_name === undefined || this.state.second_name === null || 
+            this.state.second_passport === "" || this.state.second_passport === undefined || this.state.second_passport === null || 
+            this.state.second_address === "" || this.state.second_address === undefined || this.state.second_address === null || 
+            this.state.second_nationality === "" || this.state.second_nationality === undefined || this.state.second_nationality === null)
             return;
 
         this.props.sendNextWillStep({
             name: this.state.name,
             passport: this.state.passport,
             address: this.state.address,
+            nationality: this.state.nationality,
 
             second_name: this.state.second_name,
             second_passport: this.state.second_passport,
-            second_address: this.state.second_address
+            second_address: this.state.second_address,
+            second_nationality: this.state.second_nationality,
         }, this.state.page);
 
         const resetAction = StackActions.reset({
@@ -120,6 +129,12 @@ class PeopLe extends Component
                             value={this.state.address}
                             onChangeText={(address) => {this.setState({address})}}>
                         </TextInput>
+                        <TextInput style={styles.textInput} 
+                            placeholder="Nationality" 
+                            placeholderTextColor="#FFF"
+                            value={this.state.nationality}
+                            onChangeText={(nationality) => {this.setState({nationality})}}>
+                        </TextInput>
 
                         <TextInput style={[styles.textInput, {marginTop: 20}]}
                             placeholder="Full Name" 
@@ -138,6 +153,12 @@ class PeopLe extends Component
                             placeholderTextColor="#FFF"
                             value={this.state.second_address}
                             onChangeText={(second_address) => {this.setState({second_address})}}>
+                        </TextInput>
+                        <TextInput style={styles.textInput} 
+                            placeholder="Nationality" 
+                            placeholderTextColor="#FFF"
+                            value={this.state.second_nationality}
+                            onChangeText={(second_nationality) => {this.setState({second_nationality})}}>
                         </TextInput>
                         
                     </View>

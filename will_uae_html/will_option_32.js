@@ -1,6 +1,6 @@
 import {value_names} from "./../questions/question";
 
-export function get_will_option_32(data, pdf)
+export function get_will_option_32(data, pdf, isMirror)
 {
     const full_name = data[value_names.user] !== undefined ? (data[value_names.user].name + " " + data[value_names.user].surname) : '';
     const date_of_birth=data[value_names.your_information] !== undefined ? data[value_names.your_information].birth_of_date: '';
@@ -63,7 +63,7 @@ export function get_will_option_32(data, pdf)
     const div_style = "line-height: 1.6; ";
     const p_style = "padding: 0px;";
     const p_title_style = "font-size: 34px;font-weight:bold;";
-    const paragraph_style = "margin-top: 20px;";
+    const paragraph_style = "page-break-inside: avoid;margin-top: 20px;";
     const div_small_title_style = "font-size: 20px;font-weight:bold;";
     const div_number_style="width: 60px;font-size: 20px;font-weight:bold;";
     const div_text_title_style="width: 120px;font-size: 20px;font-weight:bold;";

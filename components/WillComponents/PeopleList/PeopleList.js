@@ -163,7 +163,7 @@ class PeopleList extends Component
                         value={item.date_of_birth}
                         onChangeText={(birth_of_date) => {this.updateChildrenList(birth_of_date, index, 3)}} 
                         onBlur={() => {this.setState({showdate: false})}}
-                        onFocus={() => {this.updateDate(index)}}>
+                        >
                     </TextInput>
                     }
                 </View>

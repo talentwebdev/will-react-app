@@ -1,12 +1,14 @@
 import {value_names} from "./../questions/question";
+import {get_will_option_5_pdf} from "./will_option_5_pdf";
 
 export function get_will_option_5(data, pdf)
 {
+    if(pdf) return get_will_option_5_pdf(data, pdf);
     const children = data[value_names.children] === undefined ? [] : data[value_names.children];
     let children_name = "";
     for(var i = 0 ; i < children.length ; i++)
     {
-        children_name += children[i].name + (i === children.length - 1 ? " " : ", ");
+        children_name += children[i].name + ", " + children[i].id_number + (i === children.length - 1 ? " " : "/");
     }   
     const year = new Date().getFullYear();
     const number_size = 60;
@@ -17,8 +19,8 @@ export function get_will_option_5(data, pdf)
     const witness_size_2 = (700 - number_size) / 3;
     const div_style = "line-height: 1.6; ";
     const p_style = "padding: 0px;";
-    const p_title_style = "font-size: 34px;font-weight:bold;";
-    const paragraph_style = "margin-top: 20px;";
+    const p_title_style = "font-size: 34px;font-weight:bold; padding-bottom:20px;";
+    const paragraph_style = "page-break-inside: avoid;margin-top: 20px;";
     const div_small_title_style = "font-size: 20px;font-weight:bold;";
     const div_number_style="width: 60px;font-size: 20px;font-weight:bold;";
     const div_text_style = "font-size: 20px;font-weight:lighter;";
@@ -63,7 +65,7 @@ export function get_will_option_5(data, pdf)
                         </div>
                         <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
-                                I hereby nominate, constitute and appoint ${data[value_names.spouse].name} to be the Executor/Executrix and
+                                I hereby nominate, constitute and appoint ${data[value_names.spouse].name + ", " + data[value_names.spouse].id_number} to be the Executor/Executrix and
                                 Administrator/Adminstratrix of my estate, granting unto him/her
                                 all such power and authority as is allowed in law and especially the
                                 power of assumption, and I hereby Direct that my
@@ -123,7 +125,7 @@ export function get_will_option_5(data, pdf)
                         </div>
                         <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
-                                In the event of our simultaneous deaths or ${data[value_names.spouse].name} predeceasing me , then and in such event I respectively direct
+                                In the event of our simultaneous deaths or ${data[value_names.spouse].name + ", " + data[value_names.spouse].id_number} predeceasing me , then and in such event I respectively direct
                                 as follows :-
                             </div>
                             <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -133,7 +135,9 @@ export function get_will_option_5(data, pdf)
                                     </div>
                                     <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         <div class="text" style="${div_style+div_text_style}">
-                                            I hereby nominate, constitute and appoint ${data[value_names.executor].name} to be the Executor/Executrix and
+                                            I hereby nominate, constitute and appoint ${data[value_names.executor].name + ", " + 
+                                            data[value_names.executor].id_number + ", " + 
+                                            data[value_names.executor].address} to be the Executor/Executrix and
                                             Administrator/Adminstratrix of my estate, granting unto him/her
                                             all such power and authority as is allowed in law and especially the
                                             power of assumption. I direct that my said Executrix/Executor
@@ -233,7 +237,7 @@ export function get_will_option_5(data, pdf)
                         </div>
                         <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
-                                In the event that I am not survived by my Husband / Wife ${data[value_names.spouse].name} , than and in such event I
+                                In the event that I am not survived by my Husband / Wife ${data[value_names.spouse].name + ", " + data[value_names.spouse].id_number} , than and in such event I
                                 bequeath the whole of my estate and effects, whether movable or
                                 immovable whether in possession, reversion, expectancy or
                                 contingency and wheresoever same may be situated, both such as I

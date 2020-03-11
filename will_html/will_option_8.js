@@ -1,12 +1,14 @@
 import {value_names} from "./../questions/question";
+import {get_will_option_8_pdf} from "./will_option_8_pdf";
 
 export function get_will_option_8(data, pdf)
 {
+    if(pdf) return get_will_option_8_pdf(data, pdf);
     const beneficiaries = data[value_names.beneficiaries] === undefined ? [] : data[value_names.beneficiaries];
     let beneficiaries_name = "";
     for(var i = 0 ; i < beneficiaries.length ; i++)
     {
-        beneficiaries_name += beneficiaries[i].name + (i === beneficiaries.length - 1 ? " " : ", ");
+        beneficiaries_name += beneficiaries[i].name + ", " + beneficiaries[i].id_number + (i === beneficiaries.length - 1 ? " " : "/");
     }
     const number_size = 60;
     const year = new Date().getFullYear();
@@ -17,8 +19,8 @@ export function get_will_option_8(data, pdf)
     const witness_size_2 = (700 - number_size) / 3;
     const div_style = "line-height: 1.6; ";
     const p_style = "padding: 0px;";
-    const p_title_style = "font-size: 34px;font-weight:bold;";
-    const paragraph_style = "margin-top: 20px;";
+    const p_title_style = "font-size: 34px;font-weight:bold; padding-bottom:20px;";
+    const paragraph_style = "page-break-inside: avoid;margin-top: 20px;";
     const div_small_title_style = "font-size: 20px;font-weight:bold;";
     const div_number_style="width: 60px;font-size: 20px;font-weight:bold;";
     const div_text_style = "font-size: 20px;font-weight:lighter;";
@@ -156,7 +158,7 @@ export function get_will_option_8(data, pdf)
                                     </div>
                                     <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         <div class="text" style="${div_style+div_text_style}">
-                                            We appoint ${data[value_names.executor].name} to be our Executrix and
+                                            We appoint ${data[value_names.executor].name + ", " + data[value_names.executor].id_number + ", " + data[value_names.executor].address} to be our Executrix and
                                             Adminstratrix, granting unto her all such powers and
                                             authorities as are allowed in Law, including the powers of
                                             assumption. We direct that our said Executrix and

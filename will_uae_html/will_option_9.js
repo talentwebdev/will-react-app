@@ -42,7 +42,7 @@ export function get_will_option_9(data, pdf)
     let children = data[value_names.children] !== undefined ? data[value_names.children] : [];
     for(var i = 0 ; i < children.length ; i++)
     {
-        children_name += children[i].name + (i < children.length - 1 ? "/" : "");
+        children_name += children[i].name + ", " + children[i].id_number + (i < children.length - 1 ? "/" : "");
         children_list += `<div>
             ${children[i].name}, born on the ${children[i].date_of_birth}, holder of an ${children[i].nationality} Passport, with Passport No. ${children[i].id_number};
         </div>`;
@@ -94,7 +94,7 @@ export function get_will_option_9(data, pdf)
     const div_style = "line-height: 1.6; ";
     const p_style = "padding: 0px;";
     const p_title_style = "font-size: 34px;font-weight:bold;";
-    const paragraph_style = "margin-top: 20px;";
+    const paragraph_style = "page-break-inside: avoid;margin-top: 20px;";
     const div_small_title_style = "font-size: 20px;font-weight:bold;";
     const div_number_style="width: 60px;font-size: 20px;font-weight:bold;";
     const div_text_title_style="width: 120px;font-size: 20px;font-weight:bold;";
@@ -528,7 +528,7 @@ export function get_will_option_9(data, pdf)
                     Upon my demise, I appoint my ${gender === "male" ? "WIFE" : "HUSBAND"}  ${spouse_name} to act 
                     as permanent guardian of my ${children.length > 1 ? "CHILDREN" : "CHILD"}, ${children_name} and in the event of 
                     ${gender === "male" ? "HER" : "HIM"} predeceasing me or being unable or unwilling to act, I appoint my 
-                     ${permanent_guardian.name} ,${permanent_guardian.name} Passport, with Passport No.${permanent_guardian.passport} , 
+                     ${permanent_guardian.name} ,${permanent_guardian.nationality} Passport, with Passport No.${permanent_guardian.passport} , 
                      to act as permanent guardians.
 
                     I appoint ${temporary_guardian.name} with United Arab Emirates (UAE) Resident Identity Card No.

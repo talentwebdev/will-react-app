@@ -1,6 +1,6 @@
 import {value_names} from "./../questions/question";
 
-export function get_will_option_27(data, pdf)
+export function get_will_option_27(data, pdf, isMirror)
 {
     const full_name = data[value_names.user] !== undefined ? (data[value_names.user].name + " " + data[value_names.user].surname) : '';
     const date_of_birth=data[value_names.your_information] !== undefined ? data[value_names.your_information].birth_of_date: '';
@@ -63,7 +63,7 @@ export function get_will_option_27(data, pdf)
     const div_style = "line-height: 1.6; ";
     const p_style = "padding: 0px;";
     const p_title_style = "font-size: 34px;font-weight:bold;";
-    const paragraph_style = "margin-top: 20px;";
+    const paragraph_style = "page-break-inside: avoid;margin-top: 20px;";
     const div_small_title_style = "font-size: 20px;font-weight:bold;";
     const div_number_style="width: 60px;font-size: 20px;font-weight:bold;";
     const div_text_title_style="width: 120px;font-size: 20px;font-weight:bold;";
@@ -453,7 +453,7 @@ export function get_will_option_27(data, pdf)
                 <div class="small_title" style="${div_style+div_text_style}">
                 Upon my demise, I appoint ${first_permanent_guardian_name}  to act as permanent guardian of my ${children.length > 1 ? "CHILDREN" : "CHILD"}, 
                 ${children_name} and in the event of (HIM/HER) predeceasing me or being unable or unwilling to act, 
-                I appoint my  ${second_permanent_guardian_name} ,(NATIONALITY) Passport, with Passport No.${second_permanent_guardian_passport} , 
+                I appoint my  ${second_permanent_guardian_name} ,${permanent_guardian.nationality} Passport, with Passport No.${second_permanent_guardian_passport} , 
                 to act as permanent guardians.
                 I appoint ${first_temporary_guardian_name} with United Arab Emirates (UAE) Resident Identity Card No.${first_temporary_guardian_passport} , 
                 to act as interim guardian of my ${children.length > 1 ? "CHILDREN" : "CHILD"} and in the event of (HIM/HER) predeceasing me or being unable or unwilling to act, 

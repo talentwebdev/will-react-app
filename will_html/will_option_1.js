@@ -1,7 +1,9 @@
 import {value_names} from "./../questions/question";
+import { get_will_option_1_pdf } from "./will_option_1_pdf";
 
 export function get_will_option_1(data, pdf)
 {
+    if(pdf) return get_will_option_1_pdf(data, pdf);
     let appoint_estates = data[value_names.appoint_estate];
     let appoint_name = "";
 
@@ -17,8 +19,8 @@ export function get_will_option_1(data, pdf)
     const witness_size_2 = (700 - number_size) / 3;
     const div_style = "line-height: 1.6; ";
     const p_style = "padding: 0px;";
-    const p_title_style = "font-size: 34px;font-weight:bold;";
-    const paragraph_style = "margin-top: 15px;";
+    const p_title_style = "font-size: 34px;font-weight:bold; padding-bottom:20px;";
+    const paragraph_style = "page-break-inside: avoid;margin-top: 15px;";
     const div_small_title_style = "font-size: 20px;font-weight:bold;";
     const div_number_style="width: 60px;font-size: 20px;font-weight:bold;";
     const div_text_style = "font-size: 20px;font-weight:lighter;";
@@ -63,7 +65,7 @@ export function get_will_option_1(data, pdf)
             <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">APPOINTMENT OF AN EXECUTOR/ EXECUTRIX: </div>
                 <div class="text" style="${div_style+div_text_style}">
-                    I hereby appoint ${data[value_names.executor].name} to be my Executor, granting
+                    I hereby appoint ${data[value_names.executor].name + ", " + data[value_names.executor].id_number + ", " + data[value_names.executor].address} to be my Executor, granting
                     unto
                     Him/her all such powers and authorities as are allowed in Law, including
                     the powers of assumption. I direct that said Executror shall not be bound

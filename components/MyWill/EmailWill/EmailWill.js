@@ -20,7 +20,7 @@ import background from "./../../../assets/images/background.png";
 
 import {getWillHTML} from "./../../../will_html/mainwill";
 import {getUAEWillHTML} from "./../../../will_uae_html/mainwill";
-import {API_URL} from "./../../../Environment/Environment";
+import {API_URL, isDebug} from "./../../../Environment/Environment";
 import {connect} from "react-redux";
 import Spinner from 'react-native-loading-spinner-overlay';
 import {StackActions, NavigationActions} from "react-navigation";
@@ -33,7 +33,7 @@ class EmailWill extends Component{
 
         this.state = {
             keyboardshow: false,
-            email: "",
+            email: isDebug ? "zhuping.kp@gmail.com" : "",
             sending: false,
         }
         this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.handleKeyboardDidShow);
@@ -65,12 +65,28 @@ class EmailWill extends Component{
 
     onSend()
     {
-        let data = this.props.will.final_will;
+        let data = {...this.props.will.final_will};
         data['user'] = this.props.user;
 
         let willType = this.props.will.final_will["will_type"];
 
         this.setState({sending: true});
+        console.log(isDebug);
+        /*
+        if(isDebug )
+        {
+            data[value_names.country_location] = "South Africa";
+            data[value_names.user].name = "Zhuping ";data[value_names.user].surname = "Hello ";
+            data[value_names.address] = "asdlfksdjf sdlfksdjf";
+            data[value_names.mirror] = "Yes";
+            data[value_names.executor] = {name: "abcd"};
+            data[value_names.guard_appoint] = {name: "abcd"};
+            data[value_names.another_guard_appoint] = {name: "abcd"};
+            data[value_names.spouse] = {name: "abcd"};
+            willType = 9;
+        }
+        */
+        
         console.log(willType);
         fetch(API_URL + "/email/send", {
             method: "POST",
@@ -85,12 +101,17 @@ class EmailWill extends Component{
         })
         .then(response => response.json())
         .then(responseJson => {
-            console.log(responseJson);
+            console.log(responseJson, data[value_names.mirror]  );
             
             if(data[value_names.mirror] === "Yes"){
                 let newdata = {...data};
-                newdata[value_names.spouse] = this.props.user;
-                newdata.user = data.spouse;
+                newdata[value_names.spouse] = {...this.props.user, ...data[value_names.your_information]};
+                newdata[value_names.spouse].name = this.props.user.name + " " + this.props.user.surname;
+                newdata[value_names.spouse].passport = newdata[value_names.spouse].id_number;
+                newdata[value_names.user] = {...data.spouse};
+                newdata[value_names.user].gender = newdata[value_names.spouse].gender === "male" ? "female" : "male";
+                newdata[value_names.user].surname = "";
+                newdata[value_names.your_information] = {...data.spouse};
                 fetch(API_URL + "/email/send", {
                     method: "POST",
                     headers: {
@@ -98,7 +119,7 @@ class EmailWill extends Component{
                     },
                     body: JSON.stringify({
                         email: this.state.email,
-                        content: getUAEWillHTML(willType, newdata, true),
+                        content: getUAEWillHTML(willType, newdata, true, true),
                         authorization: this.props.user.token
                     })
                 })
