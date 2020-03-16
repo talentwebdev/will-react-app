@@ -65,7 +65,11 @@ class PeopLe extends Component
             this.state.second_passport === "" || this.state.second_passport === undefined || this.state.second_passport === null || 
             this.state.second_address === "" || this.state.second_address === undefined || this.state.second_address === null || 
             this.state.second_nationality === "" || this.state.second_nationality === undefined || this.state.second_nationality === null)
-            return;
+            {
+                alert("Please enter all the input fields.");
+                return;
+            }
+            
 
         this.props.sendNextWillStep({
             name: this.state.name,

@@ -105,7 +105,10 @@ class PeopLe extends Component
         {
             if(this.state.name === "" || this.state.name === undefined || this.state.name === null || 
                 this.state.id_number === "" || this.state.id_number === undefined || this.state.id_number === null)
-                return;
+                {
+                    alert("Please enter all the input fields.");    
+                    return;
+                }
 
             this.props.sendNextWillStep({
                 name: this.state.name, id_number: this.state.id_number
@@ -116,7 +119,10 @@ class PeopLe extends Component
             if(this.state.name === "" || this.state.name === undefined || this.state.name === null || 
                 this.state.id_number === "" || this.state.id_number === undefined || this.state.id_number === null || 
                 this.state.uae_address === "" || this.state.uae_address === undefined || this.state.uae_address === null)
-                return;
+                {
+                    alert("Please enter all the input fields.");
+                    return;
+                }
 
             this.props.sendNextWillStep({
                 name: this.state.name, 
@@ -130,7 +136,11 @@ class PeopLe extends Component
                 this.state.uae_passport === "" || this.state.uae_passport === undefined || this.state.uae_passport === null || 
                 this.state.uae_address === "" || this.state.uae_address === undefined || this.state.uae_address === null || 
                 this.state.uae_nationality === "" || this.state.uae_nationality === undefined || this.state.uae_nationality === null)
-                return;
+                {
+                    alert("Please enter all the input fields.");
+                    return;
+                }
+                
 
             this.props.sendNextWillStep({
                 name: this.state.uae_name, 
@@ -143,7 +153,10 @@ class PeopLe extends Component
         else if(this.state.type === contentType.uae_country)   
         {
             if(this.state.uae_country === "" || this.state.uae_country === undefined || this.state.uae_country === null)
+            {
+                alert("Please enter all the input fields.");
                 return;
+            }
             
             this.props.sendNextWillStep({
                 country: this.state.uae_country
@@ -154,7 +167,10 @@ class PeopLe extends Component
             if(this.state.emirates_id === "" || this.state.emirates_id === undefined || this.state.emirates_id === null || 
             this.state.uae_nationality === "" || this.state.uae_nationality === undefined || this.state.uae_nationality === null || 
             this.state.birth_of_date === "" || this.state.birth_of_date === undefined || this.state.birth_of_date === null)
+            {
+                alert("Please enter all the input fields.");
                 return;
+            }                
             
             this.props.sendNextWillStep({
                 emirates_id: this.state.emirates_id,
@@ -168,7 +184,11 @@ class PeopLe extends Component
             this.state.uae_passport === "" || this.state.uae_passport === undefined || this.state.uae_passport === null || 
             this.state.emirates_id === "" || this.state.emirates_id === undefined || this.state.emirates_id === null || 
             this.state.birth_of_date === "" || this.state.birth_of_date === undefined || this.state.birth_of_date === null)
+            {
+                alert("Please enter all the input fields.");
                 return;
+            }
+                
             
             this.props.sendNextWillStep({
                 name: this.state.uae_name,
@@ -182,7 +202,10 @@ class PeopLe extends Component
         {
             if(this.state.uae_name === "" || this.state.uae_name === undefined || this.state.uae_name === null || 
             this.state.uae_passport === "" || this.state.uae_passport === undefined || this.state.uae_passport === null)
+            {
+                alert("Please enter all the input fields.");
                 return;
+            }                
             
             this.props.sendNextWillStep({
                 name: this.state.uae_name,

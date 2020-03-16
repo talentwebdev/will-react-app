@@ -436,7 +436,7 @@ export const question = {
                                                 next: {
                                                     component: "UAEGuardianScreen",
                                                     value: value_names.temporary_guardian,
-                                                    title: "In the event of death to you and spouse death. Please name a temporary guardian residing in the UAE",
+                                                    title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
                                                     next: {
                                                         component: "PeopleScreen",
                                                         value: value_names.alternative_executor,
@@ -492,11 +492,11 @@ export const question = {
                                                 next: {
                                                     component: "UAEGuardianScreen",
                                                     value: value_names.temporary_guardian,
-                                                    title: "In the event of death to you and spouse death. Please name a temporary guardian residing in the UAE",
+                                                    title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
                                                     next: {
                                                         component: "UAEGuardianScreen",
                                                         value: value_names.permanent_guardian,
-                                                        title: "In the event of death to you and spouse death. Please name a permanent guardian",
+                                                        title: "In the event of death to you and spouse death. Please name 2 permanent guardians",
                                                         next: {
                                                             component: "PeopleScreen",
                                                             value: value_names.alternative_executor,
@@ -567,7 +567,7 @@ export const question = {
                                                 next: {
                                                     component: "UAEGuardianScreen",
                                                     value: value_names.temporary_guardian,
-                                                    title: "In the event of death to you and spouse death. Please name a temporary guardian residing in the UAE",
+                                                    title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
                                                     next: {
                                                         component: "PeopleScreen",
                                                         value: value_names.alternative_executor,
@@ -623,11 +623,11 @@ export const question = {
                                                 next: {
                                                     component: "UAEGuardianScreen",
                                                     value: value_names.temporary_guardian,
-                                                    title: "In the event of death to you and spouse death. Please name a temporary guardian residing in the UAE",
+                                                    title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
                                                     next: {
                                                         component: "UAEGuardianScreen",
                                                         value: value_names.permanent_guardian,
-                                                        title: "In the event of death to you and spouse death. Please name a permanent guardian",
+                                                        title: "In the event of death to you and spouse death. Please name 2 permanent guardians",
                                                         next: {
                                                             component: "PeopleScreen",
                                                             value: value_names.alternative_executor,
@@ -699,11 +699,11 @@ export const question = {
                                         value: value_names.specific_assets, 
                                         next: {
                                             component: "UAEGuardianScreen",
-                                            title: "In the event of your death. Please name a temporary guardian residing in the UAE",
+                                            title: "In the event of your death. Please name 2 temporary guardians residing in the UAE",
                                             value: value_names.temporary_guardian,
                                             next: {
                                                 component: "UAEGuardianScreen",
-                                                title: "In the event of your death. Please name a permanent guardian residing in the UAE", 
+                                                title: "In the event of your death. Please name 2 permanent guardians residing in the UAE", 
                                                 value: value_names.permanent_guardian,
                                                 next: {
                                                     component: "PeopleScreen",
@@ -765,11 +765,11 @@ export const question = {
                                         value: value_names.specific_assets, 
                                         next: {
                                             component: "UAEGuardianScreen",
-                                            title: "In the event of your death. Please name a temporary guardian residing in the UAE",
+                                            title: "In the event of your death. Please name 2 temporary guardians residing in the UAE",
                                             value: value_names.temporary_guardian,
                                             next: {
                                                 component: "UAEGuardianScreen",
-                                                title: "In the event of your death. Please name a permanent guardian residing in the UAE", 
+                                                title: "In the event of your death. Please name 2 permanent guardians residing in the UAE", 
                                                 value: value_names.permanent_guardian,
                                                 next: {
                                                     component: "PeopleScreen",
