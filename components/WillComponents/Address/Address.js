@@ -19,9 +19,9 @@ class Address extends Component
         let data = this.props.will.datas[this.props.will.datas.length - 1];
         this.state = {
             text: page.title,
-            address: data.address,
+            address_: data.address_,
             city: data.city,
-            post_code : data.post_code,
+            country : data.country,
             keyboardHeight: 0,
             page: page,
         }
@@ -49,16 +49,17 @@ class Address extends Component
 
     onNext()
     {
-        if(this.state.address === null || this.state.address === "" || this.state.address === undefined || 
+        if(this.state.address_ === null || this.state.address_ === "" || this.state.address_ === undefined || 
             this.state.city === null || this.state.city === "" || this.state.city === undefined || 
-            this.state.post_code === null || this.state.post_code === "" || this.state.post_code === undefined)
+            this.state.country === null || this.state.country === "" || this.state.country === undefined)
             return; 
 
         
         this.props.sendNextWillStep({
-            address: this.state.address,
+            address: this.state.address_ + ", " + this.state.city + ", " + this.state.country,
+            address_: this.state.address_,
             city: this.state.city,
-            post_code: this.state.post_code
+            country: this.state.country
         }, this.state.page);
         const resetAction = StackActions.reset({
             index: 1,
@@ -93,8 +94,8 @@ class Address extends Component
                         <TextInput style={styles.textInput} 
                             placeholder="Address" 
                             placeholderTextColor="#FFF"
-                            value={this.state.address}
-                            onChangeText={(address) => {this.setState({address: address})}}>
+                            value={this.state.address_}
+                            onChangeText={(address_) => {this.setState({address_: address_})}}>
                         </TextInput>
                         <TextInput style={styles.textInput} 
                             placeholder="City" 
@@ -103,10 +104,10 @@ class Address extends Component
                             onChangeText={(city) => { this.setState({city: city})}}>
                         </TextInput>
                         <TextInput style={styles.textInput} 
-                            placeholder="Post Code" 
+                            placeholder="Country" 
                             placeholderTextColor="#FFF"
-                            value={this.state.post_code}
-                            onChangeText={(post_code) => {this.setState({post_code: post_code})}}>
+                            value={this.state.country}
+                            onChangeText={(country) => {this.setState({country: country})}}>
                         </TextInput>
                     </View>
                     <View style={styles.buttonContainer}>

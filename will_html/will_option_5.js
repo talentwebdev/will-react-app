@@ -8,7 +8,7 @@ export function get_will_option_5(data, pdf)
     let children_name = "";
     for(var i = 0 ; i < children.length ; i++)
     {
-        children_name += children[i].name + ", " + children[i].id_number + (i === children.length - 1 ? " " : "/");
+        children_name += children[i].name + " with " + children[i].id_number + (i === children.length - 1 ? " " : " and ");
     }   
     const year = new Date().getFullYear();
     const number_size = 60;
@@ -33,6 +33,12 @@ export function get_will_option_5(data, pdf)
         <div style="text-align: center; ${p_title_style}">${data[value_names.user].name + " " + data[value_names.user].surname}</div>
         <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number})</div>
     </p>
+    
+    <div class="paragraph" style="${div_style+paragraph_style}" >
+        <div style="display:flex; flex-direction: 'column'; ">
+            <div class="small_title" style="${div_style+div_small_title_style}"> I record that I am single ${data[value_names.user].gender} residing at ${data[value_names.address].address}</div>
+        </div>
+    </div>
     
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="display:flex; flex-direction: 'row'; ">
@@ -65,7 +71,7 @@ export function get_will_option_5(data, pdf)
                         </div>
                         <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
-                                I hereby nominate, constitute and appoint ${data[value_names.spouse].name + ", " + data[value_names.spouse].id_number} to be the Executor/Executrix and
+                                I hereby nominate, constitute and appoint ${data[value_names.spouse].name + " with " + data[value_names.spouse].id_number} to be the Executor/Executrix and
                                 Administrator/Adminstratrix of my estate, granting unto him/her
                                 all such power and authority as is allowed in law and especially the
                                 power of assumption, and I hereby Direct that my
@@ -125,7 +131,7 @@ export function get_will_option_5(data, pdf)
                         </div>
                         <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
-                                In the event of our simultaneous deaths or ${data[value_names.spouse].name + ", " + data[value_names.spouse].id_number} predeceasing me , then and in such event I respectively direct
+                                In the event of our simultaneous deaths or ${data[value_names.spouse].name + " with " + data[value_names.spouse].id_number} predeceasing me , then and in such event I respectively direct
                                 as follows :-
                             </div>
                             <div class="paragraph" style="${div_style+paragraph_style}" >
@@ -135,8 +141,8 @@ export function get_will_option_5(data, pdf)
                                     </div>
                                     <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         <div class="text" style="${div_style+div_text_style}">
-                                            I hereby nominate, constitute and appoint ${data[value_names.executor].name + ", " + 
-                                            data[value_names.executor].id_number + ", " + 
+                                            I hereby nominate, constitute and appoint ${data[value_names.executor].name + " with " + 
+                                            data[value_names.executor].id_number + " of " + 
                                             data[value_names.executor].address} to be the Executor/Executrix and
                                             Administrator/Adminstratrix of my estate, granting unto him/her
                                             all such power and authority as is allowed in law and especially the
@@ -225,7 +231,7 @@ export function get_will_option_5(data, pdf)
                                 whether movable or immovable, and whether in possession,
                                 reversion, expectancy or contingency and wheresoever same may
                                 be situated, both such as I may now possess or may in future
-                                become possessed of, nothing excepted to ${data[value_names.spouse].name + " - " + children_name} in Equal shares.
+                                become possessed of, nothing excepted to ${children_name} in Equal shares.
                             </div>                 
                         </div>
                     </div>
@@ -237,7 +243,7 @@ export function get_will_option_5(data, pdf)
                         </div>
                         <div style=" ${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 2 * number_size}px;` }">
                             <div class="text" style="${div_style+div_text_style}">
-                                In the event that I am not survived by my Husband / Wife ${data[value_names.spouse].name + ", " + data[value_names.spouse].id_number} , than and in such event I
+                                In the event that I am not survived by my Husband / Wife ${data[value_names.spouse].name + " with " + data[value_names.spouse].id_number} , than and in such event I
                                 bequeath the whole of my estate and effects, whether movable or
                                 immovable whether in possession, reversion, expectancy or
                                 contingency and wheresoever same may be situated, both such as I
@@ -361,9 +367,9 @@ export function get_will_option_5(data, pdf)
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div class="text" style="${div_style+div_text_style}">
-            IN WITNESS HEREOF, we have hereunto set our hands at 
+            IN WITNESS HEREOF, we have hereunto set our hands at &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             on
-            This day of ${year}, in the presence of the
+            This day of &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, in the presence of the
             undersigned witnesses, being present at the same time.
         </div>
     </div>

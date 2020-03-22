@@ -20,6 +20,7 @@ class ViewWill extends Component
         data['user'] = this.props.user;
         if(isDebug )
         {
+            /*
             data[value_names.country_location] = "South Africa";
             data[value_names.user].name = "Zhuping ";data[value_names.user].surname = "Hello ";
             data[value_names.address] = "asdlfksdjf sdlfksdjf";
@@ -29,6 +30,7 @@ class ViewWill extends Component
             data[value_names.another_guard_appoint] = {name: "abcd"};
             data[value_names.spouse] = {name: "abcd"};
             willType = 9;
+            */
         }
 
         this.state = {

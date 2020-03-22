@@ -525,9 +525,9 @@ export function get_will_option_11(data, pdf, isMirror)
             <div class="number" style="${div_style+div_number_style}"></div>
             <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="${div_style+div_text_style}">
-                    Upon my demise, I appoint my ${gender === "male" ? "WIFE" : "HUSBAND"}  ${spouse_name} to act 
+                    Upon my demise, I appoint ${gender === "male" ? "WIFE" : "HUSBAND"}  ${spouse_name} to act 
                     as permanent guardian of my ${children.length > 1 ? "CHILDREN" : "CHILD"}, ${children_name} and in the event of 
-                    ${gender === "male" ? "HER" : "HIM"} predeceasing me or being unable or unwilling to act, I appoint my 
+                    ${gender === "male" ? "HER" : "HIM"} predeceasing me or being unable or unwilling to act, I appoint 
                      ${permanent_guardian.name} ,${permanent_guardian.nationality} Passport, with Passport No.${permanent_guardian.passport} , 
                      to act as permanent guardians.
 
@@ -586,7 +586,7 @@ export function get_will_option_11(data, pdf, isMirror)
         <div style="display:flex; flex-direction: 'row'; ">
             <div style="width: ${total_size}px;">
                 <div class="small_title" style="text-decoration: underline; ${div_style+div_text_style}">
-                Signature of Testatrix
+                Signature of Signature of ${gender === "male" ? "Testator" : "Testatrix"}
                 </div>
             </div>                
         </div>

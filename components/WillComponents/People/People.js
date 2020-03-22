@@ -176,6 +176,7 @@ class PeopLe extends Component
                 emirates_id: this.state.emirates_id,
                 nationality: this.state.uae_nationality,
                 birth_of_date: this.state.birth_of_date,
+                date_of_birth: this.state.birth_of_date,
             }, this.state.page);
         }
         else if(this.state.type === contentType.uae_spouse)
@@ -183,7 +184,8 @@ class PeopLe extends Component
             if(this.state.uae_name === "" || this.state.uae_name === undefined || this.state.uae_name === null || 
             this.state.uae_passport === "" || this.state.uae_passport === undefined || this.state.uae_passport === null || 
             this.state.emirates_id === "" || this.state.emirates_id === undefined || this.state.emirates_id === null || 
-            this.state.birth_of_date === "" || this.state.birth_of_date === undefined || this.state.birth_of_date === null)
+            this.state.birth_of_date === "" || this.state.birth_of_date === undefined || this.state.birth_of_date === null ||
+            this.state.uae_nationality === "" || this.state.uae_nationality === undefined || this.state.uae_nationality === null )
             {
                 alert("Please enter all the input fields.");
                 return;
@@ -195,7 +197,9 @@ class PeopLe extends Component
                 passport: this.state.uae_passport,
                 id_number: this.state.uae_passport,
                 birth_of_date: this.state.birth_of_date,
+                date_of_birth: this.state.birth_of_date,
                 emirates_id: this.state.emirates_id,
+                nationality: this.state.uae_nationality,
             }, this.state.page);
         }
         else if(this.state.type === contentType.uae_normal_people)
@@ -316,7 +320,10 @@ class PeopLe extends Component
                             </TextInput>
                         }         
                         {
-                            (this.state.type === contentType.uae_executor || this.state.type === contentType.uae_alternative_executor || this.state.type === contentType.uae_your_information) && 
+                            (this.state.type === contentType.uae_executor || 
+                                this.state.type === contentType.uae_alternative_executor || 
+                                this.state.type === contentType.uae_your_information || 
+                                this.state.type === contentType.uae_spouse) && 
                             <TextInput style={styles.textInput} 
                                 placeholder="Nationality" 
                                 placeholderTextColor="#FFF"

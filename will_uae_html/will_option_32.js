@@ -473,7 +473,7 @@ export function get_will_option_32(data, pdf, isMirror)
         <div style="display:flex; flex-direction: 'row'; ">
             <div style="width: ${total_size}px;">
                 <div class="small_title" style="text-decoration: underline; ${div_style+div_text_style}">
-                Signature of Testatrix
+                Signature of Signature of ${gender === "male" ? "Testator" : "Testatrix"}
                 </div>
             </div>                
         </div>

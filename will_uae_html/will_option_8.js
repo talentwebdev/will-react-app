@@ -7,7 +7,7 @@ export function get_will_option_8(data, pdf, isMirror)
     const country = data[value_names.your_information] !== undefined ? data[value_names.your_information].nationality : '';
     const passport_number = data[value_names.user] !== undefined ? data[value_names.user].id_number : '';
     const uae_id = data[value_names.your_information] !== undefined ? data[value_names.your_information].emirates_id : '';
-    const address = data[value_names.address] !== undefined ? (data[value_names.address].address + " " + data[value_names.address].city): '';
+    const address = data[value_names.address] !== undefined ? (data[value_names.address].address): '';
     const executor_name = data[value_names.executor] !== undefined ? data[value_names.executor].name : '';
     const executor_address = data[value_names.executor] !== undefined ? data[value_names.executor].address : "";
     const executor_nationality = data[value_names.executor] !== undefined ? data[value_names.executor].nationality : '';
@@ -27,7 +27,7 @@ export function get_will_option_8(data, pdf, isMirror)
     }
     let children_name = "";
     for(var i = 0 ; i < data[value_names.children].length ; i++)
-        children_name = data[value_names.children][i].name + ",";
+        children_name = data[value_names.children][i].name + " with " + data[value_names.children][i].id_number + (i < data[value_names.children].length - 1 ? " and " : " ");
     
     const first_permanent_guardian_name = data[value_names.permanent_guardian] !== undefined ? data[value_names.permanent_guardian].name: '';
     const second_permanent_guardian_name = data[value_names.permanent_guardian] !== undefined ? data[value_names.permanent_guardian].second_name: '';
@@ -65,7 +65,7 @@ export function get_will_option_8(data, pdf, isMirror)
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="${pdf === true ? "" : "display:flex; flex-direction: 'column';"} ${div_style+div_text_style}">
-            I ${full_name} of ${address}, United Arab Emirates, declare this to be my last Will.
+            I ${full_name} of ${address} declare this to be my last Will.
         </div>
     </div>
     
@@ -108,8 +108,8 @@ export function get_will_option_8(data, pdf, isMirror)
             <div class="number" style="${div_style+div_number_style}">4. </div>
             <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    I appoint ${executor_name} to be my executor and trustee in relation to my UAE Estate. In the event that
-                    my ${executor_name} predeceases me, then I appoint ${alternative_executor_name}, as the ${executor_name} and Trustee in relation to my UAE  Estate.
+                    I appoint ${executor_name + " with " + executor_passport} to be my executor and trustee in relation to my UAE Estate. In the event that
+                    ${executor_name + " with " + executor_passport} predeceases me, then I appoint ${alternative_executor_name + " with " + alternative_executor_passport}, as the executor and Trustee in relation to my UAE  Estate.
                 </div>
             </div>                
         </div>

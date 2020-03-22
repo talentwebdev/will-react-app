@@ -6,7 +6,7 @@ export function get_will_option_9_pdf(data, pdf)
     let children_name = "";
     for(var i = 0 ; i < children.length ; i++)
     {
-        children_name += children[i].name + ", " + children[i].id_number + (i === children.length - 1 ? " " : "/");
+        children_name += children[i].name + " with " + children[i].id_number + (i === children.length - 1 ? " " : " and ");
     }   
     const year = new Date().getFullYear();
     const number_size = 60;
@@ -68,7 +68,7 @@ export function get_will_option_9_pdf(data, pdf)
                 </div>
                 <div style="${pdf === false ? `width: ${witness_size_1_2}px;` : `margin-left: 60%;`}">
                     <div class="testor_name" style='width: 100%; border-bottom: 1px solid #000; ${div_test_name_style}'>
-                        <p style="padding-left: 50%; text-decoration:none; margin-left: -20px; margin-bottom: -10px;">And</p>
+                        <p style="padding-left: 50%; text-decoration:none; margin-left: -20px; margin-bottom: -10px;">/</p>
                     </div>
                     <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR </div>      
                                         
@@ -163,7 +163,7 @@ export function get_will_option_9_pdf(data, pdf)
                 </div>
                 <div style="${pdf === false ? `width: ${witness_size_1_2}px;` : `margin-left: 60%;`}">
                 <div class="testor_name" style='width: 100%; border-bottom: 1px solid #000; ${div_test_name_style}'>
-                    <p style="padding-left: 50%; text-decoration:none; margin-left: -20px; margin-bottom: -10px;">And</p>
+                    <p style="padding-left: 50%; text-decoration:none; margin-left: -20px; margin-bottom: -10px;">/</p>
                 </div>
                     <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR </div>      
                                         
@@ -186,7 +186,7 @@ export function get_will_option_9_pdf(data, pdf)
     <p style="display:flex; flex-direction: 'row';page-break-inside: auto; ">
         <p style="${div_style+div_number_style} ${pdf === true ? `margin-left: ${number_size * 2}px;` : ""}">2.2.1</p>
         <p class="text" style="${div_style+div_text_style}; margin-top: -60px; ${pdf === true ? `margin-left: ${number_size * 3}px;` : ""}"">
-            We appoint ${data[value_names.executor].name + ", " + data[value_names.executor].id_number + ", " + data[value_names.executor].address} to be our Executrix and
+            We appoint ${data[value_names.executor].name + " with " + data[value_names.executor].id_number + " of " + data[value_names.executor].address} to be our Executrix and
             Adminstratrix, granting unto her all such powers and
             authorities as are allowed in Law, including the powers of
             assumption. We direct that our said Executrix and
@@ -237,7 +237,7 @@ export function get_will_option_9_pdf(data, pdf)
                 </div>
                 <div style="${pdf === false ? `width: ${witness_size_1_2}px;` : `margin-left: 60%;`}">
                 <div class="testor_name" style='width: 100%; border-bottom: 1px solid #000; ${div_test_name_style}'>
-                    <p style="padding-left: 50%; text-decoration:none; margin-left: -20px; margin-bottom: -10px;">And</p>
+                    <p style="padding-left: 50%; text-decoration:none; margin-left: -20px; margin-bottom: -10px;">/</p>
                 </div>
                     <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR </div>      
                                         
@@ -295,7 +295,7 @@ export function get_will_option_9_pdf(data, pdf)
     <p style="display:flex; flex-direction: 'row';page-break-inside: auto; ">
         <p style="${div_style+div_number_style} ${pdf === true ? `margin-left: ${number_size * 2}px;` : ""}">4.2.2</p>
         <p class="text" style="${div_style+div_text_style}; margin-top: -60px; ${pdf === true ? `margin-left: ${number_size * 3}px;` : ""}"">
-            we respectively hereby request that ${data[value_names.guard_appoint].name + ", " + data[value_names.guard_appoint].id_number}
+            we respectively hereby request that ${data[value_names.guard_appoint].name + " with " + data[value_names.guard_appoint].id_number}
             have dual signing powers and act in an administrative role
             with our CHILD/CHILDREN until they retain the age of 21
             years old respectively, in order to manage the funds
@@ -317,7 +317,7 @@ export function get_will_option_9_pdf(data, pdf)
                 </div>
                 <div style="${pdf === false ? `width: ${witness_size_1_2}px;` : `margin-left: 60%;`}">
                     <div class="testor_name" style='width: 100%; border-bottom: 1px solid #000; ${div_test_name_style}'>
-                        <p style="padding-left: 50%; text-decoration:none; margin-left: -20px; margin-bottom: -10px;">And</p>
+                        <p style="padding-left: 50%; text-decoration:none; margin-left: -20px; margin-bottom: -10px;">/</p>
                     </div>
                     <div class="small_title" style="${div_style+div_small_title_style}">TESTATOR </div>      
                                         
@@ -391,9 +391,9 @@ export function get_will_option_9_pdf(data, pdf)
     <p style="display:flex; flex-direction: 'row';page-break-inside: auto; ">
         <p style="${div_style+div_number_style} ${pdf === true ? `margin-left: ${number_size * 0}px;` : ""}"></p>
         <p class="text" style="${div_style+div_text_style}; margin-top: -60px; ${pdf === true ? `margin-left: ${number_size * 1}px;` : ""}"">
-            I nominate ${data[value_names.guard_appoint].name + ", " + data[value_names.guard_appoint].id_number}
+            I nominate ${data[value_names.guard_appoint].name + " with " + data[value_names.guard_appoint].id_number}
             as the guardian of my minor children and failing his/her/their acceptance
-            thereto, I nominate ${data[value_names.another_guard_appoint].name + ", " + data[value_names.another_guard_appoint].id_number}.
+            thereto, I nominate ${data[value_names.another_guard_appoint].name + " with " + data[value_names.another_guard_appoint].id_number}.
         </p>
     </p>
 
@@ -416,9 +416,9 @@ export function get_will_option_9_pdf(data, pdf)
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div class="text" style="${div_style+div_text_style}">
-            IN WITNESS HEREOF, we have hereunto set our hands at 
+            IN WITNESS HEREOF, we have hereunto set our hands at &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             on
-            This day of ${year}, in the presence of the
+            This day of &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, in the presence of the
             undersigned witnesses, being present at the same time.
         </div>
     </div>

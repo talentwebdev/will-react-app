@@ -7,7 +7,7 @@ export function get_will_option_22(data, pdf, isMirror)
     const country = data[value_names.your_information] !== undefined ? data[value_names.your_information].nationality : '';
     const passport_number = data[value_names.user] !== undefined ? data[value_names.user].id_number : '';
     const uae_id = data[value_names.your_information] !== undefined ? data[value_names.your_information].emirates_id : '';
-    const address = data[value_names.address] !== undefined ? (data[value_names.address].address + " " + data[value_names.address].city): '';
+    const address = data[value_names.address] !== undefined ? (data[value_names.address].address): '';
     const executor_name = data[value_names.executor] !== undefined ? data[value_names.executor].name : '';
     const executor_address = data[value_names.executor] !== undefined ? data[value_names.executor].address : "";
     const executor_nationality = data[value_names.executor] !== undefined ? data[value_names.executor].nationality : '';
@@ -80,7 +80,7 @@ export function get_will_option_22(data, pdf, isMirror)
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div style="${pdf === true ? "" : "display:flex; flex-direction: 'column';"} ${div_style+div_text_style}">
-            I ${full_name} of ${address}, United Arab Emirates, declare this to be my last Will.
+            I ${full_name} of ${address} declare this to be my last Will.
         </div>
     </div>
     
@@ -124,8 +124,8 @@ export function get_will_option_22(data, pdf, isMirror)
             <div class="number" style="${div_style+div_number_style}">4. </div>
             <div style="${pdf === false ? `width: ${total_size - number_size}px;` : `margin-left: ${number_size}px`}">
                 <div class="small_title" style="font-weight: bold; ${div_style+div_text_style}">
-                    I appoint ${executor_name} to be my executor and trustee in relation to my UAE and ${country} Estates. In the event that
-                      ${executor_name} predeceases me, then I appoint ${alternative_executor_name}, as the ${executor_name} and Trustee in relation to my UAE and ${country} Estates.
+                    I appoint ${executor_name + " with " + executor_passport} to be my executor and trustee in relation to my UAE and ${country} Estates. In the event that
+                      ${executor_name + " with " + executor_passport} predeceases me, then I appoint ${alternative_executor_name}, as the executor and Trustee in relation to my UAE and ${country} Estates.
                 </div>
             </div>                
         </div>

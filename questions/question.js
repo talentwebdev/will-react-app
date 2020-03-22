@@ -118,7 +118,7 @@ export const question = {
                                         },
                                         no: {
                                             component: "PeopleListScreen",
-                                            title: "List Beneficiaries",
+                                            title: "List Beneficiaries other than spouse",
                                             value: value_names.beneficiaries,
                                             next: {
                                                 component: "FinalWillScreen",
@@ -148,7 +148,7 @@ export const question = {
                                     },
                                     no: {
                                         component: "PeopleListScreen",
-                                        title: "List Beneficiaries",
+                                        title: "List Beneficiaries other than spouse",
                                         value: value_names.beneficiaries,
                                         next: {
                                             component: "PeopleListScreen", 
@@ -192,7 +192,7 @@ export const question = {
                                                     value: value_names.spouse,
                                                     next: {
                                                         component: "PeopleListScreen", 
-                                                        title: "List Beneficiaries",
+                                                        title: "List Beneficiaries other than spouse",
                                                         value: value_names.beneficiaries,
                                                         next: {
                                                             component: "FinalWillScreen",
@@ -231,7 +231,7 @@ export const question = {
                                                     value: value_names.spouse,
                                                     next: {
                                                         component: "PeopleListScreen", 
-                                                        title: "List Beneficiaries",
+                                                        title: "List Beneficiaries other than spouse",
                                                         value: value_names.beneficiaries,
                                                         next: {
                                                             component: "FinalWillScreen",
@@ -247,7 +247,7 @@ export const question = {
                                                 value: value_names.spouse,
                                                 next: {
                                                     component: "PeopleListScreen", 
-                                                    title: "List Beneficiaries",
+                                                    title: "List Beneficiaries other than spouse",
                                                     value: value_names.beneficiaries,
                                                     next: {
                                                         component: "FinalWillScreen",
@@ -305,7 +305,7 @@ export const question = {
                             value: value_names.spouse,
                             next: {
                                 component: "PeopleListScreen",
-                                title: "List Beneficiaries",
+                                title: "List Beneficiaries other than spouse",
                                 value: value_names.beneficiaries,
                                 next: {
                                     component: "FinalWillScreen",
@@ -409,7 +409,7 @@ export const question = {
                     title: "Are you married?",
                     yes: {
                         component: "PeopleScreen",
-                        title: "What is your spouse Name?",
+                        title: "What is your spouses name?",
                         value: value_names.spouse,
                         next: {
                             component: "QuestionScreen",
@@ -430,52 +430,22 @@ export const question = {
                                             value: value_names.children,
                                             title: "Name of child/Children",
                                             next: {
-                                                component: "PeopleListScreen",
-                                                value: value_names.specific_assets,
-                                                title: "List any Specific Assets in the UAE",
+                                                component: "UAEGuardianScreen",
+                                                value: value_names.temporary_guardian,
+                                                title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
                                                 next: {
-                                                    component: "UAEGuardianScreen",
-                                                    value: value_names.temporary_guardian,
-                                                    title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
-                                                    next: {
-                                                        component: "PeopleScreen",
-                                                        value: value_names.alternative_executor,
-                                                        title: "Please name an alternative executor in the event of the above mentioned executor pre-deceasing you.",
-                                                        next: {
-                                                            component: "QuestionScreen",
-                                                            title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                            yes: {
-                                                                component: "PeopleListScreen",
-                                                                title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                                value: value_names.uae_assets,
-                                                                next: getUAELastModule(1, 5)
-                                                            },
-                                                            no: getUAELastModule(3, 7)
-                                                        }
-                                                    }
+                                                    component: "PeopleScreen",
+                                                    value: value_names.alternative_executor,
+                                                    title: "Please name an alternative executor in the event of the above mentioned executor pre-deceasing you.",
+                                                    next: getUAELastModule(1, 5)
                                                 }
                                             }
                                         },
                                         no: {
-                                            component: "PeopleListScreen",
-                                            title: "List any Specific Assets in the UAE",
-                                            value: value_names.specific_assets,
-                                            next: {
-                                                component: "PeopleScreen",
-                                                title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
-                                                value: value_names.alternative_executor,
-                                                next: {
-                                                    component: "QuestionScreen", 
-                                                    title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                    yes: {
-                                                        component: "PeopleListScreen",
-                                                        title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                        value: value_names.uae_assets,
-                                                        next: getUAELastModule(2, 6)
-                                                    },
-                                                    no: getUAELastModule(4, 8)
-                                                }
-                                            }
+                                            component: "PeopleScreen",
+                                            title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
+                                            value: value_names.alternative_executor,
+                                            next: getUAELastModule(2, 6)
                                         }
                                     },
                                     no: { // Abh Dhabi
@@ -486,58 +456,27 @@ export const question = {
                                             value: value_names.children,
                                             title: "Name of child/Children",
                                             next: {
-                                                component: "PeopleListScreen",
-                                                value: value_names.specific_assets,
-                                                title: "List any Specific Assets in the UAE",
+                                                component: "UAEGuardianScreen",
+                                                value: value_names.temporary_guardian,
+                                                title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
                                                 next: {
                                                     component: "UAEGuardianScreen",
-                                                    value: value_names.temporary_guardian,
-                                                    title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
+                                                    value: value_names.permanent_guardian,
+                                                    title: "In the event of death to you and spouse death. Please name 2 permanent guardians",
                                                     next: {
-                                                        component: "UAEGuardianScreen",
-                                                        value: value_names.permanent_guardian,
-                                                        title: "In the event of death to you and spouse death. Please name 2 permanent guardians",
-                                                        next: {
-                                                            component: "PeopleScreen",
-                                                            value: value_names.alternative_executor,
-                                                            title: "Please name an alternative executor in the event of the above mentioned executor pre-deceasing you.",
-                                                            next: {
-                                                                component: "QuestionScreen",
-                                                                title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                                yes: {
-                                                                    component: "PeopleListScreen",
-                                                                    title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                                    value: value_names.uae_assets,
-                                                                    next: getUAELastModule(9, 13)
-                                                                },
-                                                                no: getUAELastModule(11, 15)
-                                                            }
-                                                        }
+                                                        component: "PeopleScreen",
+                                                        value: value_names.alternative_executor,
+                                                        title: "Please name an alternative executor in the event of the above mentioned executor pre-deceasing you.",
+                                                        next: getUAELastModule(9, 13)
                                                     }
-                                                    
                                                 }
                                             }
                                         },
                                         no: {
-                                            component: "PeopleListScreen",
-                                            title: "List any Specific Assets in the UAE",
-                                            value: value_names.specific_assets,
-                                            next: {
-                                                component: "PeopleScreen",
-                                                title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
-                                                value: value_names.alternative_executor,
-                                                next: {
-                                                    component: "QuestionScreen", 
-                                                    title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                    yes: {
-                                                        component: "PeopleListScreen",
-                                                        title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                        value: value_names.uae_assets,
-                                                        next: getUAELastModule(10, 14)
-                                                    },
-                                                    no: getUAELastModule(12, 16)
-                                                }
-                                            }
+                                            component: "PeopleScreen",
+                                            title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
+                                            value: value_names.alternative_executor,
+                                            next: getUAELastModule(12, 16)
                                         }
                                     }
                                 },
@@ -561,52 +500,22 @@ export const question = {
                                             value: value_names.children,
                                             title: "Name of child/Children",
                                             next: {
-                                                component: "PeopleListScreen",
-                                                value: value_names.specific_assets,
-                                                title: "List any Specific Assets in the UAE",
+                                                component: "UAEGuardianScreen",
+                                                value: value_names.temporary_guardian,
+                                                title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
                                                 next: {
-                                                    component: "UAEGuardianScreen",
-                                                    value: value_names.temporary_guardian,
-                                                    title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
-                                                    next: {
-                                                        component: "PeopleScreen",
-                                                        value: value_names.alternative_executor,
-                                                        title: "Please name an alternative executor in the event of the above mentioned executor pre-deceasing you.",
-                                                        next: {
-                                                            component: "QuestionScreen",
-                                                            title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                            yes: {
-                                                                component: "PeopleListScreen",
-                                                                title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                                value: value_names.uae_assets,
-                                                                next: getUAELastModule(1, 5)
-                                                            },
-                                                            no: getUAELastModule(3, 7)
-                                                        }
-                                                    }
+                                                    component: "PeopleScreen",
+                                                    value: value_names.alternative_executor,
+                                                    title: "Please name an alternative executor in the event of the above mentioned executor pre-deceasing you.",
+                                                    next: getUAELastModule(1, 5)
                                                 }
                                             }
                                         },
                                         no: {
-                                            component: "PeopleListScreen",
-                                            title: "List any Specific Assets in the UAE",
-                                            value: value_names.specific_assets,
-                                            next: {
-                                                component: "PeopleScreen",
-                                                title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
-                                                value: value_names.alternative_executor,
-                                                next: {
-                                                    component: "QuestionScreen", 
-                                                    title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                    yes: {
-                                                        component: "PeopleListScreen",
-                                                        title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                        value: value_names.uae_assets,
-                                                        next: getUAELastModule(2, 6)
-                                                    },
-                                                    no: getUAELastModule(4, 8)
-                                                }
-                                            }
+                                            component: "PeopleScreen",
+                                            title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
+                                            value: value_names.alternative_executor,
+                                            next: getUAELastModule(2, 6)
                                         }
                                     },
                                     no: { // Abh Dhabi
@@ -617,58 +526,27 @@ export const question = {
                                             value: value_names.children,
                                             title: "Name of child/Children",
                                             next: {
-                                                component: "PeopleListScreen",
-                                                value: value_names.specific_assets,
-                                                title: "List any Specific Assets in the UAE",
+                                                component: "UAEGuardianScreen",
+                                                value: value_names.temporary_guardian,
+                                                title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
                                                 next: {
                                                     component: "UAEGuardianScreen",
-                                                    value: value_names.temporary_guardian,
-                                                    title: "In the event of death to you and spouse death. Please name 2 temporary guardians residing in the UAE",
+                                                    value: value_names.permanent_guardian,
+                                                    title: "In the event of death to you and spouse death. Please name 2 permanent guardians",
                                                     next: {
-                                                        component: "UAEGuardianScreen",
-                                                        value: value_names.permanent_guardian,
-                                                        title: "In the event of death to you and spouse death. Please name 2 permanent guardians",
-                                                        next: {
-                                                            component: "PeopleScreen",
-                                                            value: value_names.alternative_executor,
-                                                            title: "Please name an alternative executor in the event of the above mentioned executor pre-deceasing you.",
-                                                            next: {
-                                                                component: "QuestionScreen",
-                                                                title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                                yes: {
-                                                                    component: "PeopleListScreen",
-                                                                    title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                                    value: value_names.uae_assets,
-                                                                    next: getUAELastModule(9, 13)
-                                                                },
-                                                                no: getUAELastModule(11, 15)
-                                                            }
-                                                        }
+                                                        component: "PeopleScreen",
+                                                        value: value_names.alternative_executor,
+                                                        title: "Please name an alternative executor in the event of the above mentioned executor pre-deceasing you.",
+                                                        next: getUAELastModule(9, 13)
                                                     }
-                                                    
                                                 }
                                             }
                                         },
                                         no: {
-                                            component: "PeopleListScreen",
-                                            title: "List any Specific Assets in the UAE",
-                                            value: value_names.specific_assets,
-                                            next: {
-                                                component: "PeopleScreen",
-                                                title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
-                                                value: value_names.alternative_executor,
-                                                next: {
-                                                    component: "QuestionScreen", 
-                                                    title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                    yes: {
-                                                        component: "PeopleListScreen",
-                                                        title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                        value: value_names.uae_assets,
-                                                        next: getUAELastModule(10, 14)
-                                                    },
-                                                    no: getUAELastModule(12, 16)
-                                                }
-                                            }
+                                            component: "PeopleScreen",
+                                            title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
+                                            value: value_names.alternative_executor,
+                                            next: getUAELastModule(10, 14)
                                         }
                                     }
                                 },
@@ -694,62 +572,27 @@ export const question = {
                                     title: "Name of child/Children",
                                     value: value_names.children,
                                     next: {
-                                        component: "PeopleListScreen",
-                                        title: "List any Specific Assets in the UAE", 
-                                        value: value_names.specific_assets, 
+                                        component: "UAEGuardianScreen",
+                                        title: "In the event of your death. Please name 2 temporary guardians residing in the UAE",
+                                        value: value_names.temporary_guardian,
                                         next: {
                                             component: "UAEGuardianScreen",
-                                            title: "In the event of your death. Please name 2 temporary guardians residing in the UAE",
-                                            value: value_names.temporary_guardian,
+                                            title: "In the event of your death. Please name 2 permanent guardians residing in the UAE", 
+                                            value: value_names.permanent_guardian,
                                             next: {
-                                                component: "UAEGuardianScreen",
-                                                title: "In the event of your death. Please name 2 permanent guardians residing in the UAE", 
-                                                value: value_names.permanent_guardian,
-                                                next: {
-                                                    component: "PeopleScreen",
-                                                    title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
-                                                    value: value_names.alternative_executor,
-                                                    next: {
-                                                        component: "QuestionScreen",
-                                                        title: "Do you have any Assets outside of the UAE that you would like to add to the Will?", 
-                                                        yes: {
-                                                            component: "PeopleListScreen", 
-                                                            title: "Do you have any Assets outside of the UAE that ou would like to add to the Will?", 
-                                                            value: value_names.uae_assets,
-                                                            next: getUAELastModule(17, 21)
-                                                        },
-                                                        no: {
-                                                            component: "PeopleListScreen",
-                                                            title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                            value: value_names.uae_assets,
-                                                            next: getUAELastModule(19, 23)
-                                                        }
-                                                    }
-                                                }
+                                                component: "PeopleScreen",
+                                                title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
+                                                value: value_names.alternative_executor,
+                                                next: getUAELastModule(17, 21)
                                             }
                                         }
                                     }
                                 },
                                 no: {
-                                    component: "PeopleListScreen",
-                                    title: "List any Specific Assets in the UAE", 
-                                    value: value_names.specific_assets, 
-                                    next: {
-                                        component: "PeopleScreen",
-                                        title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
-                                        value: value_names.alternative_executor,
-                                        next: {
-                                            component: "QuestionScreen",
-                                            title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                            yes: {
-                                                component: "PeopleListScreen",
-                                                title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                value: value_names.uae_assets,
-                                                next: getUAELastModule(18, 22)
-                                            },
-                                            no: getUAELastModule(20, 24)
-                                        }
-                                    }
+                                    component: "PeopleScreen",
+                                    title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
+                                    value: value_names.alternative_executor,
+                                    next: getUAELastModule(18, 22)
                                 }
                             },
                             no: {// Abu Dhabi
@@ -760,67 +603,27 @@ export const question = {
                                     title: "Name of child/Children",
                                     value: value_names.children,
                                     next: {
-                                        component: "PeopleListScreen",
-                                        title: "List any Specific Assets in the UAE", 
-                                        value: value_names.specific_assets, 
+                                        component: "UAEGuardianScreen",
+                                        title: "In the event of your death. Please name 2 temporary guardians residing in the UAE",
+                                        value: value_names.temporary_guardian,
                                         next: {
                                             component: "UAEGuardianScreen",
-                                            title: "In the event of your death. Please name 2 temporary guardians residing in the UAE",
-                                            value: value_names.temporary_guardian,
+                                            title: "In the event of your death. Please name 2 permanent guardians residing in the UAE", 
+                                            value: value_names.permanent_guardian,
                                             next: {
-                                                component: "UAEGuardianScreen",
-                                                title: "In the event of your death. Please name 2 permanent guardians residing in the UAE", 
-                                                value: value_names.permanent_guardian,
-                                                next: {
-                                                    component: "PeopleScreen",
-                                                    title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
-                                                    value: value_names.alternative_executor,
-                                                    next: {
-                                                        component: "QuestionScreen",
-                                                        title: "Do you have any Assets outside of the UAE that you would like to add to the Will?", 
-                                                        yes: {
-                                                            component: "PeopleListScreen", 
-                                                            title: "Do you have any Assets outside of the UAE that ou would like to add to the Will?", 
-                                                            value: value_names.uae_assets,
-                                                            next: getUAELastModule(25, 29)
-                                                        },
-                                                        no: {
-                                                            component: "PeopleListScreen",
-                                                            title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                            value: value_names.uae_assets,
-                                                            next: getUAELastModule(27, 31)
-                                                        }
-                                                    }
-                                                }
+                                                component: "PeopleScreen",
+                                                title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
+                                                value: value_names.alternative_executor,
+                                                next: getUAELastModule(25, 29)
                                             }
                                         }
                                     }
                                 },
                                 no: {
-                                    component: "PeopleListScreen",
-                                    title: "List any Specific Assets in the UAE", 
-                                    value: value_names.specific_assets, 
-                                    next: {
-                                        component: "PeopleScreen",
-                                        title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
-                                        value: value_names.alternative_executor,
-                                        next: {
-                                            component: "QuestionScreen",
-                                            title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                            yes: {
-                                                component: "PeopleListScreen",
-                                                title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                value: value_names.uae_assets,
-                                                next: getUAELastModule(26, 30)
-                                            },
-                                            no: {
-                                                component: "PeopleListScreen",
-                                                title: "Do you have any Assets outside of the UAE that you would like to add to the Will?",
-                                                value: value_names.uae_assets,
-                                                next: getUAELastModule(28, 32)
-                                            }
-                                        }
-                                    }
+                                    component: "PeopleScreen",
+                                    title: "Please name an alternative Executor in the event of the above mentioned Executor pre-deceasing you",
+                                    value: value_names.alternative_executor,
+                                    next: getUAELastModule(26, 30)
                                 }
                             }
                         },

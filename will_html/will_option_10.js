@@ -8,7 +8,7 @@ export function get_will_option_10(data, pdf)
     let children_name = "";
     for(var i = 0 ; i < children.length ; i++)
     {
-        children_name += children[i].name + ", " + children[i].id_number + (i === children.length - 1 ? " " : "/");
+        children_name += children[i].name + " with " + children[i].id_number + (i === children.length - 1 ? " " : " and ");
     }   
     const year = new Date().getFullYear();
     const number_size = 60;
@@ -149,7 +149,7 @@ export function get_will_option_10(data, pdf)
                                     </div>
                                     <div style="${pdf === true ? `margin-left: ${number_size}px;` : `width: ${total_size - 3 * number_size}px; `}">
                                         <div class="text" style="${div_style+div_text_style}">
-                                            We appoint ${data[value_names.executor].name + ", " + data[value_names.executor].id_number + ", " + data[value_names.executor].address} to be our Executrix and
+                                            We appoint ${data[value_names.executor].name + " with " + data[value_names.executor].id_number + ", " + data[value_names.executor].address} to be our Executrix and
                                             Adminstratrix, granting unto her all such powers and
                                             authorities as are allowed in Law, including the powers of
                                             assumption. We direct that our said Executrix and
@@ -459,9 +459,9 @@ export function get_will_option_10(data, pdf)
             <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">APPOINTMENT OF GUARDIAN </div>
                 <div class="text" style="${div_style+div_text_style}">
-                    I nominate ${data[value_names.guard_appoint].name + ", " + data[value_names.guard_appoint].id_number}
+                    I nominate ${data[value_names.guard_appoint].name + " with " + data[value_names.guard_appoint].id_number}
                     as the guardian of my minor children and failing his/her/their acceptance
-                    thereto, I nominate ${data[value_names.another_guard_appoint].name + ", " + data[value_names.another_guard_appoint].id_number}.
+                    thereto, I nominate ${data[value_names.another_guard_appoint].name + " with " + data[value_names.another_guard_appoint].id_number}.
                 </div>
             </div>                
         </div>
@@ -519,9 +519,9 @@ export function get_will_option_10(data, pdf)
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div class="text" style="${div_style+div_text_style}">
-            IN WITNESS HEREOF, we have hereunto set our hands at 
+            IN WITNESS HEREOF, we have hereunto set our hands at &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             on
-            This day of ${year}, in the presence of the
+            This day of &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, in the presence of the
             undersigned witnesses, being present at the same time.
         </div>
     </div>

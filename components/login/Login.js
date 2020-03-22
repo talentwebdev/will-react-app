@@ -122,7 +122,7 @@ class Login extends Component{
                 password: this.state.password
             })
         })
-        .then((response) => response.json())
+        .then((response) => response.text())
         .then(async (responseJson) => {
             await _storeEmail(this.state.email);
             await _storePassword(this.state.password);

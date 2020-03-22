@@ -9,7 +9,7 @@ export function get_will_option_1(data, pdf)
 
     for(let i = 0 ; i < appoint_estates.length ; i++)
     {
-        appoint_name = appoint_name + appoint_estates[i].name + ", " + appoint_estates[i].id_number + (i === appoint_estates.length - 1 ?  "" : "/");
+        appoint_name = appoint_name + appoint_estates[i].name + " with " + appoint_estates[i].id_number + (i === appoint_estates.length - 1 ?  "" : " and ");
     }
     const year = new Date().getFullYear();
     const number_size = 60;
@@ -30,7 +30,7 @@ export function get_will_option_1(data, pdf)
     const html = `<div style='width:100%;'><div style="padding: 40px; margin: auto; ${pdf === true ? `width: 100%;` : `width: 700px;`}">
     <p class="title" style="text-align: center; ${p_title_style}">
     <div style="text-align: center; ${p_title_style}">LAST WILL &amp; TESTAMENT</div> <div style="text-align: center; ${p_title_style}">OF</div> 
-    <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} :)</div>
+    <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number} )</div>
     <div style="text-align: center; ${p_title_style}">${data[value_names.user].name + " " + data[value_names.user].surname}</div>
     </p>
 
@@ -65,7 +65,7 @@ export function get_will_option_1(data, pdf)
             <div style="${pdf === false ? `width: ${text_size}px;` : `margin-left: ${number_size}px;`} ">
                 <div class="small_title" style="${div_style+div_small_title_style}">APPOINTMENT OF AN EXECUTOR/ EXECUTRIX: </div>
                 <div class="text" style="${div_style+div_text_style}">
-                    I hereby appoint ${data[value_names.executor].name + ", " + data[value_names.executor].id_number + ", " + data[value_names.executor].address} to be my Executor, granting
+                    I hereby appoint ${data[value_names.executor].name + " with " + data[value_names.executor].id_number + " of " + data[value_names.executor].address} to be my Executor, granting
                     unto
                     Him/her all such powers and authorities as are allowed in Law, including
                     the powers of assumption. I direct that said Executror shall not be bound
@@ -245,9 +245,9 @@ export function get_will_option_1(data, pdf)
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div class="text" style="${div_style+div_text_style}">
-            IN WITNESS HEREOF, we have hereunto set our hands at (INSERT PLACE)
+            IN WITNESS HEREOF, we have hereunto set our hands at &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             on
-            This day of ${year}, in the presence of the
+            This day of &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, in the presence of the
             undersigned witnesses, being present at the same time.
         </div>
     </div>

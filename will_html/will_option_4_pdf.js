@@ -7,7 +7,7 @@ export function get_will_option_4_pdf(data, pdf)
     const year = new Date().getFullYear();
     for(var i = 0 ; i < children.length ; i++)
     {
-        children_name += children[i].name + ", " + children[i].id_number + (i === children.length - 1 ? " " : "/");
+        children_name += children[i].name + " with " + children[i].id_number + (i === children.length - 1 ? " " : " and ");
     }   
     const number_size = 60;
     const total_size = 700;
@@ -50,6 +50,12 @@ export function get_will_option_4_pdf(data, pdf)
         <div style="text-align: center; ${p_title_style}">${data[value_names.user].name + " " + data[value_names.user].surname}</div>
         <div style="text-align: center; ${p_title_style}">(I.D. ${data[value_names.user].id_number})</div>
     </p>
+    
+    <div class="paragraph" style="${div_style+paragraph_style}" >
+        <div style="display:flex; flex-direction: 'column'; ">
+            <div class="small_title" style="${div_style+div_small_title_style}"> I record that I am single ${data[value_names.user].gender} residing at ${data[value_names.address].address}</div>
+        </div>
+    </div>
     
     <footer style="${footer}">
         <div class="paragraph witness" style="z-index: -1; ${div_style+paragraph_style+div_witness_style}" >
@@ -109,8 +115,8 @@ export function get_will_option_4_pdf(data, pdf)
     <p style="display:flex; flex-direction: 'row';page-break-inside: auto; ">
         <p style="${div_style+div_number_style} ${pdf === true ? `margin-left: ${number_size * 1}px;` : ""}">2.1 </p>
         <p class="text" style="${div_style+div_text_style}; page-break-before: avoid;  margin-top: -60px; ${pdf === true ? `margin-left: ${number_size * 2}px;` : ""}"">
-            I hereby nominate, constitute and appoint ${data[value_names.executor].name + ", " + 
-            data[value_names.executor].id_number + ", " + 
+            I hereby nominate, constitute and appoint ${data[value_names.executor].name + " with " + 
+            data[value_names.executor].id_number + " of " + 
             data[value_names.executor].address} to be the Executor/Executrix and
             Administrator/Adminstratrix of my estate, granting unto him/her
             all such power and authority as is allowed in law and especially the
@@ -231,9 +237,9 @@ export function get_will_option_4_pdf(data, pdf)
 
     <div class="paragraph" style="${div_style+paragraph_style}" >
         <div class="text" style="${div_style+div_text_style}">
-            IN WITNESS HEREOF, we have hereunto set our hands at 
+            IN WITNESS HEREOF, we have hereunto set our hands at &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             on
-            This day of ${year}, in the presence of the
+            This day of &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;, in the presence of the
             undersigned witnesses, being present at the same time.
         </div>
     </div>

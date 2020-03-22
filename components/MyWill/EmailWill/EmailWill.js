@@ -71,10 +71,10 @@ class EmailWill extends Component{
         let willType = this.props.will.final_will["will_type"];
 
         this.setState({sending: true});
-        console.log(isDebug);
-        /*
+        console.log("data", data);
         if(isDebug )
         {
+            /*
             data[value_names.country_location] = "South Africa";
             data[value_names.user].name = "Zhuping ";data[value_names.user].surname = "Hello ";
             data[value_names.address] = "asdlfksdjf sdlfksdjf";
@@ -83,11 +83,12 @@ class EmailWill extends Component{
             data[value_names.guard_appoint] = {name: "abcd"};
             data[value_names.another_guard_appoint] = {name: "abcd"};
             data[value_names.spouse] = {name: "abcd"};
+            */
             willType = 9;
         }
-        */
         
-        console.log(willType);
+        //console.log(data[value_names.country_location]);
+        //console.log("content", data[value_names.country_location] === "UAE" ? getUAEWillHTML(willType, data, true) : getWillHTML(willType, data, true));
         fetch(API_URL + "/email/send", {
             method: "POST",
             headers: {

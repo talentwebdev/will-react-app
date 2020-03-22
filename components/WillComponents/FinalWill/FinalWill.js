@@ -31,8 +31,8 @@ class FinalWill extends Component
             index: 1,
             actions: [
               NavigationActions.navigate({ routeName: 'MakeWillScreen' }),
-              //NavigationActions.navigate({ routeName: "PaymentScreen" }),
-              NavigationActions.navigate({ routeName: "PaymentSuccessScreen" }),
+              NavigationActions.navigate({ routeName: "PaymentScreen" }),
+              //NavigationActions.navigate({ routeName: "PaymentSuccessScreen" }),
             ],
         });
         this.props.navigation.dispatch(resetAction);
