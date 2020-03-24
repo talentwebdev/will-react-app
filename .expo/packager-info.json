@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 21412,
-  "expoServerNgrokUrl": "https://k6-hqi.zhuping19980609.will-react-app.exp.direct",
-  "packagerNgrokUrl": "https://packager.k6-hqi.zhuping19980609.will-react-app.exp.direct",
-  "ngrokPid": 5796,
+  "packagerPid": 18740,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
